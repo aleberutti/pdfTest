@@ -7,7 +7,11 @@
 
 package com.dir.inno.normalizacion_pdfs;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.licensekey.LicenseKey;
+import com.itextpdf.text.pdf.PdfAcroForm;
+import com.itextpdf.text.pdf.XfaForm;
 import com.itextpdf.tool.xml.xtra.xfa.XFAFlattener;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -15,25 +19,25 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.apache.pdfbox.pdmodel.interactive.form.PDNonTerminalField;
-import org.apache.pdfbox.pdmodel.interactive.form.PDXFAResource;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.xml.sax.SAXException;
+import com.snowtide.PDF;
+import com.snowtide.pdf.Document;
+import com.snowtide.pdf.OutputTarget;
 
 /**
  *
@@ -43,33 +47,19 @@ public class Main{
      /**
      * @param args the command line arguments
      */
-    private List javascriptEvents;
 
-    public void main(String[] args)  throws IOException {
-        try{
-            FileInputStream f = new FileInputStream("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno.pdf");
-            FileOutputStream dest = new FileOutputStream("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 flattened.pdf");
-            
-            LicenseKey.loadLicenseFile(System.getenv("ITEXT7_LICENSEKEY") + "/all-products.xml");
+    public static void main(String[] args)  throws IOException, TransformerException, ParserConfigurationException, SAXException {
+        
+        
+        String pdfFilePath = "C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno v1.pdf";
 
- 
+        Document pdf = PDF.open(pdfFilePath);
+        StringBuilder text = new StringBuilder(1024);
+        pdf.pipe(new OutputTarget(text));
+        pdf.close();
+        System.out.println(text);
+  
 
-            this.javascriptEvents = new ArrayList();
-
-
-
-            this.javascriptEvents.add("click");
-
-            
-            XFAFlattener xfaf = new XFAFlattener();
-            
-            
-            
-            xfaf.flatten(f, dest);
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
 
 
 
@@ -112,71 +102,71 @@ public class Main{
         
     }
     
- private static void printNodes(NodeList nodeList) {
-
-     for (int j = 0; j<nodeList.getLength(); j++ ){
-
-        Nodo nodo = new Nodo(nodeList.item(j));
-        
-        if (nodo.isLeaf()){
-
-            System.out.println("/nNode name:" + nodo.getName());
-            System.out.println("Node value:" + nodo.getValue());
-        }
-        else{
-
-            printNodes(nodo.getHijos());
-        }
-     }
-
-    
-}
-    public static void printFields(PDDocument pdfDocument) throws IOException{
-        PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
-        PDAcroForm acroForm = docCatalog.getAcroForm();
-        List<PDField> fields = acroForm.getFields();
-        
-        System.out.println(fields.size() + " top-level fields were found on the form");
-
-        for (PDField field : fields)
-        {
-            
-            processField(field, "|--", field.getPartialName());
-        }
-    }
-    private static void processField(PDField field, String sLevel, String sParent) throws IOException{
-        String partialName = field.getPartialName();
-        
-        if (field instanceof PDNonTerminalField)
-        {
-            if (!sParent.equals(field.getPartialName()))
-            {
-                if (partialName != null)
-                {
-                    sParent = sParent + "." + partialName;
-                }
-            }
-            System.out.println(sLevel + sParent);
-
-            for (PDField child : ((PDNonTerminalField)field).getChildren())
-            {
-                processField(child, "|  " + sLevel, sParent);
-            }
-        }
-        else{
-            if(!field.getValueAsString().isEmpty()){
-                String fieldValue = field.getValueAsString();
-                StringBuilder outputString = new StringBuilder(sLevel);
-                outputString.append(sParent);
-                if (partialName != null)
-                {
-                    outputString.append(".").append(partialName);
-                }
-                outputString.append(" = ").append(fieldValue);
-                //outputString.append(",  type=").append(field.getClass().getName());
-                System.out.println(outputString);
-            }
-            
-        }
-    }
+// private static void printNodes(NodeList nodeList) {
+//
+//     for (int j = 0; j<nodeList.getLength(); j++ ){
+//
+//        Nodo nodo = new Nodo(nodeList.item(j));
+//        
+//        if (nodo.isLeaf()){
+//
+//            System.out.println("/nNode name:" + nodo.getName());
+//            System.out.println("Node value:" + nodo.getValue());
+//        }
+//        else{
+//
+//            printNodes(nodo.getHijos());
+//        }
+//     }
+//
+//    
+//}
+//    public static void printFields(PDDocument pdfDocument) throws IOException{
+//        PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
+//        PDAcroForm acroForm = docCatalog.getAcroForm();
+//        List<PDField> fields = acroForm.getFields();
+//        
+//        System.out.println(fields.size() + " top-level fields were found on the form");
+//
+//        for (PDField field : fields)
+//        {
+//            
+//            processField(field, "|--", field.getPartialName());
+//        }
+//    }
+//    private static void processField(PDField field, String sLevel, String sParent) throws IOException{
+//        String partialName = field.getPartialName();
+//        
+//        if (field instanceof PDNonTerminalField)
+//        {
+//            if (!sParent.equals(field.getPartialName()))
+//            {
+//                if (partialName != null)
+//                {
+//                    sParent = sParent + "." + partialName;
+//                }
+//            }
+//            System.out.println(sLevel + sParent);
+//
+//            for (PDField child : ((PDNonTerminalField)field).getChildren())
+//            {
+//                processField(child, "|  " + sLevel, sParent);
+//            }
+//        }
+//        else{
+//            if(!field.getValueAsString().isEmpty()){
+//                String fieldValue = field.getValueAsString();
+//                StringBuilder outputString = new StringBuilder(sLevel);
+//                outputString.append(sParent);
+//                if (partialName != null)
+//                {
+//                    outputString.append(".").append(partialName);
+//                }
+//                outputString.append(" = ").append(fieldValue);
+//                //outputString.append(",  type=").append(field.getClass().getName());
+//                System.out.println(outputString);
+//            }
+//            
+//        }
+//    }
 }

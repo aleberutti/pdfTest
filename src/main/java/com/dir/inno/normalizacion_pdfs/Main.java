@@ -3,8 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package com.dir.inno.normalizacion_pdfs;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -38,135 +36,48 @@ import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.VisualOutputTarget;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import pdfts.examples.XMLOutputTarget;
 
 /**
  *
  * @author Administrador
  */
-public class Main{
-     /**
+public class Main {
+
+    /**
      * @param args the command line arguments
+     * @throws java.io.IOException
+     * @throws javax.xml.transform.TransformerException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
      */
 
-    public static void main(String[] args)  throws IOException, TransformerException, ParserConfigurationException, SAXException {
-        
-        
-        String pdfFilePath = "C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno v1.pdf";
+    public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException {
+
+        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno_impreso.pdf";
 
         Document pdf = PDF.open(pdfFilePath);
-        StringBuilder text = new StringBuilder(1024);
-        pdf.pipe(new OutputTarget(text));
+        XMLOutputTarget xml = new XMLOutputTarget();
+        pdf.pipe(xml);
         pdf.close();
-        System.out.println(text);
-  
-
-
-
-
-
-
-
-
-
-
-//        try{
-//            File f = new File("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\XML Documents\\Formulario de presentacion v4.7 muy lleno.xml");
-//            
-//            DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-//
-//            Document doc = dBuilder.parse(f);
-//            doc.getDocumentElement().normalize();
-//            
-//            if (doc.hasChildNodes()) {
-//                
-//
-//		printNodes(doc.getChildNodes().item(0).getChildNodes());
-//
-//            }
-//            
-//
-//        }
-//        catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        String filename ="C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentación v4.7 sd v1 static.pdf";
-//        PDDocument document = PDDocument.load(new File(filename));
-//        
-//        printFields(document);
-//        PDAcroForm pdform = document.getDocumentCatalog().getAcroForm();
-//        
-//        PDXFAResource xfa = pdform.getXFA();
-//        Document xfaDocument = xfa.getDocument();
-//        xfaDocument.normalize();
-//        print(xfaDocument.getElementsByTagName("*"));
-        
+        String text = xml.getXMLAsString();
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        Source input = new DOMSource(xml.getXMLDocument());
+        Result output = new StreamResult(new File("output.xml"));
+        transformer.transform(input, output);
+        String version = obtenerVersion(text);
     }
-    
-// private static void printNodes(NodeList nodeList) {
-//
-//     for (int j = 0; j<nodeList.getLength(); j++ ){
-//
-//        Nodo nodo = new Nodo(nodeList.item(j));
-//        
-//        if (nodo.isLeaf()){
-//
-//            System.out.println("/nNode name:" + nodo.getName());
-//            System.out.println("Node value:" + nodo.getValue());
-//        }
-//        else{
-//
-//            printNodes(nodo.getHijos());
-//        }
-//     }
-//
-//    
-//}
-//    public static void printFields(PDDocument pdfDocument) throws IOException{
-//        PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
-//        PDAcroForm acroForm = docCatalog.getAcroForm();
-//        List<PDField> fields = acroForm.getFields();
-//        
-//        System.out.println(fields.size() + " top-level fields were found on the form");
-//
-//        for (PDField field : fields)
-//        {
-//            
-//            processField(field, "|--", field.getPartialName());
-//        }
-//    }
-//    private static void processField(PDField field, String sLevel, String sParent) throws IOException{
-//        String partialName = field.getPartialName();
-//        
-//        if (field instanceof PDNonTerminalField)
-//        {
-//            if (!sParent.equals(field.getPartialName()))
-//            {
-//                if (partialName != null)
-//                {
-//                    sParent = sParent + "." + partialName;
-//                }
-//            }
-//            System.out.println(sLevel + sParent);
-//
-//            for (PDField child : ((PDNonTerminalField)field).getChildren())
-//            {
-//                processField(child, "|  " + sLevel, sParent);
-//            }
-//        }
-//        else{
-//            if(!field.getValueAsString().isEmpty()){
-//                String fieldValue = field.getValueAsString();
-//                StringBuilder outputString = new StringBuilder(sLevel);
-//                outputString.append(sParent);
-//                if (partialName != null)
-//                {
-//                    outputString.append(".").append(partialName);
-//                }
-//                outputString.append(" = ").append(fieldValue);
-//                //outputString.append(",  type=").append(field.getClass().getName());
-//                System.out.println(outputString);
-//            }
-//            
-//        }
-//    }
+
+    private static String obtenerVersion(String text) {
+        String sub = "VERSIÓN";
+        Integer index = text.indexOf(sub) + sub.length();
+        while (text.charAt(index) == ' ') index++;
+        System.out.println(index);
+        String version = text.substring(index, index + 3);
+        System.out.println(version);
+        return version;
+    }
 }

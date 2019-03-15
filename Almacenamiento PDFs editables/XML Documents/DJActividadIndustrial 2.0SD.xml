@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form1 xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"
+><página1
+><Titulo xfa:dataNode="dataGroup"
+/><SubActEmp
+><hidden
+/><PresentacionEmpresa
+><RadioButtonList
+/></PresentacionEmpresa
+><solicitudVieja
+><hidden_1
+/><hidden_2
+/></solicitudVieja
+><TextField1
+>Emmanuel Alejandro Ábrego</TextField1
+><TextField2
+>Calle de Santa Fe</TextField2
+><TextField3
+>38805396</TextField3
+><TextField3
+>Titular</TextField3
+><TextField2
+>3 de Febrero 2632</TextField2
+><TextField2
+>Gobierno de Santa Fe</TextField2
+></SubActEmp
+><SubCUIT
+><Cuit_3
+>4</Cuit_3
+><Cuit_2
+>38053968</Cuit_2
+><Cuit_1
+>20</Cuit_1
+><IIBB_3
+>9</IIBB_3
+><IIBB_2
+>111111</IIBB_2
+><IIBB_1
+>111</IIBB_1
+><Convenio
+>2</Convenio
+></SubCUIT
+><SubActividades
+><Actividad
+><HeaderNumero
+><NumeroActividad
+>1</NumeroActividad
+></HeaderNumero
+><HeaderBuscarActividad
+><TextField1
+>Textil</TextField1
+></HeaderBuscarActividad
+><HeaderActividad
+><ACTIVIDADES
+>Seleccione actividad.</ACTIVIDADES
+></HeaderActividad
+><HeaderTipoCodigoEstandar
+><TIPOACT
+>Principal</TIPOACT
+><CUACM
+>131300</CUACM
+></HeaderTipoCodigoEstandar
+></Actividad
+><Actividad
+><HeaderNumero
+><NumeroActividad
+>2</NumeroActividad
+></HeaderNumero
+><HeaderBuscarActividad
+><TextField1
+>diseño</TextField1
+></HeaderBuscarActividad
+><HeaderActividad
+><ACTIVIDADES
+>Seleccione actividad.</ACTIVIDADES
+></HeaderActividad
+><HeaderTipoCodigoEstandar
+><TIPOACT
+>Principal</TIPOACT
+><CUACM
+>741000</CUACM
+></HeaderTipoCodigoEstandar
+></Actividad
+></SubActividades
+></página1
+><página2
+><SubDomicilioEstablecimiento
+><Dom_Industrial
+>Aristóbulo del Valle 2600</Dom_Industrial
+><CodigoPostal_Ind
+>3016</CodigoPostal_Ind
+><Nodo
+>Santa Fe</Nodo
+><Localidad_Ind
+>SANTO TOME</Localidad_Ind
+><Departamento_Ind
+>LA CAPITAL</Departamento_Ind
+><Provincia_Ind
+>Santa Fe</Provincia_Ind
+><RadioButtonList
+>1</RadioButtonList
+><SF_Parque_ind
+><Parque_Industrial
+>OTRO</Parque_Industrial
+><Otro
+>SANTOTO 45 </Otro
+></SF_Parque_ind
+></SubDomicilioEstablecimiento
+><SubContacto
+><Telefono
+>3425178451</Telefono
+><Mail
+>mail@contacto.com</Mail
+></SubContacto
+></página2
+><página3 xfa:dataNode="dataGroup"
+/></form1
+>

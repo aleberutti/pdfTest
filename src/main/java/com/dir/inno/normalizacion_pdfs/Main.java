@@ -62,22 +62,71 @@ public class Main {
         Document pdf = PDF.open(pdfFilePath);
         XMLOutputTarget xml = new XMLOutputTarget();
         pdf.pipe(xml);
+        StringBuilder text = new StringBuilder();
+        pdf.pipe(new OutputTarget (text));
         pdf.close();
-        String text = xml.getXMLAsString();
+        /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Source input = new DOMSource(xml.getXMLDocument());
         Result output = new StreamResult(new File("output.xml"));
         transformer.transform(input, output);
+*/
+        System.out.println(text);
+        
         String version = obtenerVersion(text);
+        System.out.println("Version: " + version);
+        
+        String nombre = obtenerNombre(text);
+        System.out.println("Nombre: " + nombre);
+        
+        String cuil = obtenerCuil(text);
+        System.out.println("CUIL: " + cuil);
     }
 
-    private static String obtenerVersion(String text) {
+    private static String obtenerVersion(StringBuilder text) {
         String sub = "VERSIÓN";
         Integer index = text.indexOf(sub) + sub.length();
         while (text.charAt(index) == ' ') index++;
-        System.out.println(index);
         String version = text.substring(index, index + 3);
-        System.out.println(version);
         return version;
+    }
+
+    private static String obtenerNombre(StringBuilder text) {
+        String sub = "NOMBRE COMPLETO / RAZÓN SOCIAL (*)";
+        Integer index = text.indexOf(sub) + sub.length();
+        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') index+=2;
+        String nombre = text.substring(index, index+2);
+        index ++;
+        while ((text.charAt(index+1) != ' ' && text.charAt(index+1) != '\r') ||
+                ((text.charAt(index+1) == ' ') && 
+                (text.charAt(index+2) != ' ' || text.charAt(index+2) != '\r')
+                )
+                ){
+            nombre += text.charAt(index+1);
+            index++;
+        }
+        return nombre;
+    }
+
+    private static String obtenerCuil(StringBuilder text) {
+        String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
+        Integer index = text.indexOf(sub) + sub.length();
+        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') index+=2;
+        String cuil = text.substring(index, index+2);
+        index ++;
+        cuil+='-';
+        index+=2;
+        while ((text.charAt(index+1) != ' ' && text.charAt(index+1) != '\r') ||
+                ((text.charAt(index+1) == ' ') && 
+                (text.charAt(index+2) != ' ' || text.charAt(index+2) != '\r')
+                )
+                ){
+            cuil += text.charAt(index+1);
+            index++;
+        }
+        cuil+='-';
+        index+=2;
+        cuil+=text.charAt(index+1);
+        return cuil;
     }
 }

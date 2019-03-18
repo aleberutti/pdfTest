@@ -37,6 +37,10 @@ import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
 import com.snowtide.pdf.VisualOutputTarget;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import pdfts.examples.XMLOutputTarget;
@@ -54,8 +58,7 @@ public class Main {
      * @throws javax.xml.parsers.ParserConfigurationException
      * @throws org.xml.sax.SAXException
      */
-
-    public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException {
+    public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno_impreso.pdf";
 
@@ -63,30 +66,44 @@ public class Main {
         XMLOutputTarget xml = new XMLOutputTarget();
         pdf.pipe(xml);
         StringBuilder text = new StringBuilder();
-        pdf.pipe(new OutputTarget (text));
+        pdf.pipe(new OutputTarget(text));
         pdf.close();
         /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Source input = new DOMSource(xml.getXMLDocument());
         Result output = new StreamResult(new File("output.xml"));
         transformer.transform(input, output);
-*/
+         */
         System.out.println(text);
-        
+
         String version = obtenerVersion(text);
         System.out.println("Version: " + version);
-        
+
         String nombre = obtenerNombre(text);
         System.out.println("Nombre: " + nombre);
-        
-        String cuil = obtenerCuil(text);
-        System.out.println("CUIL: " + cuil);
+
+        Double cuit = obtenerCuit(text);
+        System.out.println("CUIT: " + cuit);
+
+        Date fechaInicioAct = obtenerFechaInicioAct(text);
+        System.out.println("Fecha Inicio Actividades: " + fechaInicioAct);
+
+        ArrayList<Integer> actividadesEmpresa = obtenerActividades(text);
+        for (Integer i = 0; i < actividadesEmpresa.size(); i++) {
+            System.out.println("Actividad " + (i + 1) + " de la empresa: CUACM " + actividadesEmpresa.get(i));
+        }
+
+        String domicilioLegal = obtenerDomicilioLegal(text);
+        System.out.println("Domicilio Legal: " + domicilioLegal);
+
     }
 
     private static String obtenerVersion(StringBuilder text) {
         String sub = "VERSIÓN";
         Integer index = text.indexOf(sub) + sub.length();
-        while (text.charAt(index) == ' ') index++;
+        while (text.charAt(index) == ' ') {
+            index++;
+        }
         String version = text.substring(index, index + 3);
         return version;
     }
@@ -94,39 +111,125 @@ public class Main {
     private static String obtenerNombre(StringBuilder text) {
         String sub = "NOMBRE COMPLETO / RAZÓN SOCIAL (*)";
         Integer index = text.indexOf(sub) + sub.length();
-        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') index+=2;
-        String nombre = text.substring(index, index+2);
-        index ++;
-        while ((text.charAt(index+1) != ' ' && text.charAt(index+1) != '\r') ||
-                ((text.charAt(index+1) == ' ') && 
-                (text.charAt(index+2) != ' ' || text.charAt(index+2) != '\r')
-                )
-                ){
-            nombre += text.charAt(index+1);
+        index = skipBlank(index, text);
+        String nombre = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            nombre += text.charAt(index);
             index++;
         }
         return nombre;
     }
 
-    private static String obtenerCuil(StringBuilder text) {
+    private static Double obtenerCuit(StringBuilder text) {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         Integer index = text.indexOf(sub) + sub.length();
-        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') index+=2;
-        String cuil = text.substring(index, index+2);
-        index ++;
-        cuil+='-';
-        index+=2;
+        index = skipBlank(index, text);
+        String cuit = text.substring(index, index + 2);
+        index++;
+        index += 2;
+        while ((text.charAt(index + 1) != ' ' && text.charAt(index + 1) != '\r')
+                || ((text.charAt(index + 1) == ' ')
+                && (text.charAt(index + 2) != ' ' || text.charAt(index + 2) != '\r'))) {
+            cuit += text.charAt(index + 1);
+            index++;
+        }
+        index += 2;
+        cuit += text.charAt(index + 1);
+        Double cuitN = Double.parseDouble(cuit);
+        return cuitN;
+    }
+
+    private static Date obtenerFechaInicioAct(StringBuilder text) throws ParseException {
+        String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
+        Integer index = text.indexOf(sub) + sub.length();
+        index = skipBlank(index, text);
+        /*
+        index+=3;
         while ((text.charAt(index+1) != ' ' && text.charAt(index+1) != '\r') ||
                 ((text.charAt(index+1) == ' ') && 
                 (text.charAt(index+2) != ' ' || text.charAt(index+2) != '\r')
                 )
                 ){
-            cuil += text.charAt(index+1);
             index++;
         }
-        cuil+='-';
-        index+=2;
-        cuil+=text.charAt(index+1);
-        return cuil;
+        index+=3;
+         */
+        index += 17;
+        String dateString = new String();
+        while (text.charAt(index) != '\r') {
+            dateString += text.charAt(index);
+            index++;
+        }
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        return date;
+    }
+
+    private static ArrayList<Integer> obtenerActividades(StringBuilder text) {
+        String sub = "CUACM";
+        Integer index = text.indexOf(sub) + sub.length();
+        ArrayList<Integer> actividadesEmpresa = new ArrayList<>();
+        while (index != -1 && index < 9000) {
+            while (text.charAt(index) == ' ') {
+                index++;
+            }
+            String codigoString = new String();
+            while (text.charAt(index) != ' ' && text.charAt(index) != '\r') {
+                codigoString += text.charAt(index);
+                index++;
+            }
+            Integer codigo = Integer.parseInt(codigoString);
+            if (!actividadesEmpresa.contains(codigo)) {
+                actividadesEmpresa.add(codigo);
+            }
+            index = text.indexOf(sub, index) + sub.length();
+        }
+        return actividadesEmpresa;
+    }
+
+    private static String obtenerDomicilioLegal(StringBuilder text) {
+        String sub = "DEPTO";
+        Integer index = text.indexOf(sub) + sub.length();
+        index = skipBlank(index, text);
+        String domicilio = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            domicilio += text.charAt(index);
+            index++;
+        }
+        index = skipBlank(index, text);
+        domicilio += ", ";
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            domicilio += text.charAt(index);
+            index++;
+        }
+        index = skipBlank(index, text);
+        domicilio += ", ";
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            domicilio += text.charAt(index);
+            index++;
+        }
+        index = skipBlank(index, text);
+        domicilio += ", ";
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            domicilio += text.charAt(index);
+            index++;
+        }
+        return domicilio;
+    }
+
+    private static Integer skipBlank(Integer index, StringBuilder text) {
+        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') {
+            index += 2;
+        }
+        return index;
     }
 }

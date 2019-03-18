@@ -38,6 +38,11 @@ import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.forms.AcroForm;
+import com.snowtide.pdf.forms.Form;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -51,22 +56,30 @@ public class Main{
     public static void main(String[] args)  throws IOException, TransformerException, ParserConfigurationException, SAXException {
         
         
-        String pdfFilePath = "C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno v1.pdf";
+        String pdfFilePath = "C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 muy lleno.pdf";
 
         Document pdf = PDF.open(pdfFilePath);
-        StringBuilder text = new StringBuilder(1024);
-        pdf.pipe(new OutputTarget(text));
-        pdf.close();
-        System.out.println(text);
-  
-
-
-
-
-
-
-
-
+        AcroForm form = (AcroForm)pdf.getFormData();
+        byte [] xml = form.getXFAPacketContents("datasets");
+        try (FileOutputStream fos = new FileOutputStream("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 by xfa.xml")) {
+            fos.write(xml);
+        }
+        Set <String> packetNames = form.getXFAPacketNames();
+        Iterator <String> iterator = packetNames.iterator();
+        
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+        Collection fieldNames = form.getFieldNames();
+        System.out.println(fieldNames.size());
+        
+        for (Object o : fieldNames){
+            System.out.println(o.toString());
+        }
+//        StringBuilder text = new StringBuilder(1024);
+//        pdf.pipe(new OutputTarget(text));
+//        pdf.close();
+//        System.out.println(text);
 
 
 //        try{

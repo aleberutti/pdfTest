@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 /**
@@ -172,7 +173,7 @@ public class LectorPDFImpreso47 {
         String mail = readField();
 
         domicilio += calle;
-        domicilio += num;
+        domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
         domicilio += ", Depto " + dpto + ",\r";
         domicilio += loc + ", " + depto + ", " + provincia + "\r";
@@ -200,10 +201,138 @@ public class LectorPDFImpreso47 {
         String field = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
-                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+                && (text.charAt(index + 1) != ' ' && text.charAt(index + 1) != '\r'))) {
             field += text.charAt(index);
             index++;
         }
         return field;
     }
+
+    /*Devuelve el domicilioConstituido como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto, provincia, CP, tel y mail
+     */
+    public String obtenerDomicilioConst() {
+        String domicilio = new String();
+
+        String sub = "DOMICILIO CONSTITUIDO";
+        index = text.indexOf(sub) + sub.length();
+        sub = "DEPTO";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String calle = readField();
+
+        index = skipBlank();
+        String num = readField();
+
+        index = skipBlank();
+        String piso = readField();
+
+        index = skipBlank();
+        String dpto = readField();
+
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String provincia = readField();
+        provincia = WordUtils.capitalizeFully(provincia);
+
+        index = skipBlank();
+        String depto = readField();
+        depto = WordUtils.capitalizeFully(depto);
+
+        index = skipBlank();
+        String loc = readField();
+        loc = WordUtils.capitalizeFully(loc);
+
+        sub = "EMAIL";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String cp = readField();
+
+        index = skipBlank();
+        String tel = readField();
+
+        index = skipBlank();
+        String mail = readField();
+
+        domicilio += calle;
+        domicilio += ' ' + num;
+        domicilio += ", Piso " + piso;
+        domicilio += ", Depto " + dpto + ",\r";
+        domicilio += loc + ", " + depto + ", " + provincia + "\r";
+        domicilio += "CP " + cp + "\r";
+        domicilio += "Tel.: " + tel + "\r";
+        domicilio += "E-mail: " + mail;
+
+        return domicilio;
+    }
+
+    /*Obtener los datos del representante legal (nombre, apellido, dni)
+     */
+    public String obtenerRepLegal() {
+
+        String sub = "REPRESENTANTE LEGAL";
+        index = text.indexOf(sub) + sub.length();
+        sub = "N° DOCUMENTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String apellido = readField();
+        apellido = WordUtils.capitalizeFully(apellido);
+
+        skipBlank();
+        String nombre = WordUtils.capitalizeFully(readField());
+
+        skipBlank();
+        String dniString = readField();
+        Integer dni = Integer.parseInt(dniString);
+
+        String rep = apellido + ' ' + nombre + ", " + dniString;
+        return rep;
+    }
+
+    public ArrayList<ArrayList<String>> obtenerNomina() {
+        ArrayList<ArrayList<String>> nomina = new ArrayList<>(4);
+
+        Integer cantidad = 0;
+
+        String sub = "AUTORIDADES SOCIETARIAS - NÓMINA DEL DIRECTORIO";
+        index = text.indexOf(sub) + sub.length();
+        sub = "APELLIDO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (!temp.equals("NOMBRE")) {
+            if (StringUtils.isNumeric(temp)) {
+                cantidad++;
+            } else {
+                nomina.add(new ArrayList<>());
+                nomina.get(cantidad - 1).add(temp);
+            }
+            skipBlank();
+            index--;
+            temp = readField();
+        }
+
+        sub = "CARGO ASIGNADO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        for (Integer i = 0; i < cantidad; i++) {
+            nomina.get(i).add(readField());
+            skipBlank();
+        }
+
+        for (Integer i = 0; i < cantidad; i++) {
+            nomina.get(i).add(readField());
+            skipBlank();
+        }
+
+        for (Integer i = 0; i < cantidad; i++) {
+            nomina.get(i).add(readField());
+            skipBlank();
+        }
+
+        return nomina;
+    }
+
 }

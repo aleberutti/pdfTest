@@ -25,7 +25,6 @@ import pdfts.examples.XMLOutputTarget;
  */
 public class Main {
 
-    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
@@ -43,9 +42,9 @@ public class Main {
         StringBuilder text = new StringBuilder();
         pdf.pipe(new OutputTarget(text));
         pdf.close();
-        
+
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
-        
+
         /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Source input = new DOMSource(xml.getXMLDocument());
@@ -54,25 +53,34 @@ public class Main {
          */
         System.out.println(text);
 
-        String version = lector.obtenerVersion();
-        System.out.println("Version: " + version);
+        System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
-        String nombre = lector.obtenerNombre();
-        System.out.println("Nombre: " + nombre);
+        System.out.println("Nombre: " + lector.obtenerNombre());
 
-        Double cuit = lector.obtenerCuit();
-        System.out.println("CUIT: " + cuit);
+        System.out.println("CUIT: " + lector.obtenerCuit());
 
-        Date fechaInicioAct = lector.obtenerFechaInicioAct();
-        System.out.println("Fecha Inicio Actividades: " + fechaInicioAct);
+        System.out.println("Fecha Inicio Actividades: " + lector.obtenerFechaInicioAct() + "\r");
 
         ArrayList<Integer> actividadesEmpresa = lector.obtenerActividades();
         for (Integer i = 0; i < actividadesEmpresa.size(); i++) {
-            System.out.println("Actividad " + (i + 1) + " de la empresa: CUACM " + actividadesEmpresa.get(i));
+            System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
         }
 
-        String domicilioLegal = lector.obtenerDomicilioLegal();
-        System.out.println("Domicilio Legal: " + domicilioLegal);
+        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
 
-    } 
+        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
+
+        ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
+        for (Integer i = 0; i < nomina.size(); i++) {
+            System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
+            System.out.println(nomina.get(i).get(0) + ' ' 
+                    + nomina.get(i).get(1)+", "
+                    +nomina.get(i).get(2)+", "
+                    +nomina.get(i).get(3));
+        }
+        System.out.println();
+
+        System.out.println("Representante Legal: " + lector.obtenerRepLegal());
+
+    }
 }

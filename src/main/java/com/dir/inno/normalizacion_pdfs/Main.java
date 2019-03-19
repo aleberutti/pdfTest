@@ -5,44 +5,18 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.licensekey.LicenseKey;
-import com.itextpdf.text.pdf.PdfAcroForm;
-import com.itextpdf.text.pdf.XfaForm;
-import com.itextpdf.tool.xml.xtra.xfa.XFAFlattener;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
 import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
-import com.snowtide.pdf.VisualOutputTarget;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
+import org.apache.commons.lang3.text.WordUtils;
 import pdfts.examples.XMLOutputTarget;
 
 /**
@@ -97,7 +71,9 @@ public class Main {
         System.out.println("Domicilio Legal: " + domicilioLegal);
 
     }
-
+    
+    /*Obtener versión del documento
+    */
     private static String obtenerVersion(StringBuilder text) {
         String sub = "VERSIÓN";
         Integer index = text.indexOf(sub) + sub.length();
@@ -107,7 +83,9 @@ public class Main {
         String version = text.substring(index, index + 3);
         return version;
     }
-
+    
+    /*Obtener nombre/Razon social
+    */
     private static String obtenerNombre(StringBuilder text) {
         String sub = "NOMBRE COMPLETO / RAZÓN SOCIAL (*)";
         Integer index = text.indexOf(sub) + sub.length();
@@ -121,7 +99,9 @@ public class Main {
         }
         return nombre;
     }
-
+    
+    /*Obtener CUIT de la empresa
+    */
     private static Double obtenerCuit(StringBuilder text) {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         Integer index = text.indexOf(sub) + sub.length();
@@ -140,7 +120,9 @@ public class Main {
         Double cuitN = Double.parseDouble(cuit);
         return cuitN;
     }
-
+    
+    /*Fecha de inicio de actividades, formato Date
+    */
     private static Date obtenerFechaInicioAct(StringBuilder text) throws ParseException {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         Integer index = text.indexOf(sub) + sub.length();
@@ -165,7 +147,10 @@ public class Main {
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
         return date;
     }
-
+    
+    /*Devuelve un Array de enteros conteniendo los códigos CUACM
+    correspondientes a las actividades de la empresa.
+    */
     private static ArrayList<Integer> obtenerActividades(StringBuilder text) {
         String sub = "CUACM";
         Integer index = text.indexOf(sub) + sub.length();
@@ -187,45 +172,88 @@ public class Main {
         }
         return actividadesEmpresa;
     }
-
+    
+    /*Devuelve el domicilioLegal como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto y provincia.
+    */
     private static String obtenerDomicilioLegal(StringBuilder text) {
         String sub = "DEPTO";
         Integer index = text.indexOf(sub) + sub.length();
         index = skipBlank(index, text);
         String domicilio = new String();
+        String calle = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
                 && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
-            domicilio += text.charAt(index);
+            calle += text.charAt(index);
             index++;
         }
+        domicilio += calle;
         index = skipBlank(index, text);
-        domicilio += ", ";
+        String num = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
                 && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
-            domicilio += text.charAt(index);
+            num += text.charAt(index);
             index++;
         }
+        domicilio += num;
         index = skipBlank(index, text);
-        domicilio += ", ";
+        String piso = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
                 && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
-            domicilio += text.charAt(index);
+            piso += text.charAt(index);
             index++;
         }
+        domicilio += ", Piso " + piso;
         index = skipBlank(index, text);
-        domicilio += ", ";
+        String dpto = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
                 && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
-            domicilio += text.charAt(index);
+            dpto += text.charAt(index);
             index++;
         }
+        domicilio += ", Depto " + dpto;
+        domicilio += ",\r";
+        sub = "LOCALIDAD (*)";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank(index, text);
+        String provincia = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            provincia += text.charAt(index);
+            index++;
+        }
+        provincia = WordUtils.capitalizeFully(provincia);
+        index = skipBlank(index, text);
+        String depto = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            depto += text.charAt(index);
+            index++;
+        }
+        depto = WordUtils.capitalizeFully(depto);
+        index = skipBlank(index, text);
+        String loc = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            loc += text.charAt(index);
+            index++;
+        }
+        loc = WordUtils.capitalizeFully(loc);
+        domicilio += loc + ", " + depto + ", " + provincia;
+        
         return domicilio;
     }
-
+    
+    /*Funcion para mover el cursor hasta la proxima palabra ignorando espacios
+    y saltos de linea*/
     private static Integer skipBlank(Integer index, StringBuilder text) {
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r') {
             index += 2;

@@ -187,8 +187,8 @@ public class LectorPDFImpreso47 {
     /*Funcion para mover el cursor hasta la proxima palabra ignorando espacios
     y saltos de linea*/
     private Integer skipBlank() {
-        while (text.charAt(index) == ' ' || text.charAt(index) == '\r') {
-            index += 2;
+        while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
+            index += 1;
         }
         return index;
     }
@@ -201,7 +201,8 @@ public class LectorPDFImpreso47 {
         String field = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
-                && (text.charAt(index + 1) != ' ' && text.charAt(index + 1) != '\r'))) {
+                && (text.charAt(index + 1) != ' ' && (
+                text.charAt(index + 1) != '\r' || text.charAt(index + 1) != '\n')))) {
             field += text.charAt(index);
             index++;
         }
@@ -310,7 +311,6 @@ public class LectorPDFImpreso47 {
                 nomina.get(cantidad - 1).add(temp);
             }
             skipBlank();
-            index--;
             temp = readField();
         }
 

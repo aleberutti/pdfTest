@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="3.108" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="3.508" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -63,13 +63,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.035"/>
-  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.359"/>
-  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.239"/>
-  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.238"/>
-  <testcase name="testObtenerDomicilioLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.256"/>
-  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.26"/>
-  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.225"/>
-  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.209"/>
-  <testcase name="testObtenerNomina" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.273"/>
+  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.059"/>
+  <testcase name="testObtenerConsultor" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.421"/>
+  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.301"/>
+  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.308"/>
+  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.299"/>
+  <testcase name="testObtenerDomicilioLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.221"/>
+  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.18"/>
+  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.24"/>
+  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.25"/>
+  <testcase name="testObtenerNomina" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.21"/>
 </testsuite>

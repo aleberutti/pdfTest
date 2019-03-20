@@ -21,18 +21,19 @@ import pdfts.examples.XMLOutputTarget;
  * @author Administrador
  */
 public class Main {
-    
+
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      * @throws javax.xml.transform.TransformerException
      * @throws javax.xml.parsers.ParserConfigurationException
      * @throws org.xml.sax.SAXException
+     * @throws java.text.ParseException
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
-        
+        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
@@ -71,14 +72,16 @@ public class Main {
         ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
         for (Integer i = 0; i < nomina.size(); i++) {
             System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
-            System.out.println(nomina.get(i).get(0) + ' ' 
-                    + nomina.get(i).get(1)+", "
-                    +nomina.get(i).get(2)+", "
-                    +nomina.get(i).get(3));
+            System.out.println(nomina.get(i).get(0) + ' '
+                    + nomina.get(i).get(1) + ", "
+                    + nomina.get(i).get(2) + ", "
+                    + nomina.get(i).get(3));
         }
         System.out.println();
 
         System.out.println("Representante Legal: " + lector.obtenerRepLegal());
+        
+        System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
     }
 }

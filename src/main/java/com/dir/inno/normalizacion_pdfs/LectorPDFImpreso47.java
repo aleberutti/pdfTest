@@ -106,7 +106,7 @@ public class LectorPDFImpreso47 {
      */
     public ArrayList<Integer> obtenerActividades() {
         ArrayList<Integer> actividadesEmpresa = new ArrayList<>();
-        
+
         String sub = "CUACM";
         index = text.indexOf(sub) + sub.length();
         skipBlank();
@@ -185,7 +185,7 @@ public class LectorPDFImpreso47 {
     y saltos de linea*/
     private Integer skipBlank() {
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
-            index ++;
+            index++;
         }
         return index;
     }
@@ -196,10 +196,13 @@ public class LectorPDFImpreso47 {
      */
     private String readField() {
         String field = new String();
-        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
-                || ((text.charAt(index) == ' ')
-                && (text.charAt(index + 1) != ' ' && (
-                text.charAt(index + 1) != '\r' || text.charAt(index + 1) != '\n')))) {
+        while ((text.charAt(index) != ' '
+                && text.charAt(index) != '\r'
+                && text.charAt(index) != '\n') || (text.charAt(index) == ' ' && (text.charAt(index + 1) != ' '
+                && text.charAt(index + 1) != '\r'
+                && text.charAt(index + 1) != '\n')) || (text.charAt(index) == ' ' && (text.charAt(index + 1) == ' ' && (text.charAt(index + 2) != ' '
+                && text.charAt(index + 2) != '\r'
+                && text.charAt(index + 2) != '\n')))) {
             field += text.charAt(index);
             index++;
         }
@@ -330,6 +333,29 @@ public class LectorPDFImpreso47 {
         }
 
         return nomina;
+    }
+
+    /* Permite obtener los datos del consultor, experto o perito;
+    nombre y apellido, titulo y matrícula
+     */
+    public String obtenerConsultor() {
+        String sub = "Si el consultor, perito o experto no se encuentra en el desplegable";
+        index = text.indexOf(sub) + sub.length();
+        sub = "REGISTRO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String consultor = readField();
+        if ("*".equals(consultor)) {
+            skipBlank();
+            consultor = readField();
+        }
+        consultor += ", ";
+        consultor = WordUtils.capitalizeFully(consultor);
+        skipBlank();
+        consultor += readField() + ", ";
+        skipBlank();
+        consultor += readField();
+        return consultor;
     }
 
 }

@@ -357,5 +357,86 @@ public class LectorPDFImpreso47 {
         consultor += readField();
         return consultor;
     }
+    
+    public String obtenerInsumos(){ //no tiene armado el caso para más de un insumo
+        
+        String sub = "INSUMO";
+        index = text.indexOf(sub) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        index = skipLine();
+        String nombreInsumo = readField();
+        
+        sub = "ESTADO FÍSICO\n" + "DE\n" + "AGREGACIÓN";
+        index = text.indexOf(sub) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index++;
+        index = skipLine();
+        index = skipLine();
+        index = skipLine();
+        String estadoAgregacion = readField();
+        
+        sub = "CONSUMO\n" + "ANUAL";
+        index = text.indexOf(sub) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipLine();
+        index = skipWord();
+        String consumoAnual = readField();
+        
+        sub = "UNIDAD";
+        index = text.indexOf(sub)+ sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipLine();
+        index = skipWord();
+        index = skipBlank();
+        String unidad = readField();
+        
+        sub = "ALMACENAMIENTO";
+        index = text.indexOf(sub)+ sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipLine();
+        index = skipLine();
+        String almacenamiento = readField();
+        
+        String insumo = 
+                "Nombre del insumo: " + nombreInsumo + "; \n" +
+                "Estado físico de agregación: " + estadoAgregacion + "; \n" +
+                "Consumo anual del insumo: " + consumoAnual + "; \n"+
+                "Unidad de medida: " + unidad + "; \n"+
+                "Almacenamiento: " + almacenamiento + "; \n";
+        
+        
+        return insumo;
+    }
+    /*Saltea los caracteres hasta llegar a un salto de linea
+    y posiciona el índice por delante del mismo
+    */
+    public Integer skipLine(){
+        
+        while(text.charAt(index) != '\n'){
+            index++;
+        }
+        index++;
+        return index;
+    }
+    /*Saltea caracteres y espacios de un caracter de tamaño,
+    hasta llegar a un salto de línea o a un espacio mayor a un caracter.
+    */
+    public Integer skipWord(){
+
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' && (
+                text.charAt(index + 1) != '\r' || text.charAt(index + 1) != '\n')))) {
+            index++;
+        }
+        return index;
+    }
 
 }

@@ -55,7 +55,7 @@ public class LectorPDFImpreso47 {
 
     /*Obtener CUIT de la empresa
      */
-    public Double obtenerCuit() {
+    public Long obtenerCuit() {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
         index = skipBlank();
@@ -70,7 +70,7 @@ public class LectorPDFImpreso47 {
         }
         index += 2;
         cuit += text.charAt(index + 1);
-        Double cuitN = Double.parseDouble(cuit);
+        Long cuitN = Long.parseLong(cuit);
         return cuitN;
     }
 
@@ -105,22 +105,19 @@ public class LectorPDFImpreso47 {
     correspondientes a las actividades de la empresa.
      */
     public ArrayList<Integer> obtenerActividades() {
+        ArrayList<Integer> actividadesEmpresa = new ArrayList<>();
+        
         String sub = "CUACM";
         index = text.indexOf(sub) + sub.length();
-        ArrayList<Integer> actividadesEmpresa = new ArrayList<>();
-        while (index != -1 && index < 9000) {
-            while (text.charAt(index) == ' ') {
-                index++;
-            }
-            String codigoString = new String();
-            while (text.charAt(index) != ' ' && text.charAt(index) != '\r') {
-                codigoString += text.charAt(index);
-                index++;
-            }
+        skipBlank();
+        String codigoString = readField();
+        while (index != -1 && index < 9000 && !"ESTANDAR".equals(codigoString)) {
             Integer codigo = Integer.parseInt(codigoString);
             if (!actividadesEmpresa.contains(codigo)) {
                 actividadesEmpresa.add(codigo);
             }
+            skipBlank();
+            codigoString = readField();
             index = text.indexOf(sub, index) + sub.length();
         }
         return actividadesEmpresa;
@@ -175,10 +172,10 @@ public class LectorPDFImpreso47 {
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
-        domicilio += ", Depto " + dpto + ",\r";
-        domicilio += loc + ", " + depto + ", " + provincia + "\r";
-        domicilio += "CP " + cp + "\r";
-        domicilio += "Tel.: " + tel + "\r";
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
         domicilio += "E-mail: " + mail;
 
         return domicilio;
@@ -188,7 +185,7 @@ public class LectorPDFImpreso47 {
     y saltos de linea*/
     private Integer skipBlank() {
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
-            index += 1;
+            index ++;
         }
         return index;
     }
@@ -260,10 +257,10 @@ public class LectorPDFImpreso47 {
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
-        domicilio += ", Depto " + dpto + ",\r";
-        domicilio += loc + ", " + depto + ", " + provincia + "\r";
-        domicilio += "CP " + cp + "\r";
-        domicilio += "Tel.: " + tel + "\r";
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
         domicilio += "E-mail: " + mail;
 
         return domicilio;

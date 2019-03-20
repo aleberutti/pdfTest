@@ -14,9 +14,6 @@ import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.apache.commons.lang3.text.WordUtils;
 import pdfts.examples.XMLOutputTarget;
 
 /**
@@ -24,7 +21,7 @@ import pdfts.examples.XMLOutputTarget;
  * @author Administrador
  */
 public class Main {
-
+    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
@@ -34,14 +31,15 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
-
-        Document pdf = PDF.open(pdfFilePath);
-        XMLOutputTarget xml = new XMLOutputTarget();
-        pdf.pipe(xml);
-        StringBuilder text = new StringBuilder();
-        pdf.pipe(new OutputTarget(text));
-        pdf.close();
+        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        
+        StringBuilder text;
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            XMLOutputTarget xml = new XMLOutputTarget();
+            pdf.pipe(xml);
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
 
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
 

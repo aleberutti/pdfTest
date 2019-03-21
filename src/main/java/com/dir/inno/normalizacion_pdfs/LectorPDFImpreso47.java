@@ -358,4 +358,163 @@ public class LectorPDFImpreso47 {
         return consultor;
     }
 
+    /*Devuelve el domicilioConstituido como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto, provincia, CP, tel,
+    tipo de zonificacion y mail
+     */
+    public String obtenerDomicilioReal() {
+        String domicilio = new String();
+
+        String sub = "DOMICILIO REAL";
+        index = text.indexOf(sub) + sub.length();
+        sub = "DEPTO";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String calle = readField();
+
+        index = skipBlank();
+        String num = readField();
+
+        index = skipBlank();
+        String piso = null;
+        String temp = readField();
+        if (!"PROVINCIA (*)".equals(temp)) {
+            piso = temp;
+        }
+
+        index = skipBlank();
+        String dpto = null;
+        temp = readField();
+        if (!"DEPARTAMENTO (*)".equals(temp)) {
+            dpto = temp;
+        }
+
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String provincia = readField();
+        provincia = WordUtils.capitalizeFully(provincia);
+
+        index = skipBlank();
+        String depto = readField();
+        depto = WordUtils.capitalizeFully(depto);
+
+        index = skipBlank();
+        String loc = readField();
+        loc = WordUtils.capitalizeFully(loc);
+
+        sub = "TELÉFONO/FAX";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String cp = readField();
+
+        index = skipBlank();
+        String tel = readField();
+
+        sub = "EMAIL";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        index = skipBlank();
+        String zonificacion = readField();
+
+        index = skipBlank();
+        String mail = readField();
+
+        domicilio += calle;
+        domicilio += ' ' + num;
+        domicilio += ", Piso " + piso;
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
+        domicilio += "Zonificacion: " + zonificacion + "\n";
+        domicilio += "E-mail: " + mail;
+
+        return domicilio;
+    }
+
+    public String obtenerNombreArchivoFotoSat() {
+        String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
+        index = text.indexOf(sub) + sub.length();
+        sub = "digital y en papel)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String nombre = readField();
+        return nombre;
+    }
+
+    ArrayList<ArrayList<String>> obtenerPartidasInm() {
+        String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
+        index = text.indexOf(sub) + sub.length();
+        sub = "digital y en papel)";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "COORDENADAS GEOGRÁFICAS:";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "LONG:";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+
+        Integer cantidad = 0;
+        ArrayList<ArrayList<String>> partidas = new ArrayList<>();
+        String temp = readField();
+        if (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
+            cantidad++;
+            skipBlank();
+            partidas.add(new ArrayList<>(3));
+            partidas.get(cantidad - 1).add(readField());
+            skipBlank();
+            partidas.get(cantidad - 1).add(readField());
+            skipBlank();
+            partidas.get(cantidad - 1).add(readField());
+        }
+        skipBlank();
+        temp = readField();
+        while (temp.equals(((Integer) (cantidad + 1)).toString())
+                && (!temp.contains("9. ÍNDICE DE ARCHIVOS"))) {
+            cantidad++;
+            partidas.add(new ArrayList<>(3));
+            skipBlank();
+            partidas.get(cantidad - 1).add(readField());
+            skipBlank();
+            temp = readField();
+        }
+        for (Integer i = 1; i < partidas.size(); i++) {
+            partidas.get(i).add(temp);
+            skipBlank();
+            partidas.get(i).add(readField());
+            skipBlank();
+            temp = readField();
+        }
+
+        /*
+        while (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
+            cantidad++;
+            skipBlank();
+            temp = readField();
+            if (!temp.equals(cantidad.toString())) {
+                partidas.add(new ArrayList<>(3));
+                partidas.get(cantidad - 1).add(temp);
+                skipBlank();
+                partidas.get(cantidad - 1).add(readField());
+                skipBlank();
+                partidas.get(cantidad - 1).add(readField());
+            } else{
+                partidas.add(new ArrayList<>(3));
+                partidas.get(cantidad - 1).add(readField());
+                temp = readField();
+                if(!temp.equals(((Integer)(cantidad + 1)).toString())){
+                    partidas.get(cantidad - 1).add(temp);
+                    partidas.get(cantidad - 1).add(readField());
+                }
+            }
+            skipBlank();
+            temp = readField();
+        }
+         */
+        return partidas;
+    }
 }

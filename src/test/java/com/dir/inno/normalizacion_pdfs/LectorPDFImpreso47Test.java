@@ -121,6 +121,7 @@ public class LectorPDFImpreso47Test {
 
     /**
      * Test of obtenerFechaInicioAct method, of class LectorPDFImpreso47.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -293,17 +294,51 @@ public class LectorPDFImpreso47Test {
     @Test
     public void testObtenerConsultor() {
         System.out.println("obtenerConsultor");
-        
+
         String expResult = "Abbate, Alejandro Agustín, Licenciado en Saneamiento Ambiental, 0391";
         String result = instance1.obtenerConsultor();
         assertEquals(expResult, result);
-        
+
         expResult = "Acosta, Natalia Carolina, Licenciada en Geoecología y  Medio Ambiente, 0232";
         result = instance2.obtenerConsultor();
         assertEquals(expResult, result);
-        
+
         expResult = "Acosta, Guillermo Oscar Ariel, Ingeniero Industrial, 0367";
         result = instance3.obtenerConsultor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerDomicilioReal method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerDomicilioReal() {
+        System.out.println("obtenerDomicilioReal");
+        String expResult = "CalleDomRealPlanta numDomRealPlant, Piso null, Depto null,\n"
+                + "Rosario, Rosario, Santa Fe\n"
+                + "CP 2000\n"
+                + "Tel.: Telefono/Fax\n"
+                + "Zonificacion: Parque Industrial\n"
+                + "E-mail: emaildomrealplanta@mail.com";
+        String result = instance1.obtenerDomicilioReal();
+        assertEquals(expResult, result);
+
+        expResult = "Calle ubicacion de planta 09877, Piso 11, Depto 2,\n"
+                + "Aurelia, Castellanos, Santa Fe\n"
+                + "CP 2301\n"
+                + "Tel.: 342827252\n"
+                + "Zonificacion: Industrial/Rural\n"
+                + "E-mail: email.com@dominio.com";
+        result = instance2.obtenerDomicilioReal();
+        assertEquals(expResult, result);
+
+        expResult = "dssadsaads 131212, Piso 21, Depto 2,\n"
+                + "Arequito, Caseros, Santa Fe\n"
+                + "CP 2183\n"
+                + "Tel.: das12321321321\n"
+                + "Zonificacion: Parque Industrial\n"
+                + "E-mail: dsadassda";
+        result = instance3.obtenerDomicilioReal();
         assertEquals(expResult, result);
     }
 }

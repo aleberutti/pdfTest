@@ -32,7 +32,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -77,11 +77,22 @@ public class Main {
                     + nomina.get(i).get(2) + ", "
                     + nomina.get(i).get(3));
         }
-        System.out.println();
 
-        System.out.println("Representante Legal: " + lector.obtenerRepLegal());
-        
+        System.out.println("\nRepresentante Legal: " + lector.obtenerRepLegal());
+
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
+
+        System.out.println("\nDomicilio Real: " + lector.obtenerDomicilioReal());
+
+        System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
+
+        ArrayList<ArrayList<String>> partidas = lector.obtenerPartidasInm();
+        for (Integer i = 0; i < partidas.size(); i++) {
+            System.out.println("Partida inmobiliaria " + (i + 1) + '/'
+                    + partidas.size() + ": " + partidas.get(i).get(0));
+            System.out.println("Lat: " + partidas.get(i).get(1)
+                    + ", Long: " + partidas.get(i).get(2));
+        }
 
     }
 }

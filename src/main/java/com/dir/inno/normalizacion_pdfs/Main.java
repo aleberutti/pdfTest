@@ -13,6 +13,7 @@ import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import java.io.File;
 import java.text.ParseException;
 import pdfts.examples.XMLOutputTarget;
 
@@ -32,10 +33,13 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
-
+        String filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
+        //String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
+        //System.out.println(filePath);
+        
         StringBuilder text;
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();

@@ -8,6 +8,7 @@ package com.dir.inno.normalizacion_pdfs;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,30 +38,35 @@ public class LectorPDFImpreso47Test {
 
     @BeforeEach
     public void setUp() throws IOException {
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        
+        String filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
         StringBuilder text;
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        try (Document pdf = PDF.open(filePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance1 = new LectorPDFImpreso47(text);
 
-        pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        try (Document pdf = PDF.open(filePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance2 = new LectorPDFImpreso47(text);
 
-        pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        try (Document pdf = PDF.open(filePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance3 = new LectorPDFImpreso47(text);
         
-        pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
+        try (Document pdf = PDF.open(filePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }

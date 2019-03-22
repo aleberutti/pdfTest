@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EstudioDeImpacto xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"
+><TablaContenido
+><Paginador4
+>4</Paginador4
+><Paginador1
+>2</Paginador1
+><Paginador2
+>2</Paginador2
+><Paginador3
+>-1</Paginador3
+><Paginador5
+>7</Paginador5
+><Paginador6
+>8</Paginador6
+><Paginador7
+>16</Paginador7
+><Paginador8
+>16</Paginador8
+><Paginador9
+>16</Paginador9
+><Paginador10
+>17</Paginador10
+><Paginador11
+>17</Paginador11
+><Paginador12
+>17</Paginador12
+><Paginador13
+>18</Paginador13
+></TablaContenido
+><Pagina1
+><EstudioDeIm xfa:dataNode="dataGroup"
+/><Alerta xfa:dataNode="dataGroup"
+/><TítuloR
+><TextField51
+>1. RESUMEN EJECUTIVO (*)</TextField51
+><Contador1
+>2</Contador1
+></TítuloR
+><resumen
+><ResumenEjecutivo
+>Resumen ejecutivo. Mínimo 500 palabras dijo braca. Corto conciso y detallado.</ResumenEjecutivo
+><TextField73
+>456789</TextField73
+></resumen
+><Profesionales
+><ProfesionalesIntervinientes
+>2. PROFESIONALES INTERVINIENTES RESPONSABLES  DEL ESTUDIO</ProfesionalesIntervinientes
+><Contador2
+>2</Contador2
+></Profesionales
+><TablaProf
+><TablaProfesionales
+><HeaderRow xfa:dataNode="dataGroup"
+/><Row1
+><PERITO
+>ARGUELLO, MARIO DANIEL</PERITO
+><ESPECIALIDAD
+>LICENCIADO EN SANEAMIENTO AMBIENTAL</ESPECIALIDAD
+><MATRICULA
+>062</MATRICULA
+></Row1
+><HeaderRow xfa:dataNode="dataGroup"
+/></TablaProfesionales
+></TablaProf
+><AclaracionPeritos xfa:dataNode="dataGroup"
+/><Aclaracion2 xfa:dataNode="dataGroup"
+/><Pie1
+><UbicacionCaracterizacion
+>3. UBICACIÓN DEL PROYECTO Y CARACTERIZACIÓN DEL ÁREA DE INFLUENCIA</UbicacionCaracterizacion
+><Table1
+><Row1
+><Cell2
+>domicilio real</Cell2
+><nro
+>4567</nro
+></Row1
+><Row2
+><Departamento
+>CASTELLANOS</Departamento
+><LOCALIDAD
+>BELLA ITALIA</LOCALIDAD
+><CODPOSTAL
+>5879</CODPOSTAL
+></Row2
+></Table1
+><Contador3
+>-1</Contador3
+><Coordenadas
+><Table2
+><Row1
+><Cell2
+>61</Cell2
+><Cell4
+>20</Cell4
+><Cell6
+>59,5</Cell6
+></Row1
+><Row2
+><Cell2
+>29</Cell2
+><Cell4
+>38</Cell4
+><Cell6
+>45</Cell6
+></Row2
+></Table2
+></Coordenadas
+></Pie1
+><ImágeneSatelitalesT
+><Título xfa:dataNode="dataGroup"
+/><Anexo
+><TextField22
+>archivo1</TextField22
+></Anexo
+><desdeHasta xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></ImágeneSatelitalesT
+><AreadeInfluencia
+><Titulo xfa:dataNode="dataGroup"
+/><TextField2
+>Producción</TextField2
+><Anexo
+><TextField544
+>archivo2</TextField544
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Anexo
+><Titulo xfa:dataNode="dataGroup"
+/></AreadeInfluencia
+><EstudioDeIm xfa:dataNode="dataGroup"
+/><Alerta xfa:dataNode="dataGroup"
+/><AclaracionPeritos xfa:dataNode="dataGroup"
+/><Aclaracion2 xfa:dataNode="dataGroup"
+/></Pagina1
+><Pagina2
+><DatosDelArea xfa:dataNode="dataGroup"
+/><DatosdeBase
+><Encabezado xfa:dataNode="dataGroup"
+/><TextField3
+>caracterización del entorno inmediato</TextField3
+><Adjunto
+><TextField24
+>archivo3</TextField24
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Encabezado xfa:dataNode="dataGroup"
+/></DatosdeBase
+><Título xfa:dataNode="dataGroup"
+/><TablaFactor
+><Table3
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell2
+>RH POSITIVO</Cell2
+></Row1
+><Row2
+><Cell2
+>O+. Les puedo dar a todos menos a los O- y recibir </Cell2
+></Row2
+><Row4
+><Cell2
+>archivo4</Cell2
+></Row4
+></Table3
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></TablaFactor
+><Botones xfa:dataNode="dataGroup"
+/><Infraestructura
+><Encabezado
+><Titulo xfa:dataNode="dataGroup"
+/><Titulo xfa:dataNode="dataGroup"
+/></Encabezado
+><TextField4
+>servicios</TextField4
+><Adjunto
+><TextField50
+>archivo5</TextField50
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></Infraestructura
+><SituaciónAmbiental
+><Titulo
+><TextField5
+>crítica</TextField5
+></Titulo
+><Adjunto
+><TextField52
+>archivo6</TextField52
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></SituaciónAmbiental
+><DescripcionProyecto
+><Titulo
+><Contador4
+>4</Contador4
+></Titulo
+><TextField6
+>7 años</TextField6
+><Adjunto
+><TextField53
+>archivo6</TextField53
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></DescripcionProyecto
+><DatosDelArea xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></Pagina2
+><Pagina3
+><Encabezado3
+><Titulo xfa:dataNode="dataGroup"
+/><Anexo
+><TextField55
+>archivo7</TextField55
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Anexo
+><Titulo xfa:dataNode="dataGroup"
+/></Encabezado3
+><EtapaConst xfa:dataNode="dataGroup"
+/><TablaTarea
+><Table4
+><Row1
+><Cell2
+>Limpieza del predio</Cell2
+></Row1
+><Row2
+><Cell2
+>Recolección de residuos sólidos y semisólidos que se encuentran en el predio de la planta.</Cell2
+></Row2
+><Row3
+><Cell2
+>Bolsas.</Cell2
+></Row3
+><Row5
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Escombros</Cell1
+><Presurizado
+>Residuos sólidos urbanos asimilables a éstos - Ley Nº13.055</Presurizado
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></Row5
+><Row5
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Barro</Cell1
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></Row5
+><Row5
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Azufre</Cell1
+><Presurizado
+>Emisión difusa</Presurizado
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></Row5
+></Table4
+></TablaTarea
+><Botones xfa:dataNode="dataGroup"
+/><EtapaOperativa
+><Cuatrocua xfa:dataNode="dataGroup"
+/><DescripcionActividades1
+><TextField72
+>Actividades primarias</TextField72
+></DescripcionActividades1
+><Titulo
+><TextField54
+>archivo183</TextField54
+></Titulo
+><Anexo
+><TextField541
+>asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</TextField541
+></Anexo
+><desdeHasta xfa:dataNode="dataGroup"
+/><Cuatrocua xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></EtapaOperativa
+><TítuloTproceso xfa:dataNode="dataGroup"
+/><TablaProceso
+><Tabla
+><TablaPrimera
+><Row1
+><Cell2
+>Proceso1</Cell2
+></Row1
+><Row2
+><Cell2
+>Proceso del proceso del proceso00001</Cell2
+></Row2
+><Row3
+><Cell2
+>Colon y sustancia</Cell2
+></Row3
+><Row5
+><Cell2
+>Productosssssssss</Cell2
+></Row5
+><FilaDeTablaPrimera
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Bolsas y papeles</Cell1
+><Presurizado
+>Residuos no peligrosos industriales o de act.de servicio - Dec Nº2151/14</Presurizado
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></FilaDeTablaPrimera
+><Row6
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Agua</Cell1
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></Row6
+><Row6
+><TablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/><FilaDeLaTablaSegunda
+><NumeroFila
+>1</NumeroFila
+><Cell1
+>Butano</Cell1
+><Presurizado
+>Emisión difusa</Presurizado
+></FilaDeLaTablaSegunda
+><HeaderRow xfa:dataNode="dataGroup"
+/><HeaderRow xfa:dataNode="dataGroup"
+/></TablaSegunda
+></Row6
+></TablaPrimera
+></Tabla
+><Botones xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></TablaProceso
+><EtapaConst xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/><TítuloTproceso xfa:dataNode="dataGroup"
+/></Pagina3
+><Pagina4
+><EtapadeCierre
+><Título xfa:dataNode="dataGroup"
+/><TextField7
+>Torneo clausura</TextField7
+><Título xfa:dataNode="dataGroup"
+/></EtapadeCierre
+><Recurso
+><Título xfa:dataNode="dataGroup"
+/><TablaRecurso
+><Table6
+><Row1
+><RECURSO
+>Madera</RECURSO
+></Row1
+><Row2
+><extraccion
+>Recolección en plantaciones</extraccion
+></Row2
+><Row3
+><tareas
+>Recolección - Cortado - Lavado</tareas
+></Row3
+><Row4
+><cantidad
+>345 kg/hora</cantidad
+></Row4
+><Row5
+><AutorizacionesYextracción
+>archivo54</AutorizacionesYextracción
+></Row5
+></Table6
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></TablaRecurso
+><Botones xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></Recurso
+><DistribuciónAnual
+><Titulo xfa:dataNode="dataGroup"
+/><TextField8
+>Otoño</TextField8
+><Titulo xfa:dataNode="dataGroup"
+/></DistribuciónAnual
+><TurnosHorarios
+><Titulo xfa:dataNode="dataGroup"
+/><TextField18
+>9 horas por día</TextField18
+><Titulo xfa:dataNode="dataGroup"
+/></TurnosHorarios
+><IdentificaciónValoración
+><Titulo
+><IdentificacionValImpactos
+>5. IDENTIFICACIÓN Y VALORACIÓN DE IMPACTOS AMBIENTALES </IdentificacionValImpactos
+><Contador5
+>7</Contador5
+></Titulo
+><TextField9
+>Consultora externa</TextField9
+></IdentificaciónValoración
+><AplicaciónMetodo
+><Titulo xfa:dataNode="dataGroup"
+/><Adjunto
+><TextField56
+>archivo58</TextField56
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></AplicaciónMetodo
+></Pagina4
+><Página5
+><Identificación
+><Título xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/></Identificación
+><Tabla
+><tabla811
+><HeaderRow xfa:dataNode="dataGroup"
+/><Row1
+><prevencion
+>1</prevencion
+><prevencionField
+>Alto</prevencionField
+></Row1
+><HeaderRow xfa:dataNode="dataGroup"
+/></tabla811
+></Tabla
+><Boton xfa:dataNode="dataGroup"
+/><PlanDeGestion
+><PlanAmb
+>6. PLAN DE GESTIÓN AMBIENTAL </PlanAmb
+><RadioButtonList
+>1</RadioButtonList
+><Contador6
+>8</Contador6
+></PlanDeGestion
+><DetalleResiduoP
+><NumeroDeGenerador
+><TextField12
+>4587</TextField12
+></NumeroDeGenerador
+><Título xfa:dataNode="dataGroup"
+/><TablaResiduoP
+><Table7
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell3
+>Aceite mineral usado</Cell3
+></Row1
+><Row1a
+><Cell3
+>Máquina hidráulica</Cell3
+></Row1a
+><Row2
+><Cell3
+>Líquido</Cell3
+></Row2
+><Row3
+><Cell3
+>Y18 Residuos resultantes de las operaciones de eliminación de desechos industriales</Cell3
+></Row3
+><Row4
+><Cell3
+>H5.1 Oxidantes</Cell3
+></Row4
+><Row5
+><Cell3
+>2 litros/dia</Cell3
+></Row5
+><Row6
+><Cell3
+>Embotellado</Cell3
+></Row6
+></Table7
+></TablaResiduoP
+><Botones xfa:dataNode="dataGroup"
+/><Descripción
+><Título xfa:dataNode="dataGroup"
+/><TextField13
+>Almacenamiento debajo del campo de golf</TextField13
+><Adjunto
+><TextField57
+>archivo56</TextField57
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Título xfa:dataNode="dataGroup"
+/></Descripción
+><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleResiduoP
+><Boton xfa:dataNode="dataGroup"
+/></Página5
+><Pagina6
+><ReNoPeligroso
+><RadioButtonList
+>2</RadioButtonList
+></ReNoPeligroso
+><DetalleResiduo
+><Título xfa:dataNode="dataGroup"
+/><TablaResiduo
+><Table8
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell3
+>Borras</Cell3
+></Row1
+><Row1a
+><Cell3
+>Desgastado de juntas de máquinas</Cell3
+></Row1a
+><Row2
+><Cell3
+>12.Líquidos o lodos que contengan metales o compuestos metálicos.</Cell3
+></Row2
+><Row3
+><Cell3
+>Sólido</Cell3
+></Row3
+><Row4
+><Cell3
+>54 kg/hora</Cell3
+></Row4
+><Row5
+><Cell3
+>Ninguno</Cell3
+></Row5
+></Table8
+></TablaResiduo
+><Botones xfa:dataNode="dataGroup"
+/><Descripción
+><Título xfa:dataNode="dataGroup"
+/><TextField14
+>asdasdaasd</TextField14
+><Adjunto
+><TextField58
+>archivo789</TextField58
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Título xfa:dataNode="dataGroup"
+/></Descripción
+><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleResiduo
+><ResiduosUrbanos
+><Título xfa:dataNode="dataGroup"
+/><TablaResiduoU
+><Table9
+><Row1a
+><NumeroFila
+>1</NumeroFila
+><Cell3
+>RSU</Cell3
+></Row1a
+><Row1
+><Cell3
+>Diminuto</Cell3
+></Row1
+><Row2
+><Cell3
+>Sólido</Cell3
+></Row2
+><Row3
+><Cell3
+>4578 kg/semana</Cell3
+></Row3
+><Row4
+><Cell3
+/></Row4
+></Table9
+></TablaResiduoU
+><Botones xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></ResiduosUrbanos
+></Pagina6
+><Pagina7
+><Anterior
+><Titulo xfa:dataNode="dataGroup"
+/><TextField15
+>Ninguno</TextField15
+><Adjunto
+><TextField59
+>archivo7841</TextField59
+></Adjunto
+><desdeHasta xfa:dataNode="dataGroup"
+/><Titulo xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Anterior
+><ResiduoPat
+><RadioButtonList
+>2</RadioButtonList
+></ResiduoPat
+><DetalleResiduoPat
+><NumeroGen
+><TextField16
+>7451</TextField16
+></NumeroGen
+><Titulo xfa:dataNode="dataGroup"
+/><TablaResiduoPat
+><Table10
+><Row1
+><NumeroFila
+>1</NumeroFila
+></Row1
+><Row1a
+><Cell3
+>Planta 56</Cell3
+></Row1a
+><Row2
+><Cell3
+>447 kg/día</Cell3
+></Row2
+><Row3
+><Cell3
+>Ninguno dude</Cell3
+></Row3
+></Table10
+></TablaResiduoPat
+><Botones xfa:dataNode="dataGroup"
+/><Descripción
+><Título xfa:dataNode="dataGroup"
+/><TextField17
+>asdasdas asda we qwer bfcdg,lkf</TextField17
+><Adjuntos
+><TextField60
+>archivo589</TextField60
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjuntos
+><Título xfa:dataNode="dataGroup"
+/></Descripción
+><Titulo xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleResiduoPat
+><OtrosResiduos
+><RadioButtonList
+>1</RadioButtonList
+></OtrosResiduos
+></Pagina7
+><Pagina8
+><DetalleOtroRes
+><TablaOtrosResid
+><Table11
+><Row1
+><NumeroFila
+>1</NumeroFila
+></Row1
+><Row1a
+><Cell3
+>El que tira la que limpia</Cell3
+></Row1a
+><Row2
+><Cell3
+>Limpieza del establecimiento</Cell3
+></Row2
+><Row3
+><Cell3
+>solido</Cell3
+></Row3
+><Row4
+><Cell3
+>78954 kg/hora</Cell3
+></Row4
+><Row5
+><Cell3
+>qwasdadasd</Cell3
+></Row5
+></Table11
+></TablaOtrosResid
+><Botones xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleOtroRes
+><EfluentesLiquidos
+><RadioButtonList
+>2</RadioButtonList
+></EfluentesLiquidos
+><DetalleEfluenteLiq
+><Título xfa:dataNode="dataGroup"
+/><TablaEfLiquido
+><Table12
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell3
+/></Row1
+><Row1a
+><Cell3
+>sdasd</Cell3
+></Row1a
+><Row2
+><Cell3
+/></Row2
+><Row3
+><Cell3
+/></Row3
+><Row4
+><Cell3
+/></Row4
+><Row5
+><Cell3
+/></Row5
+><Row6
+><Cell3
+/></Row6
+></Table12
+></TablaEfLiquido
+><Botones xfa:dataNode="dataGroup"
+/><AdjuntoArticulo
+><Adjunto
+><TextField61
+/><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></AdjuntoArticulo
+><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleEfluenteLiq
+></Pagina8
+><Pagina9
+><EmisionesAire
+><RadioButtonList
+>2</RadioButtonList
+></EmisionesAire
+><DetalleEmisionesAire
+><Título xfa:dataNode="dataGroup"
+/><TablaEmisionesAire
+><Table13
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell3
+/></Row1
+><Row1a
+><Cell3
+/></Row1a
+><Row2
+><Cell3
+/></Row2
+><Row3
+><Cell3
+/></Row3
+><Row4
+><Cell3
+/></Row4
+><Row5
+><Cell3
+/></Row5
+><Row6
+><Cell3
+/></Row6
+><Row7
+><Cell3
+/></Row7
+></Table13
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></TablaEmisionesAire
+><Botones xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleEmisionesAire
+><EmisionesDifusa
+><RadioButtonList
+>2</RadioButtonList
+></EmisionesDifusa
+><DetalleEmisionDifusa
+><Título xfa:dataNode="dataGroup"
+/><TablaEmisionesDif
+><Table14
+><Row1
+><NumeroFila
+>1</NumeroFila
+><Cell3
+/></Row1
+><Row1a
+><Cell3
+/></Row1a
+><Row2
+><Cell3
+/></Row2
+><Row3
+><Cell3
+/></Row3
+><Row4
+><Cell3
+/></Row4
+><Row5
+><Cell4
+/></Row5
+></Table14
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></TablaEmisionesDif
+><Botones xfa:dataNode="dataGroup"
+/><Título xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></DetalleEmisionDifusa
+></Pagina9
+><Pagina10
+><Medidas
+><Título xfa:dataNode="dataGroup"
+/><TablaMedidas
+><Table15
+><Row1
+><NumeroFila
+>1</NumeroFila
+></Row1
+><Row2
+><Cell3
+>asdasd</Cell3
+></Row2
+><Row3
+><Cell3
+>asdasd</Cell3
+></Row3
+><Row4A
+><Plazo64
+>45646 se</Plazo64
+></Row4A
+><Row4
+><Anexo64
+>asd1 asd2 asd3 asd4</Anexo64
+></Row4
+></Table15
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></TablaMedidas
+><Título xfa:dataNode="dataGroup"
+/></Medidas
+><OtrasMedidas
+><Titulo xfa:dataNode="dataGroup"
+/><TablaOtrasMedidas
+><Table18
+><Row1a
+><NumeroFila
+>1</NumeroFila
+></Row1a
+><Row1
+><Cell1
+>qw edasd awd qew rtqwsd asdawqr qr qea sd asd awr</Cell1
+></Row1
+></Table18
+></TablaOtrasMedidas
+><Botones xfa:dataNode="dataGroup"
+/><Titulo xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></OtrasMedidas
+><ProgramaMonitoreo
+><Titulo xfa:dataNode="dataGroup"
+/><TablaMonitoreo
+><Table16
+><Row1
+><NumeroFila
+>1</NumeroFila
+></Row1
+><Row2
+><Cell3
+>4</Cell3
+></Row2
+><Row3
+><Cell3
+>asd qaw aw a</Cell3
+></Row3
+><Row4
+><Cell3
+>asd awd asd wa dsa</Cell3
+></Row4
+><Row5
+><Cell3
+>asd wr fggj uhdr ased awq q</Cell3
+></Row5
+></Table16
+></TablaMonitoreo
+><Botones xfa:dataNode="dataGroup"
+/><Titulo xfa:dataNode="dataGroup"
+/><Botones xfa:dataNode="dataGroup"
+/></ProgramaMonitoreo
+></Pagina10
+><Pagina11
+><Riesgo
+><AnalisisDeRiesgo
+><AdeRiesgo
+>7. ANÁLISIS DE RIESGO</AdeRiesgo
+><Contador7
+>16</Contador7
+></AnalisisDeRiesgo
+><Categorización
+><Titulo xfa:dataNode="dataGroup"
+/><TextField20
+>asda wd awd </TextField20
+><Adjunto
+><TextField62
+>a sda 58446asd aw .txt</TextField62
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></Categorización
+><Presentacion
+><Titulo xfa:dataNode="dataGroup"
+/><Adjunto
+><TextField63
+>asdawd a.pdf</TextField63
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></Presentacion
+><PlanContingencia
+><Titulo xfa:dataNode="dataGroup"
+/><TextField21
+>sadasda guytfgv </TextField21
+><Adjunto
+><TextField64
+>asdn aryte.docx</TextField64
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></PlanContingencia
+></Riesgo
+><MarcoLegal
+><Titulo
+><MarcoLAP
+>8. MARCO LEGAL, ADMINISTRATIVO Y POLÍTICO</MarcoLAP
+><Contador8
+>16</Contador8
+></Titulo
+></MarcoLegal
+><tablaNormas
+><Table17
+><Row1 xfa:dataNode="dataGroup"
+/><Row2
+><Cell1
+>54654546</Cell1
+><Cell2
+>asd awrd q</Cell2
+><Cell3
+>asd aw awd nfhghch</Cell3
+></Row2
+><Row1 xfa:dataNode="dataGroup"
+/></Table17
+></tablaNormas
+><Botones xfa:dataNode="dataGroup"
+/><ConsideracionesAdicionales
+><Consideraciones
+><ConsidAdicionales
+>9. CONSIDERACIONES ADICIONALES</ConsidAdicionales
+><Contador9
+>16</Contador9
+></Consideraciones
+><SeguroAmbiental
+><Titulo xfa:dataNode="dataGroup"
+/><Adjunto
+><TextField65
+>asdaw .csv</TextField65
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></SeguroAmbiental
+><OtrasConsideraciones
+><Titulo xfa:dataNode="dataGroup"
+/><TextField19
+>hgdf sdfas </TextField19
+><Adjunto
+><TextField66
+>asda wq21315.xls</TextField66
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+><Titulo xfa:dataNode="dataGroup"
+/></OtrasConsideraciones
+></ConsideracionesAdicionales
+><AnalisisDeAlternativas
+><Titulo
+><AdeAlternativas
+>10. ANÁLISIS DE ALTERNATIVAS </AdeAlternativas
+><Contador10
+>17</Contador10
+></Titulo
+><Adjunto
+><TextField67
+>asdasda.txt</TextField67
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></AnalisisDeAlternativas
+><Prefactibilidades
+><Titulo
+><Prefact
+>11. PREFACTIBILIDADES</Prefact
+><Contador11
+>17</Contador11
+></Titulo
+><Adjunto
+><TextField68
+>asdadfa.txt</TextField68
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></Prefactibilidades
+><ConsultaPublica
+><Titulo
+><Consulta
+>12. CONSULTA PÚBLICA</Consulta
+><Contador12
+>17</Contador12
+></Titulo
+><Adjunto
+><TextField69
+>asdawhdakj.txt</TextField69
+><desdeHasta xfa:dataNode="dataGroup"
+/><desdeHasta xfa:dataNode="dataGroup"
+/></Adjunto
+></ConsultaPublica
+><Botones xfa:dataNode="dataGroup"
+/></Pagina11
+><Pagina12
+><Anexos
+><ResumenAnexos
+>13. RESUMEN DE ANEXOS</ResumenAnexos
+><Contador13
+>18</Contador13
+></Anexos
+><p12SF2 xfa:dataNode="dataGroup"
+/><Inciso33
+><Anexo33
+>archivo1</Anexo33
+><anexo
+><TextField543
+>123</TextField543
+><TextField542
+>4567</TextField542
+></anexo
+></Inciso33
+><Inciso34
+><TextField27
+>archivo2</TextField27
+><anexo
+><TextField543
+>457</TextField543
+><TextField542
+>8745</TextField542
+></anexo
+></Inciso34
+><Inciso351
+><TextField28
+>archivo3</TextField28
+><anexo
+><TextField543
+>4587</TextField543
+><TextField542
+>5878</TextField542
+></anexo
+></Inciso351
+><Inciso352
+><Table19
+><Row1
+><Anexo352
+>archivo4</Anexo352
+></Row1
+></Table19
+><anexo
+><TextField543
+>4587</TextField543
+><TextField542
+>6985</TextField542
+></anexo
+></Inciso352
+><Inciso353
+><TextField30
+>archivo5</TextField30
+><anexo
+><TextField543
+>1254</TextField543
+><TextField542
+>2365</TextField542
+></anexo
+></Inciso353
+><Inciso354
+><TextField31
+>archivo6</TextField31
+><anexo
+><TextField543
+>1548</TextField543
+><TextField542
+>2597</TextField542
+></anexo
+></Inciso354
+><Inciso41
+><TextField32
+>archivo6</TextField32
+><anexo
+><TextField543
+>125</TextField543
+><TextField542
+>524</TextField542
+></anexo
+></Inciso41
+><Inciso42
+><TextField33
+>archivo7</TextField33
+><anexo
+><TextField543
+>1254</TextField543
+><TextField542
+>3658</TextField542
+></anexo
+></Inciso42
+><Inciso441
+><TextField34
+>archivo183</TextField34
+><Inciso441 xfa:dataNode="dataGroup"
+/><TextField34
+/><anexo
+><TextField543
+>265</TextField543
+><TextField542
+>350</TextField542
+></anexo
+><Inciso441 xfa:dataNode="dataGroup"
+/></Inciso441
+><Inciso46
+><Table20
+><Row1
+><Anexo46
+>archivo54</Anexo46
+></Row1
+></Table20
+><Inciso441 xfa:dataNode="dataGroup"
+/><Inciso441 xfa:dataNode="dataGroup"
+/><anexo
+><TextField543
+>350</TextField543
+><TextField542
+>4587</TextField542
+></anexo
+><Inciso441 xfa:dataNode="dataGroup"
+/><Inciso441 xfa:dataNode="dataGroup"
+/></Inciso46
+><Inciso52
+><TextField36
+>archivo58</TextField36
+><anexo
+><TextField543
+>6564</TextField543
+><TextField542
+>9987</TextField542
+></anexo
+></Inciso52
+><p12SF2 xfa:dataNode="dataGroup"
+/></Pagina12
+><Pagina13
+><Inciso611
+><TextField37
+>archivo56</TextField37
+><anexo
+><TextField543
+>4561</TextField543
+><TextField542
+>5674</TextField542
+></anexo
+></Inciso611
+><Inciso612
+><TextField38
+>archivo789</TextField38
+><anexo
+><TextField543
+/><TextField542
+/></anexo
+></Inciso612
+><Inciso613
+><TextField39
+>archivo7841</TextField39
+><anexo
+><TextField543
+>3416</TextField543
+><TextField542
+>9878</TextField542
+></anexo
+></Inciso613
+><Inciso614
+><TextField40
+>archivo589</TextField40
+><anexo
+><TextField543
+/><TextField542
+/></anexo
+></Inciso614
+><Inciso62
+><TextField41
+/><anexo
+><TextField543
+/><TextField542
+/></anexo
+></Inciso62
+><Inciso631
+><Table21
+><Row1
+><Anexo631
+/></Row1
+></Table21
+><anexo
+><TextField543
+/><TextField542
+/></anexo
+></Inciso631
+><Inciso632
+><Table22
+><Row1
+><Anexo632
+/></Row1
+></Table22
+><anexo
+><TextField543
+/><TextField542
+/></anexo
+></Inciso632
+><Inciso64
+><Table23
+><Row1
+><Anexo64
+>asd1 asd2 asd3 asd4</Anexo64
+></Row1
+></Table23
+><anexo
+><TextField543
+>4562</TextField543
+><TextField542
+>6548</TextField542
+></anexo
+></Inciso64
+><Inciso71
+><TextField45
+>a sda 58446asd aw .txt</TextField45
+><anexo
+><TextField543
+>4564</TextField543
+><TextField542
+>9878</TextField542
+></anexo
+></Inciso71
+><Inciso72
+><TextField46
+>asdawd a.pdf</TextField46
+><anexo
+><TextField543
+>1245</TextField543
+><TextField542
+>5689</TextField542
+></anexo
+></Inciso72
+><Inciso73
+><TextField47
+>asdn aryte.docx</TextField47
+><anexo
+><TextField543
+>6479</TextField543
+><TextField542
+>7895</TextField542
+></anexo
+></Inciso73
+><Inciso91
+><TextField48
+>asdaw .csv</TextField48
+><anexo
+><TextField543
+>1548</TextField543
+><TextField542
+>3256</TextField542
+></anexo
+></Inciso91
+><Inciso92
+><TextField49
+>asda wq21315.xls</TextField49
+><anexo
+><TextField543
+>2556</TextField543
+><TextField542
+>9878</TextField542
+></anexo
+></Inciso92
+></Pagina13
+><Pagina14
+><Inciso10
+><TextField45
+>asdasda.txt</TextField45
+><anexo
+><TextField543
+>4564</TextField543
+><TextField542
+>6987</TextField542
+></anexo
+></Inciso10
+><Inciso11
+><TextField70
+>asdadfa.txt</TextField70
+><anexo
+><TextField543
+>4541</TextField543
+><TextField542
+>7897</TextField542
+></anexo
+></Inciso11
+><Inciso12
+><TextField71
+>asdawhdakj.txt</TextField71
+><anexo
+><TextField543
+>1216</TextField543
+><TextField542
+>2356</TextField542
+></anexo
+></Inciso12
+></Pagina14
+><Pagina15
+><botones xfa:dataNode="dataGroup"
+/><botonImprimir xfa:dataNode="dataGroup"
+/><botones xfa:dataNode="dataGroup"
+/><botonImprimir xfa:dataNode="dataGroup"
+/></Pagina15
+></EstudioDeImpacto
+>

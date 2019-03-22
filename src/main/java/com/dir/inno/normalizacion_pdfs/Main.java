@@ -86,6 +86,7 @@ public class Main {
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
 
+        
         ArrayList<ArrayList<String>> partidas = lector.obtenerPartidasInm();
         for (Integer i = 0; i < partidas.size(); i++) {
             System.out.println("Partida inmobiliaria " + (i + 1) + '/'
@@ -93,6 +94,5 @@ public class Main {
             System.out.println("Lat: " + partidas.get(i).get(1)
                     + ", Long: " + partidas.get(i).get(2));
         }
-
     }
 }

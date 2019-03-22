@@ -447,7 +447,10 @@ public class LectorPDFImpreso47 {
         return nombre;
     }
 
+    @SuppressWarnings("UnusedAssignment")
     ArrayList<ArrayList<String>> obtenerPartidasInm() {
+        ArrayList<ArrayList<String>> partidas = new ArrayList<>();
+        
         String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
         index = text.indexOf(sub) + sub.length();
         sub = "digital y en papel)";
@@ -456,38 +459,67 @@ public class LectorPDFImpreso47 {
         index = text.indexOf(sub, index) + sub.length();
         sub = "LONG:";
         index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
+        Integer index1 = index;
 
-        Integer cantidad = 0;
-        ArrayList<ArrayList<String>> partidas = new ArrayList<>();
+        /*Comprobar si hay solo una partida inmobiliaria, cambia el output del
+        PDF y tambien el procesamiento
+         */
+        sub = "NÚMERO DE PARTIDA INMOBILIARIA (*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        @SuppressWarnings("UnusedAssignment")
         String temp = readField();
-        if (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
-            cantidad++;
-            skipBlank();
-            partidas.add(new ArrayList<>(3));
-            partidas.get(cantidad - 1).add(readField());
-            skipBlank();
-            partidas.get(cantidad - 1).add(readField());
-            skipBlank();
-            partidas.get(cantidad - 1).add(readField());
-        }
         skipBlank();
         temp = readField();
-        while (temp.equals(((Integer) (cantidad + 1)).toString())
-                && (!temp.contains("9. ÍNDICE DE ARCHIVOS"))) {
-            cantidad++;
-            partidas.add(new ArrayList<>(3));
+        if (temp.contains("9. ÍNDICE DE ARCHIVOS")) {
+            index = index1;
+            index = text.indexOf(sub, index) + sub.length();
             skipBlank();
-            partidas.get(cantidad - 1).add(readField());
+            partidas.add(new ArrayList<>());
+            partidas.get(0).add(readField());
+            index = index1;
             skipBlank();
             temp = readField();
+            skipBlank();
+            partidas.get(0).add(readField());
+            skipBlank();
+            partidas.get(0).add(readField());
         }
-        for (Integer i = 1; i < partidas.size(); i++) {
-            partidas.get(i).add(temp);
-            skipBlank();
-            partidas.get(i).add(readField());
+        //si es mas de una partida:
+        else {
+            //volver index a la posicion previa a la prueba de solo una partida
+            index = index1;
+            Integer cantidad = 0;
             skipBlank();
             temp = readField();
+            if (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
+                cantidad++;
+                skipBlank();
+                partidas.add(new ArrayList<>(3));
+                partidas.get(cantidad - 1).add(readField());
+                skipBlank();
+                partidas.get(cantidad - 1).add(readField());
+                skipBlank();
+                partidas.get(cantidad - 1).add(readField());
+            }
+            skipBlank();
+            temp = readField();
+            while (temp.equals(((Integer) (cantidad + 1)).toString())
+                    && (!temp.contains("9. ÍNDICE DE ARCHIVOS"))) {
+                cantidad++;
+                partidas.add(new ArrayList<>(3));
+                skipBlank();
+                partidas.get(cantidad - 1).add(readField());
+                skipBlank();
+                temp = readField();
+            }
+            for (Integer i = 1; i < partidas.size(); i++) {
+                partidas.get(i).add(temp);
+                skipBlank();
+                partidas.get(i).add(readField());
+                skipBlank();
+                temp = readField();
+            }
         }
 
         /*

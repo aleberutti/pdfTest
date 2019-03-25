@@ -17,10 +17,10 @@ import org.apache.commons.lang3.text.WordUtils;
  * @author MODERNIZACION05
  */
 public class LectorPDFImpreso47 {
-
+    
     private Integer index;
     private final StringBuilder text;
-
+    
     public LectorPDFImpreso47(StringBuilder text) {
         this.text = text;
     }
@@ -59,6 +59,7 @@ public class LectorPDFImpreso47 {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
         index = skipBlank();
+        /*
         String cuit = text.substring(index, index + 2);
         index++;
         index += 2;
@@ -70,6 +71,17 @@ public class LectorPDFImpreso47 {
         }
         index += 2;
         cuit += text.charAt(index + 1);
+        String cuit2 = new String();
+        for(Integer i = 0; i<cuit.length(); i++){
+            if(Character.isDigit(cuit.charAt(i))) cuit2+=cuit.charAt(i);
+        }
+        Long cuitN = Long.parseLong(cuit2);
+         */
+        String cuit = readField();
+        skipBlank();
+        cuit += readField();
+        skipBlank();
+        cuit += readField();
         Long cuitN = Long.parseLong(cuit);
         return cuitN;
     }
@@ -80,17 +92,6 @@ public class LectorPDFImpreso47 {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
         index = skipBlank();
-        /*
-        index+=3;
-        while ((text.charAt(index+1) != ' ' && text.charAt(index+1) != '\r') ||
-                ((text.charAt(index+1) == ' ') && 
-                (text.charAt(index+2) != ' ' || text.charAt(index+2) != '\r')
-                )
-                ){
-            index++;
-        }
-        index+=3;
-         */
         index += 17;
         String dateString = new String();
         while (text.charAt(index) != '\r') {
@@ -106,12 +107,14 @@ public class LectorPDFImpreso47 {
      */
     public ArrayList<Integer> obtenerActividades() {
         ArrayList<Integer> actividadesEmpresa = new ArrayList<>();
-
+        
         String sub = "CUACM";
+        index = 0;
+        /*
         index = text.indexOf(sub) + sub.length();
         skipBlank();
         String codigoString = readField();
-        while (index != -1 && index < 9000 && !"ESTANDAR".equals(codigoString)) {
+        while (index != -1 && !"ESTANDAR".equals(codigoString)) {
             Integer codigo = Integer.parseInt(codigoString);
             if (!actividadesEmpresa.contains(codigo)) {
                 actividadesEmpresa.add(codigo);
@@ -120,6 +123,20 @@ public class LectorPDFImpreso47 {
             codigoString = readField();
             index = text.indexOf(sub, index) + sub.length();
         }
+         */
+        do {
+            index = text.indexOf(sub, index) + sub.length();
+            skipBlank();
+            String codigoString = readField();
+            if (StringUtils.isNumeric(codigoString)) {
+                Integer codigo = Integer.parseInt(codigoString);
+                if (!actividadesEmpresa.contains(codigo)) {
+                    actividadesEmpresa.add(codigo);
+                }
+            }
+            
+        } while (index != -1 && index < 8000);
+        
         return actividadesEmpresa;
     }
 
@@ -129,46 +146,50 @@ public class LectorPDFImpreso47 {
      */
     public String obtenerDomicilioLegal() {
         String domicilio = new String();
-
+        
         String sub = "DEPTO";
         index = text.indexOf(sub) + sub.length();
         index = skipBlank();
         String calle = readField();
-
+        
         index = skipBlank();
         String num = readField();
-
+        
         index = skipBlank();
         String piso = readField();
-
+        
         index = skipBlank();
         String dpto = readField();
-
+        
+        if ("PROVINCIA (*)".equals(dpto)) {
+            dpto = null;
+        }
+        
         sub = "LOCALIDAD (*)";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String provincia = readField();
         provincia = WordUtils.capitalizeFully(provincia);
-
+        
         index = skipBlank();
         String depto = readField();
         depto = WordUtils.capitalizeFully(depto);
-
+        
         index = skipBlank();
         String loc = readField();
         loc = WordUtils.capitalizeFully(loc);
-
+        
         sub = "EMAIL (*)";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String cp = readField();
-
+        
         index = skipBlank();
         String tel = readField();
-
+        
         index = skipBlank();
         String mail = readField();
-
+        
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
@@ -177,7 +198,7 @@ public class LectorPDFImpreso47 {
         domicilio += "CP " + cp + "\n";
         domicilio += "Tel.: " + tel + "\n";
         domicilio += "E-mail: " + mail;
-
+        
         return domicilio;
     }
 
@@ -215,48 +236,51 @@ public class LectorPDFImpreso47 {
      */
     public String obtenerDomicilioConst() {
         String domicilio = new String();
-
+        
         String sub = "DOMICILIO CONSTITUIDO";
         index = text.indexOf(sub) + sub.length();
         sub = "DEPTO";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String calle = readField();
-
+        
         index = skipBlank();
         String num = readField();
-
+        
         index = skipBlank();
         String piso = readField();
-
+        
         index = skipBlank();
         String dpto = readField();
-
+        if ("PROVINCIA".equals(dpto)) {
+            dpto = null;
+        }
+        
         sub = "LOCALIDAD";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String provincia = readField();
         provincia = WordUtils.capitalizeFully(provincia);
-
+        
         index = skipBlank();
         String depto = readField();
         depto = WordUtils.capitalizeFully(depto);
-
+        
         index = skipBlank();
         String loc = readField();
         loc = WordUtils.capitalizeFully(loc);
-
+        
         sub = "EMAIL";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String cp = readField();
-
+        
         index = skipBlank();
         String tel = readField();
-
+        
         index = skipBlank();
         String mail = readField();
-
+        
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
@@ -265,14 +289,14 @@ public class LectorPDFImpreso47 {
         domicilio += "CP " + cp + "\n";
         domicilio += "Tel.: " + tel + "\n";
         domicilio += "E-mail: " + mail;
-
+        
         return domicilio;
     }
 
     /*Obtener los datos del representante legal (nombre, apellido, dni)
      */
     public String obtenerRepLegal() {
-
+        
         String sub = "REPRESENTANTE LEGAL";
         index = text.indexOf(sub) + sub.length();
         sub = "N° DOCUMENTO";
@@ -280,23 +304,23 @@ public class LectorPDFImpreso47 {
         skipBlank();
         String apellido = readField();
         apellido = WordUtils.capitalizeFully(apellido);
-
+        
         skipBlank();
         String nombre = WordUtils.capitalizeFully(readField());
-
+        
         skipBlank();
         String dniString = readField();
         Integer dni = Integer.parseInt(dniString);
-
+        
         String rep = apellido + ' ' + nombre + ", " + dniString;
         return rep;
     }
-
+    
     public ArrayList<ArrayList<String>> obtenerNomina() {
-        ArrayList<ArrayList<String>> nomina = new ArrayList<>(4);
-
+        ArrayList<ArrayList<String>> nomina = new ArrayList<>();
+        
         Integer cantidad = 0;
-
+        
         String sub = "AUTORIDADES SOCIETARIAS - NÓMINA DEL DIRECTORIO";
         index = text.indexOf(sub) + sub.length();
         sub = "APELLIDO";
@@ -307,13 +331,13 @@ public class LectorPDFImpreso47 {
             if (StringUtils.isNumeric(temp)) {
                 cantidad++;
             } else {
-                nomina.add(new ArrayList<>());
+                nomina.add(new ArrayList<>(4));
                 nomina.get(cantidad - 1).add(temp);
             }
             skipBlank();
             temp = readField();
         }
-
+        
         sub = "CARGO ASIGNADO";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
@@ -321,17 +345,17 @@ public class LectorPDFImpreso47 {
             nomina.get(i).add(readField());
             skipBlank();
         }
-
+        
         for (Integer i = 0; i < cantidad; i++) {
             nomina.get(i).add(readField());
             skipBlank();
         }
-
+        
         for (Integer i = 0; i < cantidad; i++) {
             nomina.get(i).add(readField());
             skipBlank();
         }
-
+        
         return nomina;
     }
 
@@ -365,31 +389,31 @@ public class LectorPDFImpreso47 {
      */
     public String obtenerDomicilioReal() {
         String domicilio = new String();
-
+        
         String sub = "DOMICILIO REAL";
         index = text.indexOf(sub) + sub.length();
         sub = "DEPTO";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String calle = readField();
-
+        
         index = skipBlank();
         String num = readField();
-
+        
         index = skipBlank();
         String piso = null;
         String temp = readField();
         if (!"PROVINCIA (*)".equals(temp)) {
             piso = temp;
         }
-
+        
         index = skipBlank();
         String dpto = null;
         temp = readField();
-        if (!"DEPARTAMENTO (*)".equals(temp)) {
+        if (!"DEPARTAMENTO (*)".equals(temp) && !"PROVINCIA (*)".equals(temp)) {
             dpto = temp;
         }
-
+        
         sub = "LOCALIDAD";
         index = text.indexOf(sub, index) + sub.length();
         sub = "(*)";
@@ -397,33 +421,37 @@ public class LectorPDFImpreso47 {
         index = skipBlank();
         String provincia = readField();
         provincia = WordUtils.capitalizeFully(provincia);
-
+        
         index = skipBlank();
         String depto = readField();
         depto = WordUtils.capitalizeFully(depto);
-
+        
         index = skipBlank();
         String loc = readField();
         loc = WordUtils.capitalizeFully(loc);
-
+        
         sub = "TELÉFONO/FAX";
         index = text.indexOf(sub, index) + sub.length();
         index = skipBlank();
         String cp = readField();
-
+        
         index = skipBlank();
         String tel = readField();
-
+        
+        sub = "ZONIFICACIÓN (*)";
+        index = text.indexOf(sub, index) + sub.length();
         sub = "EMAIL";
         index = text.indexOf(sub, index) + sub.length();
-        sub = "(*)";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
+        skipBlank();
         String zonificacion = readField();
-
+        if ("(*)".equals(zonificacion)) {
+            skipBlank();
+            zonificacion = readField();
+        }
+        
         index = skipBlank();
         String mail = readField();
-
+        
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
@@ -433,10 +461,10 @@ public class LectorPDFImpreso47 {
         domicilio += "Tel.: " + tel + "\n";
         domicilio += "Zonificacion: " + zonificacion + "\n";
         domicilio += "E-mail: " + mail;
-
+        
         return domicilio;
     }
-
+    
     public String obtenerNombreArchivoFotoSat() {
         String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
         index = text.indexOf(sub) + sub.length();
@@ -446,9 +474,9 @@ public class LectorPDFImpreso47 {
         String nombre = readField();
         return nombre;
     }
-
+    
     @SuppressWarnings("UnusedAssignment")
-    ArrayList<ArrayList<String>> obtenerPartidasInm() {
+    public ArrayList<ArrayList<String>> obtenerPartidasInm() {
         ArrayList<ArrayList<String>> partidas = new ArrayList<>();
         
         String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
@@ -484,8 +512,7 @@ public class LectorPDFImpreso47 {
             partidas.get(0).add(readField());
             skipBlank();
             partidas.get(0).add(readField());
-        }
-        //si es mas de una partida:
+        } //si es mas de una partida:
         else {
             //volver index a la posicion previa a la prueba de solo una partida
             index = index1;
@@ -522,5 +549,52 @@ public class LectorPDFImpreso47 {
             }
         }
         return partidas;
+    }
+    
+    ArrayList<ArrayList<String>> obtenerAdministradores() {
+        ArrayList<ArrayList<String>> admins = new ArrayList<>();
+        
+        Integer cantidad = 0;
+        
+        String sub = "ADMINISTRADORES/REPRESENTANTES";
+        index = text.indexOf(sub) + sub.length();
+        sub = "APELLIDO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (!temp.equals("NOMBRE")) {
+            if (StringUtils.isNumeric(temp)) {
+                cantidad++;
+            } else {
+                admins.add(new ArrayList<>(4));
+                admins.get(cantidad - 1).add(temp);
+            }
+            skipBlank();
+            temp = readField();
+        }
+        
+        skipBlank();
+        for (Integer i = 0; i < cantidad; i++) {
+            admins.get(i).add(readField());
+            skipBlank();
+        }
+        
+        sub = "DOCUMENTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        for (Integer i = 0; i < cantidad; i++) {
+            admins.get(i).add(readField());
+            skipBlank();
+        }
+        
+        sub = "CARGO ASIGNADO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        for (Integer i = 0; i < cantidad; i++) {
+            admins.get(i).add(readField());
+            skipBlank();
+        }
+        
+        return admins;
     }
 }

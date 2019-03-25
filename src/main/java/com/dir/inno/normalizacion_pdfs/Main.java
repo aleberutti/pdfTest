@@ -34,9 +34,7 @@ public class Main {
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
-        //String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
-        //System.out.println(filePath);
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(5)_impreso.pdf";
         
         StringBuilder text;
         try (Document pdf = PDF.open(filePath)) {
@@ -81,6 +79,16 @@ public class Main {
                     + nomina.get(i).get(2) + ", "
                     + nomina.get(i).get(3));
         }
+        /*
+        ArrayList<ArrayList<String>> admins = lector.obtenerAdministradores();
+        for (Integer i = 0; i < admins.size(); i++) {
+            System.out.println("Administrador " + (i + 1) + '/' + admins.size() + ':');
+            System.out.println(admins.get(i).get(0) + ' '
+                    + admins.get(i).get(1) + ", "
+                    + admins.get(i).get(2) + ", "
+                    + admins.get(i).get(3));
+        }
+*/
 
         System.out.println("\nRepresentante Legal: " + lector.obtenerRepLegal());
 

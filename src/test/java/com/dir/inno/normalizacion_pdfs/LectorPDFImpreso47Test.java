@@ -28,6 +28,8 @@ public class LectorPDFImpreso47Test {
     LectorPDFImpreso47 instance2;
     LectorPDFImpreso47 instance3;
     LectorPDFImpreso47 instance4;
+    LectorPDFImpreso47 instance5;
+    LectorPDFImpreso47 instance6;
 
     public LectorPDFImpreso47Test() {
     }
@@ -71,6 +73,22 @@ public class LectorPDFImpreso47Test {
             pdf.pipe(new OutputTarget(text));
         }
         instance4 = new LectorPDFImpreso47(text);
+        
+        filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(5)_impreso.pdf";
+        try (Document pdf = PDF.open(filePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
+        instance5 = new LectorPDFImpreso47(text);
+        
+        filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        try (Document pdf = PDF.open(filePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
+        instance6 = new LectorPDFImpreso47(text);
     }
 
     /**
@@ -94,6 +112,14 @@ public class LectorPDFImpreso47Test {
         
         expResult = "4.7";
         result = instance4.obtenerVersion();
+        assertEquals(expResult, result);
+        
+        expResult = "4.7";
+        result = instance5.obtenerVersion();
+        assertEquals(expResult, result);
+        
+        expResult = "4.7";
+        result = instance6.obtenerVersion();
         assertEquals(expResult, result);
     }
 
@@ -119,6 +145,14 @@ public class LectorPDFImpreso47Test {
         expResult = "Empresa Ficticia";
         result = instance4.obtenerNombre();
         assertEquals(expResult, result);
+        
+        expResult = "Fact Society";
+        result = instance5.obtenerNombre();
+        assertEquals(expResult, result);
+        
+        expResult = "NombreCompleto/RazonSocial";
+        result = instance6.obtenerNombre();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -142,6 +176,14 @@ public class LectorPDFImpreso47Test {
         
         expResult = 20380539684L;
         result = instance4.obtenerCuit();
+        assertEquals(expResult, result);
+        
+        expResult = 3546825542L;
+        result = instance5.obtenerCuit();
+        assertEquals(expResult, result);
+        
+        expResult = 3031323333L;
+        result = instance6.obtenerCuit();
         assertEquals(expResult, result);
     }
 
@@ -168,6 +210,14 @@ public class LectorPDFImpreso47Test {
         
         expResult = new SimpleDateFormat("dd/MM/yyyy").parse("26/03/2019");
         result = instance4.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+        
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("06/03/2019");
+        result = instance5.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+        
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        result = instance6.obtenerFechaInicioAct();
         assertEquals(expResult, result);
     }
 
@@ -196,6 +246,19 @@ public class LectorPDFImpreso47Test {
         expResult = new ArrayList<>();
         expResult.add(181130);
         result = instance4.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(181130);
+        expResult.add(402001);
+        result = instance5.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(155120);
+        expResult.add(12230);
+        expResult.add(552112);
+        result = instance6.obtenerActividades();
         assertEquals(expResult, result);
     }
 
@@ -237,6 +300,22 @@ public class LectorPDFImpreso47Test {
                 + "E-mail: email@fominio.com";
         result = instance4.obtenerDomicilioLegal();
         assertEquals(expResult, result);
+        
+        expResult = "Calle 5656 3245, Piso 4, Depto null,\n"
+                + "Carreras, General Lopez, Santa Fe\n"
+                + "CP 2729\n"
+                + "Tel.: 35535344\n"
+                + "E-mail: vampires@yahoo.ahre";
+        result = instance5.obtenerDomicilioLegal();
+        assertEquals(expResult, result);
+        
+        expResult = "CalleDomicilioLegal nºcalle, Piso 1, Depto 2,\n"
+                + "Localidaddomlegal, Dptodomlegal, Entre Ríos\n"
+                + "CP codPost\n"
+                + "Tel.: 3414567897\n"
+                + "E-mail: domiciliolegal@mail.com";
+        result = instance6.obtenerDomicilioLegal();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -276,6 +355,22 @@ public class LectorPDFImpreso47Test {
                 + "Tel.: 3421123456\n"
                 + "E-mail: email.dominio@algo.com";
         result = instance4.obtenerDomicilioConst();
+        assertEquals(expResult, result);
+        
+        expResult = "Calle 8 333, Piso 05, Depto null,\n"
+                + "Ing Chanourdie, General Obligado, Santa Fe\n"
+                + "CP 3575\n"
+                + "Tel.: 35435458\n"
+                + "E-mail: lalalal@lelele.lulu";
+        result = instance5.obtenerDomicilioConst();
+        assertEquals(expResult, result);
+        
+        expResult = "CalleDomicilioConstituido nºcalle, Piso 1, Depto 2,\n"
+                + "Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos\n"
+                + "CP codPost\n"
+                + "Tel.: 3414567897\n"
+                + "E-mail: domicilioConstituido@mail.com";
+        result = instance6.obtenerDomicilioConst();
         assertEquals(expResult, result);
     }
 
@@ -331,6 +426,42 @@ public class LectorPDFImpreso47Test {
         expResult.get(1).add("adsdsasadsdasd");
         result = instance4.obtenerNomina();
         assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>(4);
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Jorge");
+        expResult.get(0).add("Jorgito");
+        expResult.get(0).add("22233344");
+        expResult.get(0).add("The Big Boss");
+        expResult.get(1).add("Mara");
+        expResult.get(1).add("Marita");
+        expResult.get(1).add("68468468");
+        expResult.get(1).add("The Small Boss");
+        expResult.get(2).add("ElJefe");
+        expResult.get(2).add("Lucho");
+        expResult.get(2).add("8949498");
+        expResult.get(2).add("ElJefe");
+        result = instance5.obtenerNomina();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>(4);
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ApellidoMiembroDirectorio");
+        expResult.get(0).add("NombreMiembroDirectorio");
+        expResult.get(0).add("12345678");
+        expResult.get(0).add("CargoAsignado");
+        expResult.get(1).add("ApellidoMiembroDirectorio");
+        expResult.get(1).add("NombreMiembroDirectorio");
+        expResult.get(1).add("12345678");
+        expResult.get(1).add("CargoAsignado");
+        expResult.get(2).add("ApellidoMiembroDirectorio");
+        expResult.get(2).add("NombreMiembroDirectorio");
+        expResult.get(2).add("12345678");
+        expResult.get(2).add("CargoAsignado");
+        result = instance6.obtenerNomina();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -355,6 +486,14 @@ public class LectorPDFImpreso47Test {
         expResult = "Apellidorepleguno Nombrerepleguno, 76545678";
         result = instance4.obtenerRepLegal();
         assertEquals(expResult, result);
+        
+        expResult = "Lega Licenla, 420420";
+        result = instance4.obtenerRepLegal();
+        assertEquals(expResult, result);
+        
+        expResult = "Apellidorepresentantlegal Nombrerepresentantelegal, 12345678";
+        result = instance6.obtenerRepLegal();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -378,6 +517,14 @@ public class LectorPDFImpreso47Test {
         
         expResult = "Acosta, Natalia Carolina, Licenciada en Geoecología y  Medio Ambiente, 0232";
         result = instance4.obtenerConsultor();
+        assertEquals(expResult, result);
+        
+        expResult = "Agretti, Saúl Manuel, Ingeniero Agrónomo, 0115";
+        result = instance5.obtenerConsultor();
+        assertEquals(expResult, result);
+        
+        expResult = "Abbate, Alejandro Agustín, Licenciado en Saneamiento Ambiental, 0391";
+        result = instance6.obtenerConsultor();
         assertEquals(expResult, result);
     }
 
@@ -422,6 +569,24 @@ public class LectorPDFImpreso47Test {
                 + "E-mail: email.com@dominio.com";
         result = instance4.obtenerDomicilioReal();
         assertEquals(expResult, result);
+        
+        expResult = "Callecinha 89498, Piso 3, Depto null,\n"
+                + "Santa Rosa De Calchines, Garay, Santa Fe\n"
+                + "CP 3022\n"
+                + "Tel.: 668676767\n"
+                + "Zonificacion: Otras Zonas\n"
+                + "E-mail: sadanosdn@ogrio.ogr";
+        result = instance5.obtenerDomicilioReal();
+        assertEquals(expResult, result);
+        
+        expResult = "CalleDomRealPlanta numDomRealPlant, Piso null, Depto null,\n"
+                + "Rosario, Rosario, Santa Fe\n"
+                + "CP 2000\n"
+                + "Tel.: Telefono/Fax\n"
+                + "Zonificacion: Parque Industrial\n"
+                + "E-mail: emaildomrealplanta@mail.com";
+        result = instance6.obtenerDomicilioReal();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -445,6 +610,14 @@ public class LectorPDFImpreso47Test {
         
         expResult = "archivo1";
         result = instance4.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+        
+        expResult = "adwddw";
+        result = instance5.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+        
+        expResult = "NombreArchivoFotoSatelitaldeUbicacion";
+        result = instance6.obtenerNombreArchivoFotoSat();
         assertEquals(expResult, result);
     }
 
@@ -497,6 +670,28 @@ public class LectorPDFImpreso47Test {
         expResult.get(2).add("212121");
         expResult.get(2).add("122112");
         result = instance4.obtenerPartidasInm();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("165198");
+        expResult.get(0).add("32");
+        expResult.get(0).add("12");
+        result = instance5.obtenerPartidasInm();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("123456789");
+        expResult.get(0).add("132321321321");
+        expResult.get(0).add("321321321321");
+        expResult.get(1).add("123456789");
+        expResult.get(1).add("132321321321");
+        expResult.get(1).add("321321321321");
+        expResult.get(2).add("123456789");
+        expResult.get(2).add("132321321321");
+        expResult.get(2).add("321321321321");
+        result = instance6.obtenerPartidasInm();
         assertEquals(expResult, result);
     }
 }

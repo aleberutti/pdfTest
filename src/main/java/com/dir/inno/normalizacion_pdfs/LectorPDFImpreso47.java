@@ -521,32 +521,6 @@ public class LectorPDFImpreso47 {
                 temp = readField();
             }
         }
-
-        /*
-        while (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
-            cantidad++;
-            skipBlank();
-            temp = readField();
-            if (!temp.equals(cantidad.toString())) {
-                partidas.add(new ArrayList<>(3));
-                partidas.get(cantidad - 1).add(temp);
-                skipBlank();
-                partidas.get(cantidad - 1).add(readField());
-                skipBlank();
-                partidas.get(cantidad - 1).add(readField());
-            } else{
-                partidas.add(new ArrayList<>(3));
-                partidas.get(cantidad - 1).add(readField());
-                temp = readField();
-                if(!temp.equals(((Integer)(cantidad + 1)).toString())){
-                    partidas.get(cantidad - 1).add(temp);
-                    partidas.get(cantidad - 1).add(readField());
-                }
-            }
-            skipBlank();
-            temp = readField();
-        }
-         */
         return partidas;
     }
 }

@@ -84,98 +84,25 @@ public class LectorPDFImpresoVisual47 {
         String sub = "INSUMO";
         index = text.indexOf(sub) + sub.length();
         index = text.indexOf(sub, index) + sub.length();
+       
+        sub = "1";
+        index = text.indexOf(sub, index) + sub.length();
+        
         skipBlank();
-
-        aux = readField();
+        nombreInsumo = readField();
+        skipBlank();
+        estadoAgregacion = readField();
+        skipBlank();
+        consumoAnual = readField();
+        skipBlank();
+        unidad = readField();
+        skipBlank();
         
-//        if(aux.contains("1")){
-//           
-//            index = skipLine();
-//            nombreInsumo = readField();
-//
-//            sub = "ALMACENAMIENTO"; 
-//            index = text.indexOf(sub, index) + sub.length();
-//            index = skipBlank();
-//            estadoAgregacion = readField();
-//
-//            index = skipBlank();
-//            consumoAnual = readField();
-//
-//
-//            index = skipBlank();
-//            unidad = readField();
-//
-//            index = skipBlank();
-//            almacenamiento = readField();
-//            
-//            if(text.charAt(index+1) == '\n' && isLetter(text.charAt(index+2))){
-//                
-//                index = skipBlank();
-//                almacenamiento += readField();
-//            }
-//            
-//        }
-//        
-//        if(aux.contains("ESTADO FÍSICO")){
-//            
-//            sub = "ALMACENAMIENTO";
-//            index = text.indexOf(sub,index) + sub.length();
-//                
-//            /*Salteo el pie de pagina*/
-//            skipBlank();
-//            skipFooter();
-//            skipBlank();
-//            skipLine();
-//            nombreInsumo = readField();
-//            
-//            if(nombreInsumo.contains("Gaseoso")){
-//                nombreInsumo = nombreInsumo.replace("Gaseoso", "");
-//                estadoAgregacion = "Gaseoso";
-//            } else{
-//                skipBlank();
-//                estadoAgregacion = readField();
-//            }
-//            
-//            if(nombreInsumo.contains("Sólido")){
-//                nombreInsumo = nombreInsumo.replace("Sólido", "");
-//                estadoAgregacion = "Sólido";
-//            } else{
-//                skipBlank();
-//                estadoAgregacion = readField();
-//            }
-//            
-//            if(nombreInsumo.contains("Líquido")){
-//                nombreInsumo = nombreInsumo.replace("Líquido", "");
-//                estadoAgregacion = "Líquido";
-//            } else{
-//                skipBlank();
-//                estadoAgregacion = readField();
-//            }
-//            
-//            if(nombreInsumo.contains("Semisólido")){
-//                nombreInsumo = nombreInsumo.replace("Semisólido", "");
-//                estadoAgregacion = "Semisólido";
-//            } else{
-//                skipBlank();
-//                estadoAgregacion = readField();
-//            }
-//            
-//            
-//            skipBlank();
-//            consumoAnual = readField();
-//            skipBlank();
-//            unidad = readField();
-//            skipBlank();
-//            aux = readField();
-//            
-//            if(aux.contains("SUSTANCIAS AUXILIARES UTILIZADAS")){
-//                System.out.println("Hola");
-//                almacenamiento = aux.replace("SUSTANCIAS AUXILIARES UTILIZADAS","");
-//            }
-//            
-//        }
         
-         String insumo = 
+        
+        //almacenamiento = readField();
+                
+        String insumo = 
             "Nombre del insumo: " + nombreInsumo + "; \n" +
             "Estado físico de agregación: " + estadoAgregacion + "; \n" +
             "Consumo anual del insumo: " + consumoAnual + "; \n"+

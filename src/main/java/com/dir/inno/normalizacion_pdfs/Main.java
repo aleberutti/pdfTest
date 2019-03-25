@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -42,7 +42,7 @@ public class Main {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
+        //LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
         LectorPDFImpresoVisual47 lectorVisual = new LectorPDFImpresoVisual47(text);
 
         /*
@@ -51,40 +51,43 @@ public class Main {
         Result output = new StreamResult(new File("output.xml"));
         transformer.transform(input, output);
          */
+//        System.out.println(text);
+//
+//        System.out.println("Version: " + lector.obtenerVersion() + "\r");
+//
+//        System.out.println("Nombre: " + lector.obtenerNombre());
+//
+//        System.out.println("CUIT: " + lector.obtenerCuit());
+//
+//        System.out.println("Fecha Inicio Actividades: " + lector.obtenerFechaInicioAct() + "\r");
+//
+//        ArrayList<Integer> actividadesEmpresa = lector.obtenerActividades();
+//        for (Integer i = 0; i < actividadesEmpresa.size(); i++) {
+//            System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
+//        }
+//
+//        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
+//
+//        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
+//
+//        ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
+//        for (Integer i = 0; i < nomina.size(); i++) {
+//            System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
+//            System.out.println(nomina.get(i).get(0) + ' '
+//                    + nomina.get(i).get(1) + ", "
+//                    + nomina.get(i).get(2) + ", "
+//                    + nomina.get(i).get(3));
+//        }
+        
         System.out.println(text);
 
-        System.out.println("Version: " + lector.obtenerVersion() + "\r");
-
-        System.out.println("Nombre: " + lector.obtenerNombre());
-
-        System.out.println("CUIT: " + lector.obtenerCuit());
-
-        System.out.println("Fecha Inicio Actividades: " + lector.obtenerFechaInicioAct() + "\r");
-
-        ArrayList<Integer> actividadesEmpresa = lector.obtenerActividades();
-        for (Integer i = 0; i < actividadesEmpresa.size(); i++) {
-            System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
-        }
-
-        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
-
-        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
-
-        ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
-        for (Integer i = 0; i < nomina.size(); i++) {
-            System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
-            System.out.println(nomina.get(i).get(0) + ' '
-                    + nomina.get(i).get(1) + ", "
-                    + nomina.get(i).get(2) + ", "
-                    + nomina.get(i).get(3));
-        }
         System.out.println();
 
-        System.out.println("Representante Legal: " + lector.obtenerRepLegal());
+        //System.out.println("Representante Legal: " + lector.obtenerRepLegal());
         
-        System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
+        //System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
         
-        System.out.println("Insumos:\n" + lector.obtenerInsumos());
+        //System.out.println("Insumos:\n" + lector.obtenerInsumos());
         
         System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
 

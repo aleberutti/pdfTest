@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.096" tests="10" errors="10" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.093" tests="10" errors="10" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -15,6 +15,7 @@
     <property name="user.country" value="AR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
+    <property name="test" value="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="D:\Netbeans\Proyectos\pdfTest"/>
     <property name="java.runtime.version" value="1.8.0_201-b09"/>
@@ -34,6 +35,8 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
+    <property name="jpda.listen" value="true"/>
+    <property name="jpda.address" value="52824"/>
     <property name="user.home" value="C:\Users\MODERNIZACION04"/>
     <property name="user.timezone" value="America/Buenos_Aires"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
@@ -42,10 +45,11 @@
     <property name="java.net.useSystemProxies" value="true;-Djava.net.preferIPv4Stack=true"/>
     <property name="user.name" value="MODERNIZACION04"/>
     <property name="java.class.path" value="D:\Netbeans\netbeans\java\maven\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=52824"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_201\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=D:\Netbeans\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 -Djava.net.useSystemProxies=true;-Djava.net.preferIPv4Stack=true install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test -DforkMode=once -Dmaven.surefire.debug=-agentlib:jdwp=transport=dt_socket,server=n,address=52824 -Djpda.listen=true -Djpda.address=52824 -Dmaven.ext.class.path=D:\Netbeans\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 -Djava.net.useSystemProxies=true;-Djava.net.preferIPv4Stack=true surefire:test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -57,6 +61,7 @@
     <property name="maven.home" value="D:\Netbeans\netbeans\java\maven"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="forkMode" value="once"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.desktop" value="windows"/>
@@ -66,11 +71,11 @@
     <error message="E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>
-    <system-err><![CDATA[mar 20, 2019 1:04:09 PM com.snowtide.PDF <clinit>
+    <system-err><![CDATA[mar 25, 2019 10:40:11 AM com.snowtide.PDF <clinit>
 INFORMACIÓN: PDFxStream v3.1.1 Java, build 20141107081335495 (2014.11.07)
-mar 20, 2019 1:04:09 PM com.snowtide.PDF <clinit>
+mar 25, 2019 10:40:11 AM com.snowtide.PDF <clinit>
 INFORMACIÓN: Please go to http://www.snowtide.com for code samples, documentation, and support information.
-mar 20, 2019 1:04:09 PM com.snowtide.PDF a
+mar 25, 2019 10:40:11 AM com.snowtide.PDF a
 INFORMACIÓN: This PDFxStream runtime is unlicensed, and may therefore only be used in single-threaded applications (use from multiple concurrent threads will result in an exception).  This limitation does not apply when PDFxStream is fully licensed; please visit http://www.snowtide.com to purchase a license.
 ]]></system-err>
   </testcase>
@@ -89,7 +94,7 @@ INFORMACIÓN: This PDFxStream runtime is unlicensed, and may therefore only be u
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>
   </testcase>
-  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0">
+  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.015">
     <error message="E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>
@@ -109,12 +114,12 @@ INFORMACIÓN: This PDFxStream runtime is unlicensed, and may therefore only be u
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>
   </testcase>
-  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.001">
+  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0">
     <error message="E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>
   </testcase>
-  <testcase name="testObtenerNomina" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.001">
+  <testcase name="testObtenerNomina" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0">
     <error message="E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 </error>

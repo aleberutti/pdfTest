@@ -13,6 +13,7 @@ import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.VisualOutputTarget;
 import java.text.ParseException;
 import pdfts.examples.XMLOutputTarget;
 
@@ -32,17 +33,17 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
-            pdf.pipe(new OutputTarget(text));
+            pdf.pipe(new VisualOutputTarget(text));
         }
-
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
+        LectorPDFImpresoVisual47 lectorVisual = new LectorPDFImpresoVisual47(text);
 
         /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -82,6 +83,10 @@ public class Main {
         System.out.println("Representante Legal: " + lector.obtenerRepLegal());
         
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
+        
+        System.out.println("Insumos:\n" + lector.obtenerInsumos());
+        
+        System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
 
     }
 }

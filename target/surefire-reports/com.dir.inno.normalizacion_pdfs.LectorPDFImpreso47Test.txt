@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 10, Skipped: 0, Time elapsed: 0.096 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
+Tests run: 10, Failures: 0, Errors: 10, Skipped: 0, Time elapsed: 0.093 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 testObtenerCuit  Time elapsed: 0.078 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
@@ -18,7 +18,7 @@ testObtenerRepLegal  Time elapsed: 0 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 
-testObtenerDomicilioConst  Time elapsed: 0 sec  <<< ERROR!
+testObtenerDomicilioConst  Time elapsed: 0.015 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 
@@ -34,11 +34,11 @@ testObtenerVersion  Time elapsed: 0 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 
-testObtenerNombre  Time elapsed: 0.001 sec  <<< ERROR!
+testObtenerNombre  Time elapsed: 0 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 
-testObtenerNomina  Time elapsed: 0.001 sec  <<< ERROR!
+testObtenerNomina  Time elapsed: 0 sec  <<< ERROR!
 java.io.FileNotFoundException: E:\Users\MODERNIZACION05\Desktop\tempFormularios\pdfTest\Almacenamiento PDFs editables\PDFs editables\Formulario de presentacion v4.7(1)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:41)
 

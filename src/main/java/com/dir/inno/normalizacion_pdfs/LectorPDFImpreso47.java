@@ -5,6 +5,7 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
+import static java.lang.Character.isLetter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -360,56 +361,113 @@ public class LectorPDFImpreso47 {
     
     public String obtenerInsumos(){ //no tiene armado el caso para más de un insumo
         
+        String aux = null;
+        String nombreInsumo = null;
+        String estadoAgregacion = null;
+        String consumoAnual = null;
+        String unidad = null;
+        String almacenamiento = null;
+        
         String sub = "INSUMO";
         index = text.indexOf(sub) + sub.length();
         index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        index = skipLine();
-        String nombreInsumo = readField();
+        skipBlank();
+
+        aux = readField();
         
-        sub = "ESTADO FÍSICO\n" + "DE\n" + "AGREGACIÓN";
-        index = text.indexOf(sub) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index++;
-        index = skipLine();
-        index = skipLine();
-        index = skipLine();
-        String estadoAgregacion = readField();
+        if(aux.contains("1")){
+           
+            index = skipLine();
+            nombreInsumo = readField();
+
+            sub = "ALMACENAMIENTO"; 
+            index = text.indexOf(sub, index) + sub.length();
+            index = skipBlank();
+            estadoAgregacion = readField();
+
+            index = skipBlank();
+            consumoAnual = readField();
+
+
+            index = skipBlank();
+            unidad = readField();
+
+            index = skipBlank();
+            almacenamiento = readField();
+            
+            if(text.charAt(index+1) == '\n' && isLetter(text.charAt(index+2))){
+                
+                index = skipBlank();
+                almacenamiento += readField();
+            }
+            
+        }
         
-        sub = "CONSUMO\n" + "ANUAL";
-        index = text.indexOf(sub) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipLine();
-        index = skipWord();
-        String consumoAnual = readField();
+        if(aux.contains("ESTADO FÍSICO")){
+            
+            sub = "ALMACENAMIENTO";
+            index = text.indexOf(sub,index) + sub.length();
+                
+            /*Salteo el pie de pagina*/
+            skipBlank();
+            skipFooter();
+            skipBlank();
+            skipLine();
+            nombreInsumo = readField();
+            
+            if(nombreInsumo.contains("Gaseoso")){
+                nombreInsumo = nombreInsumo.replace("Gaseoso", "");
+                estadoAgregacion = "Gaseoso";
+            } else{
+                skipBlank();
+                estadoAgregacion = readField();
+            }
+            
+            if(nombreInsumo.contains("Sólido")){
+                nombreInsumo = nombreInsumo.replace("Sólido", "");
+                estadoAgregacion = "Sólido";
+            } else{
+                skipBlank();
+                estadoAgregacion = readField();
+            }
+            
+            if(nombreInsumo.contains("Líquido")){
+                nombreInsumo = nombreInsumo.replace("Líquido", "");
+                estadoAgregacion = "Líquido";
+            } else{
+                skipBlank();
+                estadoAgregacion = readField();
+            }
+            
+            if(nombreInsumo.contains("Semisólido")){
+                nombreInsumo = nombreInsumo.replace("Semisólido", "");
+                estadoAgregacion = "Semisólido";
+            } else{
+                skipBlank();
+                estadoAgregacion = readField();
+            }
+            
+            
+            skipBlank();
+            consumoAnual = readField();
+            skipBlank();
+            unidad = readField();
+            skipBlank();
+            aux = readField();
+            
+            if(aux.contains("SUSTANCIAS AUXILIARES UTILIZADAS")){
+                System.out.println("Hola");
+                almacenamiento = aux.replace("SUSTANCIAS AUXILIARES UTILIZADAS","");
+            }
+            
+        }
         
-        sub = "UNIDAD";
-        index = text.indexOf(sub)+ sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipLine();
-        index = skipWord();
-        index = skipBlank();
-        String unidad = readField();
-        
-        sub = "ALMACENAMIENTO";
-        index = text.indexOf(sub)+ sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipLine();
-        index = skipLine();
-        String almacenamiento = readField();
-        
-        String insumo = 
-                "Nombre del insumo: " + nombreInsumo + "; \n" +
-                "Estado físico de agregación: " + estadoAgregacion + "; \n" +
-                "Consumo anual del insumo: " + consumoAnual + "; \n"+
-                "Unidad de medida: " + unidad + "; \n"+
-                "Almacenamiento: " + almacenamiento + "; \n";
+         String insumo = 
+            "Nombre del insumo: " + nombreInsumo + "; \n" +
+            "Estado físico de agregación: " + estadoAgregacion + "; \n" +
+            "Consumo anual del insumo: " + consumoAnual + "; \n"+
+            "Unidad de medida: " + unidad + "; \n"+
+            "Almacenamiento: " + almacenamiento + "; \n";
         
         
         return insumo;
@@ -436,6 +494,16 @@ public class LectorPDFImpreso47 {
                 text.charAt(index + 1) != '\r' || text.charAt(index + 1) != '\n')))) {
             index++;
         }
+        return index;
+    }
+    
+    public Integer skipFooter(){
+        skipBlank();
+        
+        for(int i = 0; i < 7; i++){
+            skipLine();
+        }
+        
         return index;
     }
 

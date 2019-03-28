@@ -13,6 +13,8 @@ import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.VisualOutputTarget;
+import java.io.File;
 import java.text.ParseException;
 import pdfts.examples.XMLOutputTarget;
 
@@ -32,10 +34,11 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
-
+        String filePath = new File("").getAbsolutePath();
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        
         StringBuilder text;
-        try (Document pdf = PDF.open(pdfFilePath)) {
+        try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
@@ -43,15 +46,19 @@ public class Main {
         }
 
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
-
-        /*
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        Source input = new DOMSource(xml.getXMLDocument());
-        Result output = new StreamResult(new File("output.xml"));
-        transformer.transform(input, output);
-         */
+        
+        try (Document pdf = PDF.open(filePath)) {
+            XMLOutputTarget xml = new XMLOutputTarget();
+            pdf.pipe(xml);
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        
+        //MOSTRAR SALIDA
         System.out.println(text);
-
+        
+        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
+        
         System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
         System.out.println("Nombre: " + lector.obtenerNombre());
@@ -69,7 +76,7 @@ public class Main {
 
         System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
 
-        ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
+        ArrayList<ArrayList<String>> nomina = lectorV.obtenerNomina();
         for (Integer i = 0; i < nomina.size(); i++) {
             System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
             System.out.println(nomina.get(i).get(0) + ' '
@@ -77,11 +84,32 @@ public class Main {
                     + nomina.get(i).get(2) + ", "
                     + nomina.get(i).get(3));
         }
-        System.out.println();
+        /*
+        ArrayList<ArrayList<String>> admins = lector.obtenerAdministradores();
+        for (Integer i = 0; i < admins.size(); i++) {
+            System.out.println("Administrador " + (i + 1) + '/' + admins.size() + ':');
+            System.out.println(admins.get(i).get(0) + ' '
+                    + admins.get(i).get(1) + ", "
+                    + admins.get(i).get(2) + ", "
+                    + admins.get(i).get(3));
+        }
+*/
 
-        System.out.println("Representante Legal: " + lector.obtenerRepLegal());
-        
+        System.out.println("\nRepresentante Legal: " + lector.obtenerRepLegal());
+
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
+        System.out.println("\nDomicilio Real: " + lector.obtenerDomicilioReal());
+
+        System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
+
+        
+        ArrayList<ArrayList<String>> partidas = lectorV.obtenerPartidasInm();
+        for (Integer i = 0; i < partidas.size(); i++) {
+            System.out.println("Partida inmobiliaria " + (i + 1) + '/'
+                    + partidas.size() + ": " + partidas.get(i).get(0));
+            System.out.println("Lat: " + partidas.get(i).get(1)
+                    + ", Long: " + partidas.get(i).get(2));
+        }
     }
 }

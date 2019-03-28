@@ -84,8 +84,8 @@ public class Main {
                     + nomina.get(i).get(2) + ", "
                     + nomina.get(i).get(3));
         }
-        /*
-        ArrayList<ArrayList<String>> admins = lector.obtenerAdministradores();
+
+        ArrayList<ArrayList<String>> admins = lectorV.obtenerAdministradores();
         for (Integer i = 0; i < admins.size(); i++) {
             System.out.println("Administrador " + (i + 1) + '/' + admins.size() + ':');
             System.out.println(admins.get(i).get(0) + ' '
@@ -93,7 +93,6 @@ public class Main {
                     + admins.get(i).get(2) + ", "
                     + admins.get(i).get(3));
         }
-*/
 
         System.out.println("\nRepresentante Legal: " + lector.obtenerRepLegal());
 
@@ -102,7 +101,6 @@ public class Main {
         System.out.println("\nDomicilio Real: " + lectorV.obtenerDomicilioReal());
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
-
         
         ArrayList<ArrayList<String>> partidas = lectorV.obtenerPartidasInm();
         for (Integer i = 0; i < partidas.size(); i++) {
@@ -111,5 +109,8 @@ public class Main {
             System.out.println("Lat: " + partidas.get(i).get(1)
                     + ", Long: " + partidas.get(i).get(2));
         }
+        
+        System.out.println("\nDatos para la categorización ambiental: ");
+        System.out.println(lectorV.obtenerDatosPlantaCatAmb());
     }
 }

@@ -10,6 +10,7 @@ import com.snowtide.pdf.Document;
 import com.snowtide.pdf.VisualOutputTarget;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,21 +22,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author MODERNIZACION05
  */
 public class LectorPDFImpreso47VTest {
-    
+
     LectorPDFImpreso47V instance1;
     LectorPDFImpreso47V instance2;
     LectorPDFImpreso47V instance3;
     LectorPDFImpreso47V instance4;
     LectorPDFImpreso47V instance5;
     LectorPDFImpreso47V instance6;
-    
+
     public LectorPDFImpreso47VTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @BeforeEach
     public void setUp() throws IOException {
         String filePath = new File("").getAbsolutePath();
@@ -62,7 +63,7 @@ public class LectorPDFImpreso47VTest {
             pdf.pipe(new VisualOutputTarget(text));
         }
         instance3 = new LectorPDFImpreso47V(text);
-        
+
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
         try (Document pdf = PDF.open(filePath)) {
@@ -70,7 +71,7 @@ public class LectorPDFImpreso47VTest {
             pdf.pipe(new VisualOutputTarget(text));
         }
         instance4 = new LectorPDFImpreso47V(text);
-        
+
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(5)_impreso.pdf";
         try (Document pdf = PDF.open(filePath)) {
@@ -78,7 +79,7 @@ public class LectorPDFImpreso47VTest {
             pdf.pipe(new VisualOutputTarget(text));
         }
         instance5 = new LectorPDFImpreso47V(text);
-        
+
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
         try (Document pdf = PDF.open(filePath)) {
@@ -94,7 +95,7 @@ public class LectorPDFImpreso47VTest {
     @Test
     public void testObtenerPartidasInm() {
         System.out.println("obtenerPartidasInm");
-        
+
         ArrayList<ArrayList<String>> expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.get(0).add("123456789");
@@ -102,7 +103,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("321321321321");
         ArrayList<ArrayList<String>> result = instance1.obtenerPartidasInm();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.add(new ArrayList<>());
@@ -114,7 +115,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("098765");
         result = instance2.obtenerPartidasInm();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.get(0).add("123213231");
@@ -122,7 +123,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("123");
         result = instance3.obtenerPartidasInm();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.add(new ArrayList<>());
@@ -138,7 +139,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(2).add("122112");
         result = instance4.obtenerPartidasInm();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.get(0).add("165198");
@@ -146,7 +147,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("12");
         result = instance5.obtenerPartidasInm();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>());
         expResult.add(new ArrayList<>());
@@ -170,8 +171,7 @@ public class LectorPDFImpreso47VTest {
     @Test
     public void testObtenerNomina() {
         System.out.println("obtenerNomina");
-        
-        
+
         ArrayList<ArrayList<String>> expResult = new ArrayList<>();
         ArrayList<ArrayList<String>> result;
 
@@ -205,7 +205,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("ads");
         result = instance3.obtenerNomina();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(4));
         expResult.add(new ArrayList<>(4));
@@ -237,8 +237,8 @@ public class LectorPDFImpreso47VTest {
         expResult.get(2).add("8949498");
         expResult.get(2).add("ElJefe");
         result = instance5.obtenerNomina();
-        assertEquals(expResult, result); 
-       
+        assertEquals(expResult, result);
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(4));
         expResult.add(new ArrayList<>(4));
@@ -258,7 +258,7 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerNomina();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of obtenerDomicilioConst method, of class LectorPDFImpreso47V.
      */
@@ -289,7 +289,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: 123";
         result = instance3.obtenerDomicilioConst();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle constituida 1243, Piso 21, Depto 1,\n"
                 + "Bella Italia, Castellanos, Santa Fe\n"
                 + "CP 2401\n"
@@ -297,7 +297,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: email.dominio@algo.com";
         result = instance4.obtenerDomicilioConst();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle 8 333, Piso 05, Depto null,\n"
                 + "Ing. Chanourdie, General Obligado, Santa Fe\n"
                 + "CP 3575\n"
@@ -305,7 +305,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: lalalal@lelele.lulu";
         result = instance5.obtenerDomicilioConst();
         assertEquals(expResult, result);
-        
+
         expResult = "CalleDomicilioConstituido nºcalle, Piso null, Depto 2,\n"
                 + "Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos\n"
                 + "CP codPost\n"
@@ -329,7 +329,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: domiciliolegal@mail.com";
         String result = instance1.obtenerDomicilioLegal();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle sinnombre 1231, Piso 1, Depto 1,\n"
                 + "Helvecia, Garay, Santa Fe\n"
                 + "CP 3003\n"
@@ -345,7 +345,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: 231asddsa";
         result = instance3.obtenerDomicilioLegal();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle sinnombre 1231, Piso 1, Depto 1,\n"
                 + "Helvecia, Garay, Santa Fe\n"
                 + "CP 3003\n"
@@ -353,7 +353,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: email@fominio.com";
         result = instance4.obtenerDomicilioLegal();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle 5656 3245, Piso 4, Depto null,\n"
                 + "Carreras, General Lopez, Santa Fe\n"
                 + "CP 2729\n"
@@ -361,7 +361,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: vampires@yahoo.ahre";
         result = instance5.obtenerDomicilioLegal();
         assertEquals(expResult, result);
-                
+
         expResult = "CalleDomicilioLegal nºcalle, Piso null, Depto 2,\n"
                 + "Localidaddomlegal, Dptodomlegal, Entre Ríos\n"
                 + "CP codPost\n"
@@ -370,7 +370,7 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerDomicilioLegal();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of obtenerDomicilioReal method, of class LectorPDFImpreso47V.
      */
@@ -403,7 +403,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: dsadassda";
         result = instance3.obtenerDomicilioReal();
         assertEquals(expResult, result);
-        
+
         expResult = "Calle ubicacion de planta 09877, Piso 11, Depto 2,\n"
                 + "Aurelia, Castellanos, Santa Fe\n"
                 + "CP 2301\n"
@@ -412,7 +412,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: email.com@dominio.com";
         result = instance4.obtenerDomicilioReal();
         assertEquals(expResult, result);
-        
+
         expResult = "Callecinha 89498, Piso 3, Depto null,\n"
                 + "Santa Rosa De Calchines, Garay, Santa Fe\n"
                 + "CP 3022\n"
@@ -421,7 +421,7 @@ public class LectorPDFImpreso47VTest {
                 + "E-mail: sadanosdn@ogrio.ogr";
         result = instance5.obtenerDomicilioReal();
         assertEquals(expResult, result);
-        
+
         expResult = "CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,\n"
                 + "Rosario, Rosario, Santa Fe\n"
                 + "CP 2000\n"
@@ -429,6 +429,82 @@ public class LectorPDFImpreso47VTest {
                 + "Zonificacion: Parque Industrial\n"
                 + "E-mail: emaildomrealplanta@mail.com";
         result = instance6.obtenerDomicilioReal();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerAdministradores method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerAdministradores() {
+        System.out.println("obtenerAdministradores");
+
+        ArrayList<ArrayList<String>> expResult = new ArrayList();
+        expResult.add(new ArrayList<>(4));
+        expResult.get(0).add("ApellidoAdministrador");
+        expResult.get(0).add("NombreAdministrador");
+        expResult.get(0).add("12345678");
+        expResult.get(0).add("CargoAdminAsignado");
+        ArrayList<ArrayList<String>> result = instance1.obtenerAdministradores();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList();
+        expResult.add(new ArrayList<>(4));
+        expResult.add(new ArrayList<>(4));
+        expResult.get(0).add("ApellidoRepUno");
+        expResult.get(0).add("NombreRepUno");
+        expResult.get(0).add("87655432");
+        expResult.get(0).add("askdsal");
+        expResult.get(1).add("ApellidoRepDos");
+        expResult.get(1).add("NombreRepDos");
+        expResult.get(1).add("56789009");
+        expResult.get(1).add("piuytrewsdfghjk");
+        result = instance2.obtenerAdministradores();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of obtenerDatosPlantaCatAmb method, of class LectorPDFImpreso47V.
+     */
+    @Test
+    public void testObtenerDatosPlantaCatAmb() throws Exception {
+        System.out.println("obtenerDatosPlantaCatAmb");
+
+        String expResult = "DatosParaLaCategorizacionAmbientalDeActividades - Planta,\n"
+                + "Fecha inicio de actividades: " 
+                + new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        String result = instance1.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+        
+        expResult = "Planta 1,\n"
+                + "Fecha inicio de actividades: "
+                + new SimpleDateFormat("dd/MM/yyyy").parse("26/02/2019");
+        result = instance2.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+        
+        expResult = "dsadasdsa,\n"
+                + "Fecha inicio de actividades: "
+                + new SimpleDateFormat("dd/MM/yyyy").parse("30/01/2019");
+        result = instance3.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+        
+        expResult = "Planta 1,\n"
+                + "Fecha inicio de actividades: "
+                + new SimpleDateFormat("dd/MM/yyyy").parse("26/02/2019");
+        result = instance4.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+        
+        expResult = "Plantusi,\n"
+                + "Fecha inicio de actividades: "
+                + new SimpleDateFormat("dd/MM/yyyy").parse("20/03/2019");
+        result = instance5.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+        
+        expResult = "DatosParaLaCategorizacionAmbientalDeActividades - Planta,\n"
+                + "Fecha inicio de actividades: "
+                + new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        result = instance6.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
     }
 }

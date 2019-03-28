@@ -361,23 +361,4 @@ public class LectorPDFImpreso47Test {
         result = instance6.obtenerNombreArchivoFotoSat();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of obtenerAdministradores method, of class LectorPDFImpreso47.
-     */
-    @Test
-    public void testObtenerAdministradores() {
-        System.out.println("obtenerAdministradores");
-        
-        ArrayList<ArrayList<String>> expResult = new ArrayList();
-        expResult.add(new ArrayList<>(4));
-        expResult.get(0).add("ApellidoAdministrador");
-        expResult.get(0).add("NombreAdministrador");
-        expResult.get(0).add("12345678");
-        expResult.get(0).add("CargoAdminAsignado");
-        ArrayList<ArrayList<String>> result = instance1.obtenerAdministradores();
-        assertEquals(expResult, result);
-        
-        
-    }
 }

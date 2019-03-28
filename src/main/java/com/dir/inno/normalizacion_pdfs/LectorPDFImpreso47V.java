@@ -5,7 +5,10 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -158,25 +161,25 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
 
         return domicilio;
     }
-    
+
     /*Devuelve el domicilioLegal como String.
     Se pueden extraer parametros calle, 
     num, piso, dpto, localidad, depto, provincia, CP, tel y mail
      */
     public String obtenerDomicilioLegal() {
         String domicilio = new String();
-        
+
         String sub = "DEPTO";
         index = text.indexOf(sub) + sub.length();
         skipBlank();
         String calle = readField();
-        
+
         skipBlank();
         String num = readField();
-        
+
         String piso;
         String dpto;
-        
+
         if (skipBlank() > 25) {
             piso = null;
             dpto = readField();
@@ -185,11 +188,11 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
             skipBlank();
             dpto = readField();
         }
-        
+
         if (dpto.contains("PROVINCIA")) {
             dpto = null;
         }
-        
+
         sub = "LOCALIDAD";
         index = text.indexOf(sub, index) + sub.length();
         sub = "(*)";
@@ -197,28 +200,28 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         skipBlank();
         String provincia = readField();
         provincia = WordUtils.capitalizeFully(provincia);
-        
+
         skipBlank();
         String depto = readField();
         depto = WordUtils.capitalizeFully(depto);
-        
+
         skipBlank();
         String loc = readField();
         loc = WordUtils.capitalizeFully(loc);
-        
+
         sub = "EMAIL";
         index = text.indexOf(sub, index) + sub.length();
         sub = "(*)";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String cp = readField();
-        
+
         skipBlank();
         String tel = readField();
-        
+
         skipBlank();
         String mail = readField();
-        
+
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
@@ -227,7 +230,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         domicilio += "CP " + cp + "\n";
         domicilio += "Tel.: " + tel + "\n";
         domicilio += "E-mail: " + mail;
-        
+
         return domicilio;
     }
 
@@ -238,57 +241,62 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
      */
     public String obtenerDomicilioReal() {
         String domicilio = new String();
-        
+
         String sub = "DOMICILIO REAL";
         index = text.indexOf(sub) + sub.length();
         sub = "DEPTO";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String calle = readField();
-        
+
         skipBlank();
         String num = readField();
-        
+
         String piso;
         String dpto;
-        
-        if (skipBlank() > 25) {
+        Integer t = skipBlank();
+        if (t < 9) {
             piso = null;
-            dpto = readField();
-        } else {
-            piso = readField();
-            skipBlank();
-            dpto = readField();
-        }
-        
-        if (dpto.contains("PROVINCIA")) {
             dpto = null;
+        } else {
+            if (t > 27) {
+                piso = null;
+                dpto = readField();
+            } else {
+                piso = readField();
+                skipBlank();
+                dpto = readField();
+            }
+
+            if (dpto.contains("PROVINCIA")) {
+                dpto = null;
+            }
         }
-        
+
         sub = "LOCALIDAD";
         index = text.indexOf(sub, index) + sub.length();
         sub = "(*)";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String provincia = readField();
-        provincia = WordUtils.capitalizeFully(provincia);
-        
+        provincia = WordUtils.capitalizeFully(provincia).trim().replaceAll(" +", " ");
+
         skipBlank();
         String depto = readField();
-        depto = WordUtils.capitalizeFully(depto);
-        
+        depto = WordUtils.capitalizeFully(depto).trim().replaceAll(" +", " ");
+
         skipBlank();
         String loc = readField();
-        loc = WordUtils.capitalizeFully(loc);
-        
+        loc = WordUtils.capitalizeFully(loc).trim().replaceAll(" +", " ");
+
         sub = "TELÉFONO/FAX";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String cp = readField();
-        
+
         skipBlank();
         String tel = readField();
-        
+
         sub = "ZONIFICACIÓN (*)";
         index = text.indexOf(sub, index) + sub.length();
         sub = "EMAIL";
@@ -299,10 +307,10 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
             skipBlank();
             zonificacion = readField();
         }
-        
+
         skipBlank();
         String mail = readField();
-        
+
         domicilio += calle;
         domicilio += ' ' + num;
         domicilio += ", Piso " + piso;
@@ -312,7 +320,49 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         domicilio += "Tel.: " + tel + "\n";
         domicilio += "Zonificacion: " + zonificacion + "\n";
         domicilio += "E-mail: " + mail;
-        
+
         return domicilio;
+    }
+
+    public ArrayList<ArrayList<String>> obtenerAdministradores() {
+        ArrayList<ArrayList<String>> admins = new ArrayList<>();
+
+        String sub = "ADMINISTRADORES/REPRESENTANTES";
+        index = text.indexOf(sub) + sub.length();
+        sub = "DOCUMENTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (StringUtils.isNumeric(temp)) {
+            admins.add(new ArrayList<>(4));
+            skipBlank();
+            admins.get(admins.size() - 1).add(readField());
+            skipBlank();
+            admins.get(admins.size() - 1).add(readField());
+            skipBlank();
+            admins.get(admins.size() - 1).add(readField());
+            skipBlank();
+            admins.get(admins.size() - 1).add(readField());
+            skipBlank();
+            temp = readField();
+        }
+        return admins;
+    }
+
+    public String obtenerDatosPlantaCatAmb() throws ParseException {
+        String sub = "CATEGORIZACIÓN";
+        index = text.indexOf(sub) + sub.length();
+        sub = "PLANTA";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String datos = readField();
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String dateString = readField();
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        datos += ",\nFecha inicio de actividades: " + date;
+        return datos;
     }
 }

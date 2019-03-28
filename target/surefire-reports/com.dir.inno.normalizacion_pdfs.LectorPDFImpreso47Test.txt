@@ -1,19 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.232 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
-testObtenerDomicilioReal  Time elapsed: 0.361 sec  <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-expected: <CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,
-Rosario, Rosario, Santa Fe
-CP 2000
-Tel.: Telefono/Fax
-Zonificacion: Parque Industrial
-E-mail: emaildomrealplanta@mail.com> but was: <CalleDomRealPlanta numDomRealPlant, Piso 2, Depto null,
-Rosario, Rosario, Santa Fe
-CP 2000
-Tel.: Telefono/Fax
-Zonificacion: Parque Industrial
-E-mail: emaildomrealplanta@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:391)
-
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.566 sec - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test

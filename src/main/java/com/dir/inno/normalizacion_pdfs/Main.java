@@ -35,7 +35,7 @@ public class Main {
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
         
         StringBuilder text;
         try (Document pdf = PDF.open(filePath)) {
@@ -72,9 +72,9 @@ public class Main {
             System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
         }
 
-        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
+        System.out.println("\rDomicilio Legal: " + lectorV.obtenerDomicilioLegal());
 
-        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
+        System.out.println("\rDomicilio Constituido: " + lectorV.obtenerDomicilioConst() + "\r");
 
         ArrayList<ArrayList<String>> nomina = lectorV.obtenerNomina();
         for (Integer i = 0; i < nomina.size(); i++) {
@@ -99,7 +99,7 @@ public class Main {
 
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
-        System.out.println("\nDomicilio Real: " + lector.obtenerDomicilioReal());
+        System.out.println("\nDomicilio Real: " + lectorV.obtenerDomicilioReal());
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
 

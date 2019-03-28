@@ -42,7 +42,7 @@ public class LectorPDFImpreso47 {
     public String obtenerNombre() {
         String sub = "NOMBRE COMPLETO / RAZÓN SOCIAL (*)";
         index = text.indexOf(sub) + sub.length();
-        index = skipBlank();
+        skipBlank();
         String nombre = new String();
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
                 || ((text.charAt(index) == ' ')
@@ -58,7 +58,7 @@ public class LectorPDFImpreso47 {
     public Long obtenerCuit() {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
-        index = skipBlank();
+        skipBlank();
         /*
         String cuit = text.substring(index, index + 2);
         index++;
@@ -91,7 +91,7 @@ public class LectorPDFImpreso47 {
     public Date obtenerFechaInicioAct() throws ParseException {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
-        index = skipBlank();
+        skipBlank();
         index += 17;
         String dateString = new String();
         while (text.charAt(index) != '\r') {
@@ -140,75 +140,15 @@ public class LectorPDFImpreso47 {
         return actividadesEmpresa;
     }
 
-    /*Devuelve el domicilioLegal como String.
-    Se pueden extraer parametros calle, 
-    num, piso, dpto, localidad, depto, provincia, CP, tel y mail
-     */
-    public String obtenerDomicilioLegal() {
-        String domicilio = new String();
-        
-        String sub = "DEPTO";
-        index = text.indexOf(sub) + sub.length();
-        index = skipBlank();
-        String calle = readField();
-        
-        index = skipBlank();
-        String num = readField();
-        
-        index = skipBlank();
-        String piso = readField();
-        
-        index = skipBlank();
-        String dpto = readField();
-        
-        if ("PROVINCIA (*)".equals(dpto)) {
-            dpto = null;
-        }
-        
-        sub = "LOCALIDAD (*)";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String provincia = readField();
-        provincia = WordUtils.capitalizeFully(provincia);
-        
-        index = skipBlank();
-        String depto = readField();
-        depto = WordUtils.capitalizeFully(depto);
-        
-        index = skipBlank();
-        String loc = readField();
-        loc = WordUtils.capitalizeFully(loc);
-        
-        sub = "EMAIL (*)";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String cp = readField();
-        
-        index = skipBlank();
-        String tel = readField();
-        
-        index = skipBlank();
-        String mail = readField();
-        
-        domicilio += calle;
-        domicilio += ' ' + num;
-        domicilio += ", Piso " + piso;
-        domicilio += ", Depto " + dpto + ",\n";
-        domicilio += loc + ", " + depto + ", " + provincia + "\n";
-        domicilio += "CP " + cp + "\n";
-        domicilio += "Tel.: " + tel + "\n";
-        domicilio += "E-mail: " + mail;
-        
-        return domicilio;
-    }
-
     /*Funcion para mover el cursor hasta la proxima palabra ignorando espacios
     y saltos de linea*/
     protected Integer skipBlank() {
+        Integer skipped = 0;
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
             index++;
+            skipped++;
         }
-        return index;
+        return skipped;
     }
 
     /*Método para leer un campo que puede contener espacios
@@ -228,69 +168,6 @@ public class LectorPDFImpreso47 {
             index++;
         }
         return field;
-    }
-
-    /*Devuelve el domicilioConstituido como String.
-    Se pueden extraer parametros calle, 
-    num, piso, dpto, localidad, depto, provincia, CP, tel y mail
-     */
-    public String obtenerDomicilioConst() {
-        String domicilio = new String();
-        
-        String sub = "DOMICILIO CONSTITUIDO";
-        index = text.indexOf(sub) + sub.length();
-        sub = "DEPTO";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String calle = readField();
-        
-        index = skipBlank();
-        String num = readField();
-        
-        index = skipBlank();
-        String piso = readField();
-        
-        index = skipBlank();
-        String dpto = readField();
-        if ("PROVINCIA".equals(dpto)) {
-            dpto = null;
-        }
-        
-        sub = "LOCALIDAD";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String provincia = readField();
-        provincia = WordUtils.capitalizeFully(provincia);
-        
-        index = skipBlank();
-        String depto = readField();
-        depto = WordUtils.capitalizeFully(depto);
-        
-        index = skipBlank();
-        String loc = readField();
-        loc = WordUtils.capitalizeFully(loc);
-        
-        sub = "EMAIL";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String cp = readField();
-        
-        index = skipBlank();
-        String tel = readField();
-        
-        index = skipBlank();
-        String mail = readField();
-        
-        domicilio += calle;
-        domicilio += ' ' + num;
-        domicilio += ", Piso " + piso;
-        domicilio += ", Depto " + dpto + ",\n";
-        domicilio += loc + ", " + depto + ", " + provincia + "\n";
-        domicilio += "CP " + cp + "\n";
-        domicilio += "Tel.: " + tel + "\n";
-        domicilio += "E-mail: " + mail;
-        
-        return domicilio;
     }
 
     /*Obtener los datos del representante legal (nombre, apellido, dni)
@@ -337,89 +214,6 @@ public class LectorPDFImpreso47 {
         skipBlank();
         consultor += readField();
         return consultor;
-    }
-
-    /*Devuelve el domicilioConstituido como String.
-    Se pueden extraer parametros calle, 
-    num, piso, dpto, localidad, depto, provincia, CP, tel,
-    tipo de zonificacion y mail
-     */
-    public String obtenerDomicilioReal() {
-        String domicilio = new String();
-        
-        String sub = "DOMICILIO REAL";
-        index = text.indexOf(sub) + sub.length();
-        sub = "DEPTO";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String calle = readField();
-        
-        index = skipBlank();
-        String num = readField();
-        
-        index = skipBlank();
-        String piso = null;
-        String temp = readField();
-        if (!"PROVINCIA (*)".equals(temp)) {
-            piso = temp;
-        }
-        
-        index = skipBlank();
-        String dpto = null;
-        temp = readField();
-        if (!"DEPARTAMENTO (*)".equals(temp) && !"PROVINCIA (*)".equals(temp)) {
-            dpto = temp;
-        }
-        
-        sub = "LOCALIDAD";
-        index = text.indexOf(sub, index) + sub.length();
-        sub = "(*)";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String provincia = readField();
-        provincia = WordUtils.capitalizeFully(provincia);
-        
-        index = skipBlank();
-        String depto = readField();
-        depto = WordUtils.capitalizeFully(depto);
-        
-        index = skipBlank();
-        String loc = readField();
-        loc = WordUtils.capitalizeFully(loc);
-        
-        sub = "TELÉFONO/FAX";
-        index = text.indexOf(sub, index) + sub.length();
-        index = skipBlank();
-        String cp = readField();
-        
-        index = skipBlank();
-        String tel = readField();
-        
-        sub = "ZONIFICACIÓN (*)";
-        index = text.indexOf(sub, index) + sub.length();
-        sub = "EMAIL";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        String zonificacion = readField();
-        if ("(*)".equals(zonificacion)) {
-            skipBlank();
-            zonificacion = readField();
-        }
-        
-        index = skipBlank();
-        String mail = readField();
-        
-        domicilio += calle;
-        domicilio += ' ' + num;
-        domicilio += ", Piso " + piso;
-        domicilio += ", Depto " + dpto + ",\n";
-        domicilio += loc + ", " + depto + ", " + provincia + "\n";
-        domicilio += "CP " + cp + "\n";
-        domicilio += "Tel.: " + tel + "\n";
-        domicilio += "Zonificacion: " + zonificacion + "\n";
-        domicilio += "E-mail: " + mail;
-        
-        return domicilio;
     }
     
     public String obtenerNombreArchivoFotoSat() {

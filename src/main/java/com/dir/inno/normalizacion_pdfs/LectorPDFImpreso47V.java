@@ -7,6 +7,7 @@ package com.dir.inno.normalizacion_pdfs;
 
 import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  *
@@ -78,38 +79,240 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
             skipBlank();
             temp = readField();
         }
-        /*
-        while (!temp.equals("NOMBRE")) {
-            if (StringUtils.isNumeric(temp)) {
-                cantidad++;
-            } else {
-                nomina.add(new ArrayList<>(4));
-                nomina.get(cantidad - 1).add(temp);
-            }
-            skipBlank();
-            temp = readField();
-        }
-        
-        sub = "CARGO ASIGNADO";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-        
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-        
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-         */
-
         return nomina;
     }
 
+    /*Devuelve el domicilioConstituido como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto, provincia, CP, tel y mail
+     */
+    public String obtenerDomicilioConst() {
+        String domicilio = new String();
+
+        String sub = "DOMICILIO CONSTITUIDO";
+        index = text.indexOf(sub) + sub.length();
+        if (index < 80) {
+            sub = "DOMICILIO  CONSTITUIDO";
+            index = text.indexOf(sub) + sub.length();
+            if (index < 80) {
+                sub = "DOMICILIO   CONSTITUIDO";
+                index = text.indexOf(sub) + sub.length();
+            }
+        }
+        sub = "DEPTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String calle = readField();
+
+        skipBlank();
+        String num = readField();
+        String piso;
+        String dpto;
+
+        if (skipBlank() > 25) {
+            piso = null;
+            dpto = readField();
+        } else {
+            piso = readField();
+            skipBlank();
+            dpto = readField();
+        }
+
+        if ("PROVINCIA".equals(dpto)) {
+            dpto = null;
+        }
+
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String provincia = readField();
+        provincia = WordUtils.capitalizeFully(provincia);
+
+        skipBlank();
+        String depto = readField();
+        depto = WordUtils.capitalizeFully(depto);
+
+        skipBlank();
+        String loc = readField();
+        loc = WordUtils.capitalizeFully(loc);
+
+        sub = "EMAIL";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String cp = readField();
+
+        skipBlank();
+        String tel = readField();
+
+        skipBlank();
+        String mail = readField();
+
+        domicilio += calle;
+        domicilio += ' ' + num;
+        domicilio += ", Piso " + piso;
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
+        domicilio += "E-mail: " + mail;
+
+        return domicilio;
+    }
+    
+    /*Devuelve el domicilioLegal como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto, provincia, CP, tel y mail
+     */
+    public String obtenerDomicilioLegal() {
+        String domicilio = new String();
+        
+        String sub = "DEPTO";
+        index = text.indexOf(sub) + sub.length();
+        skipBlank();
+        String calle = readField();
+        
+        skipBlank();
+        String num = readField();
+        
+        String piso;
+        String dpto;
+        
+        if (skipBlank() > 25) {
+            piso = null;
+            dpto = readField();
+        } else {
+            piso = readField();
+            skipBlank();
+            dpto = readField();
+        }
+        
+        if (dpto.contains("PROVINCIA")) {
+            dpto = null;
+        }
+        
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String provincia = readField();
+        provincia = WordUtils.capitalizeFully(provincia);
+        
+        skipBlank();
+        String depto = readField();
+        depto = WordUtils.capitalizeFully(depto);
+        
+        skipBlank();
+        String loc = readField();
+        loc = WordUtils.capitalizeFully(loc);
+        
+        sub = "EMAIL";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String cp = readField();
+        
+        skipBlank();
+        String tel = readField();
+        
+        skipBlank();
+        String mail = readField();
+        
+        domicilio += calle;
+        domicilio += ' ' + num;
+        domicilio += ", Piso " + piso;
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
+        domicilio += "E-mail: " + mail;
+        
+        return domicilio;
+    }
+
+    /*Devuelve el domicilioConstituido como String.
+    Se pueden extraer parametros calle, 
+    num, piso, dpto, localidad, depto, provincia, CP, tel,
+    tipo de zonificacion y mail
+     */
+    public String obtenerDomicilioReal() {
+        String domicilio = new String();
+        
+        String sub = "DOMICILIO REAL";
+        index = text.indexOf(sub) + sub.length();
+        sub = "DEPTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String calle = readField();
+        
+        skipBlank();
+        String num = readField();
+        
+        String piso;
+        String dpto;
+        
+        if (skipBlank() > 25) {
+            piso = null;
+            dpto = readField();
+        } else {
+            piso = readField();
+            skipBlank();
+            dpto = readField();
+        }
+        
+        if (dpto.contains("PROVINCIA")) {
+            dpto = null;
+        }
+        
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String provincia = readField();
+        provincia = WordUtils.capitalizeFully(provincia);
+        
+        skipBlank();
+        String depto = readField();
+        depto = WordUtils.capitalizeFully(depto);
+        
+        skipBlank();
+        String loc = readField();
+        loc = WordUtils.capitalizeFully(loc);
+        
+        sub = "TELÉFONO/FAX";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String cp = readField();
+        
+        skipBlank();
+        String tel = readField();
+        
+        sub = "ZONIFICACIÓN (*)";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "EMAIL";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String zonificacion = readField();
+        if ("(*)".equals(zonificacion)) {
+            skipBlank();
+            zonificacion = readField();
+        }
+        
+        skipBlank();
+        String mail = readField();
+        
+        domicilio += calle;
+        domicilio += ' ' + num;
+        domicilio += ", Piso " + piso;
+        domicilio += ", Depto " + dpto + ",\n";
+        domicilio += loc + ", " + depto + ", " + provincia + "\n";
+        domicilio += "CP " + cp + "\n";
+        domicilio += "Tel.: " + tel + "\n";
+        domicilio += "Zonificacion: " + zonificacion + "\n";
+        domicilio += "E-mail: " + mail;
+        
+        return domicilio;
+    }
 }

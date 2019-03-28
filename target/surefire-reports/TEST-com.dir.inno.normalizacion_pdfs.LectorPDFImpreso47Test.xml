@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="6.545" tests="14" errors="2" skipped="0" failures="3">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="5.232" tests="10" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -63,59 +63,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.584"/>
-  <testcase name="testObtenerConsultor" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.626"/>
-  <testcase name="testSkipBlank" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.581">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testSkipBlank(LectorPDFImpreso47Test.java:565)
-</error>
-    <system-out><![CDATA[skipBlank
-]]></system-out>
-  </testcase>
-  <testcase name="testObtenerNombreArchivoFotoSat" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.456"/>
-  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.414"/>
-  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.347"/>
-  <testcase name="testObtenerAdministradores" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.311"/>
-  <testcase name="testReadField" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.32">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testReadField(LectorPDFImpreso47Test.java:579)
-</error>
-    <system-out><![CDATA[readField
-]]></system-out>
-  </testcase>
-  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.324">
-    <failure message="expected: &lt;CalleDomicilioConstituido nºcalle, Piso null, Depto 2,&#10;Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domicilioConstituido@mail.com&gt; but was: &lt;CalleDomicilioConstituido nºcalle, Piso 2, Depto null,&#10;Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domicilioConstituido@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
-expected: <CalleDomicilioConstituido nºcalle, Piso null, Depto 2,
-Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domicilioConstituido@mail.com> but was: <CalleDomicilioConstituido nºcalle, Piso 2, Depto null,
-Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domicilioConstituido@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioConst(LectorPDFImpreso47Test.java:378)
-]]></failure>
-    <system-out><![CDATA[obtenerDomicilioConst
-]]></system-out>
-  </testcase>
-  <testcase name="testObtenerDomicilioLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.341">
-    <failure message="expected: &lt;CalleDomicilioLegal nºcalle, Piso null, Depto 2,&#10;Localidaddomlegal, Dptodomlegal, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domiciliolegal@mail.com&gt; but was: &lt;CalleDomicilioLegal nºcalle, Piso 2, Depto null,&#10;Localidaddomlegal, Dptodomlegal, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domiciliolegal@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
-expected: <CalleDomicilioLegal nºcalle, Piso null, Depto 2,
-Localidaddomlegal, Dptodomlegal, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domiciliolegal@mail.com> but was: <CalleDomicilioLegal nºcalle, Piso 2, Depto null,
-Localidaddomlegal, Dptodomlegal, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domiciliolegal@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioLegal(LectorPDFImpreso47Test.java:322)
-]]></failure>
-    <system-out><![CDATA[obtenerDomicilioLegal
-]]></system-out>
-  </testcase>
-  <testcase name="testObtenerDomicilioReal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.316">
+  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.47"/>
+  <testcase name="testObtenerConsultor" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.607"/>
+  <testcase name="testObtenerNombreArchivoFotoSat" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.546"/>
+  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.529"/>
+  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.422"/>
+  <testcase name="testObtenerAdministradores" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.323"/>
+  <testcase name="testObtenerDomicilioReal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.361">
     <failure message="expected: &lt;CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,&#10;Rosario, Rosario, Santa Fe&#10;CP 2000&#10;Tel.: Telefono/Fax&#10;Zonificacion: Parque Industrial&#10;E-mail: emaildomrealplanta@mail.com&gt; but was: &lt;CalleDomRealPlanta numDomRealPlant, Piso 2, Depto null,&#10;Rosario, Rosario, Santa Fe&#10;CP 2000&#10;Tel.: Telefono/Fax&#10;Zonificacion: Parque Industrial&#10;E-mail: emaildomrealplanta@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
 expected: <CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,
 Rosario, Rosario, Santa Fe
@@ -128,12 +82,12 @@ CP 2000
 Tel.: Telefono/Fax
 Zonificacion: Parque Industrial
 E-mail: emaildomrealplanta@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:503)
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:391)
 ]]></failure>
     <system-out><![CDATA[obtenerDomicilioReal
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.314"/>
-  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.29"/>
-  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.312"/>
+  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.353"/>
+  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.313"/>
+  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.298"/>
 </testsuite>

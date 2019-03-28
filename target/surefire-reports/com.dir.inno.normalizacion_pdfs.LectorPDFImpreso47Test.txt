@@ -1,42 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 -------------------------------------------------------------------------------
-Tests run: 14, Failures: 3, Errors: 2, Skipped: 0, Time elapsed: 6.545 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
-testSkipBlank  Time elapsed: 0.581 sec  <<< ERROR!
-java.lang.NullPointerException
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testSkipBlank(LectorPDFImpreso47Test.java:565)
-
-testReadField  Time elapsed: 0.32 sec  <<< ERROR!
-java.lang.NullPointerException
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testReadField(LectorPDFImpreso47Test.java:579)
-
-testObtenerDomicilioConst  Time elapsed: 0.324 sec  <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-expected: <CalleDomicilioConstituido nºcalle, Piso null, Depto 2,
-Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domicilioConstituido@mail.com> but was: <CalleDomicilioConstituido nºcalle, Piso 2, Depto null,
-Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domicilioConstituido@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioConst(LectorPDFImpreso47Test.java:378)
-
-testObtenerDomicilioLegal  Time elapsed: 0.341 sec  <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-expected: <CalleDomicilioLegal nºcalle, Piso null, Depto 2,
-Localidaddomlegal, Dptodomlegal, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domiciliolegal@mail.com> but was: <CalleDomicilioLegal nºcalle, Piso 2, Depto null,
-Localidaddomlegal, Dptodomlegal, Entre Ríos
-CP codPost
-Tel.: 3414567897
-E-mail: domiciliolegal@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioLegal(LectorPDFImpreso47Test.java:322)
-
-testObtenerDomicilioReal  Time elapsed: 0.316 sec  <<< FAILURE!
+Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.232 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
+testObtenerDomicilioReal  Time elapsed: 0.361 sec  <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 expected: <CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,
 Rosario, Rosario, Santa Fe
@@ -49,5 +15,5 @@ CP 2000
 Tel.: Telefono/Fax
 Zonificacion: Parque Industrial
 E-mail: emaildomrealplanta@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:503)
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:391)
 

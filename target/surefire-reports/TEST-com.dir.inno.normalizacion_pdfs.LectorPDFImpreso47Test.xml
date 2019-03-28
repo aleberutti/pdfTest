@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="215.677" tests="14" errors="0" skipped="0" failures="4">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="6.545" tests="14" errors="2" skipped="0" failures="3">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -35,8 +35,6 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
-    <property name="jpda.listen" value="true"/>
-    <property name="jpda.address" value="52135"/>
     <property name="user.home" value="C:\Users\MODERNIZACION05"/>
     <property name="user.timezone" value="America/Buenos_Aires"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
@@ -45,11 +43,10 @@
     <property name="java.net.useSystemProxies" value="true;-Djava.net.preferIPv4Stack=true"/>
     <property name="user.name" value="MODERNIZACION05"/>
     <property name="java.class.path" value="C:\Program Files\netbeans\java\maven\boot\plexus-classworlds-2.5.2.jar"/>
-    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=52135"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_201\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test -DforkMode=once -Dmaven.surefire.debug=-agentlib:jdwp=transport=dt_socket,server=n,address=52135 -Djpda.listen=true -Djpda.address=52135 -Dmaven.ext.class.path=C:\Program Files\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 -Djava.net.useSystemProxies=true;-Djava.net.preferIPv4Stack=true surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test -Dmaven.ext.class.path=C:\Program Files\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 -Djava.net.useSystemProxies=true;-Djava.net.preferIPv4Stack=true surefire:test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,20 +58,32 @@
     <property name="maven.home" value="C:\Program Files\netbeans\java\maven"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
-    <property name="forkMode" value="once"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.531"/>
-  <testcase name="testObtenerPartidasInm" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.605"/>
-  <testcase name="testObtenerConsultor" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.564"/>
-  <testcase name="testObtenerNombreArchivoFotoSat" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.619"/>
-  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.504"/>
-  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.459"/>
-  <testcase name="testObtenerAdministradores" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.342"/>
-  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.371">
+  <testcase name="testObtenerCuit" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="1.584"/>
+  <testcase name="testObtenerConsultor" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.626"/>
+  <testcase name="testSkipBlank" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.581">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testSkipBlank(LectorPDFImpreso47Test.java:565)
+</error>
+    <system-out><![CDATA[skipBlank
+]]></system-out>
+  </testcase>
+  <testcase name="testObtenerNombreArchivoFotoSat" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.456"/>
+  <testcase name="testObtenerFechaInicioAct" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.414"/>
+  <testcase name="testObtenerRepLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.347"/>
+  <testcase name="testObtenerAdministradores" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.311"/>
+  <testcase name="testReadField" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.32">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testReadField(LectorPDFImpreso47Test.java:579)
+</error>
+    <system-out><![CDATA[readField
+]]></system-out>
+  </testcase>
+  <testcase name="testObtenerDomicilioConst" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.324">
     <failure message="expected: &lt;CalleDomicilioConstituido nºcalle, Piso null, Depto 2,&#10;Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domicilioConstituido@mail.com&gt; but was: &lt;CalleDomicilioConstituido nºcalle, Piso 2, Depto null,&#10;Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domicilioConstituido@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
 expected: <CalleDomicilioConstituido nºcalle, Piso null, Depto 2,
 Localidaddomconstituido, Departamentodomicilioconst, Entre Ríos
@@ -90,7 +99,7 @@ E-mail: domicilioConstituido@mail.com>
     <system-out><![CDATA[obtenerDomicilioConst
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerDomicilioLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.426">
+  <testcase name="testObtenerDomicilioLegal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.341">
     <failure message="expected: &lt;CalleDomicilioLegal nºcalle, Piso null, Depto 2,&#10;Localidaddomlegal, Dptodomlegal, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domiciliolegal@mail.com&gt; but was: &lt;CalleDomicilioLegal nºcalle, Piso 2, Depto null,&#10;Localidaddomlegal, Dptodomlegal, Entre Ríos&#10;CP codPost&#10;Tel.: 3414567897&#10;E-mail: domiciliolegal@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
 expected: <CalleDomicilioLegal nºcalle, Piso null, Depto 2,
 Localidaddomlegal, Dptodomlegal, Entre Ríos
@@ -106,7 +115,7 @@ E-mail: domiciliolegal@mail.com>
     <system-out><![CDATA[obtenerDomicilioLegal
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerDomicilioReal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.377">
+  <testcase name="testObtenerDomicilioReal" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.316">
     <failure message="expected: &lt;CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,&#10;Rosario, Rosario, Santa Fe&#10;CP 2000&#10;Tel.: Telefono/Fax&#10;Zonificacion: Parque Industrial&#10;E-mail: emaildomrealplanta@mail.com&gt; but was: &lt;CalleDomRealPlanta numDomRealPlant, Piso 2, Depto null,&#10;Rosario, Rosario, Santa Fe&#10;CP 2000&#10;Tel.: Telefono/Fax&#10;Zonificacion: Parque Industrial&#10;E-mail: emaildomrealplanta@mail.com&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
 expected: <CalleDomRealPlanta numDomRealPlant, Piso null, Depto 2,
 Rosario, Rosario, Santa Fe
@@ -119,17 +128,12 @@ CP 2000
 Tel.: Telefono/Fax
 Zonificacion: Parque Industrial
 E-mail: emaildomrealplanta@mail.com>
-	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:594)
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerDomicilioReal(LectorPDFImpreso47Test.java:503)
 ]]></failure>
     <system-out><![CDATA[obtenerDomicilioReal
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.351"/>
-  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.43"/>
-  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.322"/>
-  <testcase name="testObtenerNomina" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="208.767">
-    <failure message="expected: &lt;[[Jorge, Jorgito, 22233344, The Big Boss], [Mara, Marita, 68468468, The Small Boss], [ElJefe, Lucho, 8949498, ElJefe]]&gt; but was: &lt;[]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[[Jorge, Jorgito, 22233344, The Big Boss], [Mara, Marita, 68468468, The Small Boss], [ElJefe, Lucho, 8949498, ElJefe]]&gt; but was: &lt;[]&gt;	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.testObtenerNomina(LectorPDFImpreso47Test.java:451)</failure>
-    <system-out><![CDATA[obtenerNomina
-]]></system-out>
-  </testcase>
+  <testcase name="testObtenerActividades" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.314"/>
+  <testcase name="testObtenerVersion" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.29"/>
+  <testcase name="testObtenerNombre" classname="com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test" time="0.312"/>
 </testsuite>

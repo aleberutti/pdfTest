@@ -18,8 +18,8 @@ import org.apache.commons.lang3.text.WordUtils;
  */
 public class LectorPDFImpreso47 {
     
-    private Integer index;
-    private final StringBuilder text;
+    protected Integer index;
+    protected final StringBuilder text;
     
     public LectorPDFImpreso47(StringBuilder text) {
         this.text = text;
@@ -204,7 +204,7 @@ public class LectorPDFImpreso47 {
 
     /*Funcion para mover el cursor hasta la proxima palabra ignorando espacios
     y saltos de linea*/
-    private Integer skipBlank() {
+    protected Integer skipBlank() {
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
             index++;
         }
@@ -215,7 +215,7 @@ public class LectorPDFImpreso47 {
     hasta encontrar un salto de linea o mas de un espacio, 
     dada una posicion de indice y el texto como parametros.
      */
-    private String readField() {
+    protected String readField() {
         String field = new String();
         while ((text.charAt(index) != ' '
                 && text.charAt(index) != '\r'
@@ -314,49 +314,6 @@ public class LectorPDFImpreso47 {
         
         String rep = apellido + ' ' + nombre + ", " + dniString;
         return rep;
-    }
-    
-    public ArrayList<ArrayList<String>> obtenerNomina() {
-        ArrayList<ArrayList<String>> nomina = new ArrayList<>();
-        
-        Integer cantidad = 0;
-        
-        String sub = "AUTORIDADES SOCIETARIAS - NÓMINA DEL DIRECTORIO";
-        index = text.indexOf(sub) + sub.length();
-        sub = "APELLIDO";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        String temp = readField();
-        while (!temp.equals("NOMBRE")) {
-            if (StringUtils.isNumeric(temp)) {
-                cantidad++;
-            } else {
-                nomina.add(new ArrayList<>(4));
-                nomina.get(cantidad - 1).add(temp);
-            }
-            skipBlank();
-            temp = readField();
-        }
-        
-        sub = "CARGO ASIGNADO";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-        
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-        
-        for (Integer i = 0; i < cantidad; i++) {
-            nomina.get(i).add(readField());
-            skipBlank();
-        }
-        
-        return nomina;
     }
 
     /* Permite obtener los datos del consultor, experto o perito;
@@ -473,82 +430,6 @@ public class LectorPDFImpreso47 {
         skipBlank();
         String nombre = readField();
         return nombre;
-    }
-    
-    @SuppressWarnings("UnusedAssignment")
-    public ArrayList<ArrayList<String>> obtenerPartidasInm() {
-        ArrayList<ArrayList<String>> partidas = new ArrayList<>();
-        
-        String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
-        index = text.indexOf(sub) + sub.length();
-        sub = "digital y en papel)";
-        index = text.indexOf(sub, index) + sub.length();
-        sub = "COORDENADAS GEOGRÁFICAS:";
-        index = text.indexOf(sub, index) + sub.length();
-        sub = "LONG:";
-        index = text.indexOf(sub, index) + sub.length();
-        Integer index1 = index;
-
-        /*Comprobar si hay solo una partida inmobiliaria, cambia el output del
-        PDF y tambien el procesamiento
-         */
-        sub = "NÚMERO DE PARTIDA INMOBILIARIA (*)";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        @SuppressWarnings("UnusedAssignment")
-        String temp = readField();
-        skipBlank();
-        temp = readField();
-        if (temp.contains("9. ÍNDICE DE ARCHIVOS")) {
-            index = index1;
-            index = text.indexOf(sub, index) + sub.length();
-            skipBlank();
-            partidas.add(new ArrayList<>());
-            partidas.get(0).add(readField());
-            index = index1;
-            skipBlank();
-            temp = readField();
-            skipBlank();
-            partidas.get(0).add(readField());
-            skipBlank();
-            partidas.get(0).add(readField());
-        } //si es mas de una partida:
-        else {
-            //volver index a la posicion previa a la prueba de solo una partida
-            index = index1;
-            Integer cantidad = 0;
-            skipBlank();
-            temp = readField();
-            if (!temp.contains("9. ÍNDICE DE ARCHIVOS")) {
-                cantidad++;
-                skipBlank();
-                partidas.add(new ArrayList<>(3));
-                partidas.get(cantidad - 1).add(readField());
-                skipBlank();
-                partidas.get(cantidad - 1).add(readField());
-                skipBlank();
-                partidas.get(cantidad - 1).add(readField());
-            }
-            skipBlank();
-            temp = readField();
-            while (temp.equals(((Integer) (cantidad + 1)).toString())
-                    && (!temp.contains("9. ÍNDICE DE ARCHIVOS"))) {
-                cantidad++;
-                partidas.add(new ArrayList<>(3));
-                skipBlank();
-                partidas.get(cantidad - 1).add(readField());
-                skipBlank();
-                temp = readField();
-            }
-            for (Integer i = 1; i < partidas.size(); i++) {
-                partidas.get(i).add(temp);
-                skipBlank();
-                partidas.get(i).add(readField());
-                skipBlank();
-                temp = readField();
-            }
-        }
-        return partidas;
     }
     
     ArrayList<ArrayList<String>> obtenerAdministradores() {

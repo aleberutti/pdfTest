@@ -1,36 +1,36 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 10, Skipped: 0, Time elapsed: 2.53 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
-testObtenerCuit  Time elapsed: 0.909 sec  <<< ERROR!
+Tests run: 10, Failures: 0, Errors: 10, Skipped: 0, Time elapsed: 2.437 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
+testObtenerCuit  Time elapsed: 0.88 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerConsultor  Time elapsed: 0.256 sec  <<< ERROR!
+testObtenerConsultor  Time elapsed: 0.265 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerFechaInicioAct  Time elapsed: 0.218 sec  <<< ERROR!
+testObtenerFechaInicioAct  Time elapsed: 0.227 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerRepLegal  Time elapsed: 0.183 sec  <<< ERROR!
+testObtenerRepLegal  Time elapsed: 0.19 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerDomicilioConst  Time elapsed: 0.188 sec  <<< ERROR!
+testObtenerDomicilioConst  Time elapsed: 0.176 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerDomicilioLegal  Time elapsed: 0.146 sec  <<< ERROR!
+testObtenerDomicilioLegal  Time elapsed: 0.159 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerActividades  Time elapsed: 0.152 sec  <<< ERROR!
+testObtenerActividades  Time elapsed: 0.131 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerVersion  Time elapsed: 0.187 sec  <<< ERROR!
+testObtenerVersion  Time elapsed: 0.147 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
@@ -38,7 +38,7 @@ testObtenerNombre  Time elapsed: 0.122 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 
-testObtenerNomina  Time elapsed: 0.156 sec  <<< ERROR!
+testObtenerNomina  Time elapsed: 0.124 sec  <<< ERROR!
 java.io.FileNotFoundException: D: \Formulario de presentacion v4.7(3)_impreso.pdf (El sistema no puede encontrar la ruta especificada)
 	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test.setUp(LectorPDFImpreso47Test.java:55)
 

@@ -6,6 +6,8 @@
 package com.dir.inno.normalizacion_pdfs;
 
 import static java.lang.Character.isLetter;
+import java.util.ArrayList;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -72,88 +74,130 @@ public class LectorPDFImpresoVisual47 {
         return index;
     }
    
-    public String obtenerInsumos(){ //no tiene armado el caso para más de un insumo
-        
-        String aux = null;
-        String nombreInsumo = null;
-        String estadoAgregacion = null;
-        String consumoAnual = null;
-        String unidad = null;
-        String almacenamiento = null;
-        
-        String sub = "INSUMO";
-        index = text.indexOf(sub) + sub.length();
-        index = text.indexOf(sub, index) + sub.length();
-       
-        sub = "AGREGACIÓN";
-        index = text.indexOf(sub, index) + sub.length();
+   public ArrayList<String> obtenerInsumos(){
 
-        skipBlank();
-        aux = readField();
+	ArrayList<String> insumos = new ArrayList<>();
+	Integer cantidad = 0;
 
-        if(aux.equals("1")){ //caso output 3, 5
+	String aux = null;
+	String nombreInsumo = null;
+	String estadoAgregacion = null;
+	String consumoAnual = null;
+	String unidad = null;
+	String almacenamiento = null;
 
-            skipBlank();
-            nombreInsumo = readField();
-            skipBlank();
-            estadoAgregacion = readField();
-            skipBlank();
-            consumoAnual = readField();
-            skipBlank();
-            unidad = readField();
-            skipBlank();
-            almacenamiento = readField();
-        }
-
-        if(aux.equals("Firma y Aclaración")){ //casos outputs 2 y 4
-            skipFooter();
-            aux = readField();
-
-            if(aux.equals("1")){ 
-
-                skipBlank();
-                nombreInsumo = readField();
-                skipBlank();
-                estadoAgregacion = readField();
-                skipBlank();
-                consumoAnual = readField();
-                skipBlank();
-                unidad = readField();
-                skipBlank();
-                almacenamiento = readField();
-
-            }
-        }
-
-        if(!(aux.equals("Firma y Aclaración") && aux.equals("1"))){
-
-            almacenamiento = aux;
-            skipBlank();
-            aux = readField();
-
-            if(aux.equals("1")){ 
-                skipBlank();
-                nombreInsumo = readField();
-                skipBlank();
-                estadoAgregacion = readField();
-                skipBlank();
-                consumoAnual = readField();
-                skipBlank();
-                unidad = readField();
-                skipBlank();
-                almacenamiento += readField();
-            }
-        }
-                
-        String insumo = 
+	String insumo = 
             "Nombre del insumo: " + nombreInsumo + "; \n" +
             "Estado físico de agregación: " + estadoAgregacion + "; \n" +
             "Consumo anual del insumo: " + consumoAnual + "; \n"+
             "Unidad de medida: " + unidad + "; \n"+
             "Almacenamiento: " + almacenamiento + "; \n";
-        
-        
-        return insumo;
-    }
+
+	String sub = "INSUMO";
+	index = text.indexOf(sub) + sub.length();
+	index = text.indexOf(sub, index) + sub.length();
+
+	sub = "AGREGACIÓN";
+	index = text.indexOf(sub, index) + sub.length();
+
+	skipBlank();
+	aux = readField();
+
+	while(StringUtils.isNumeric(aux) || !aux.equals("SUSTANCIAS  AUXILIARES UTILIZADAS")){
+		
+            cantidad++;		
+
+            if(StringUtils.isNumeric(aux)){ /*caso 3 y 5*/
+                    skipBlank();
+                    nombreInsumo = readField();
+                    skipBlank();
+                    estadoAgregacion = readField();
+                    skipBlank();
+                    consumoAnual = readField();
+                    skipBlank();
+                    unidad = readField();
+                    skipBlank();
+                    almacenamiento = readField();
+
+                    insumo = 
+                        "Nombre del insumo: " + nombreInsumo + "; \n" +
+                        "Estado físico de agregación: " + estadoAgregacion + "; \n" +
+                        "Consumo anual del insumo: " + consumoAnual + "; \n"+
+                        "Unidad de medida: " + unidad + "; \n"+
+                        "Almacenamiento: " + almacenamiento + "; \n";
+
+                    //insumos.add(new ArrayList<>());
+                    insumos.add(insumo);
+                    skipBlank();
+                    aux = readField();
+            }
+
+	    if(aux.equals("Firma y Aclaración")){ //casos output 2 y 4
+	    	
+                skipFooter();
+                aux = readField();
+                if(StringUtils.isNumeric(aux)){ 
+
+	            skipBlank();
+	            nombreInsumo = readField();
+	            skipBlank();
+	            estadoAgregacion = readField();
+	            skipBlank();
+	            consumoAnual = readField();
+	            skipBlank();
+	            unidad = readField();
+	            skipBlank();
+	            almacenamiento = readField();
+
+	            insumo = 
+		            "Nombre del insumo: " + nombreInsumo + "; \n" +
+		            "Estado físico de agregación: " + estadoAgregacion + "; \n" +
+		            "Consumo anual del insumo: " + consumoAnual + "; \n"+
+		            "Unidad de medida: " + unidad + "; \n"+
+		            "Almacenamiento: " + almacenamiento + "; \n";
+
+		        //insumos.add(new ArrayList<>());
+		        insumos.add(insumo);
+		        skipBlank();
+		        aux = readField();
+                }
+	    }
+
+	    if(!(aux.equals("Firma y Aclaración") && StringUtils.isNumeric(aux))){
+
+                almacenamiento = aux;
+                skipBlank();
+                aux = readField();
+
+                if(StringUtils.isNumeric(aux)){ 
+                    skipBlank();
+                    nombreInsumo = readField();
+                    skipBlank();
+                    estadoAgregacion = readField();
+                    skipBlank();
+                    consumoAnual = readField();
+                    skipBlank();
+                    unidad = readField();
+                    skipBlank();
+                    almacenamiento += readField();
+
+                    insumo = 
+                            "Nombre del insumo: " + nombreInsumo + "; \n" +
+                            "Estado físico de agregación: " + estadoAgregacion + "; \n" +
+                            "Consumo anual del insumo: " + consumoAnual + "; \n"+
+                            "Unidad de medida: " + unidad + "; \n"+
+                            "Almacenamiento: " + almacenamiento + "; \n";
+
+                        //insumos.add(new ArrayList<>());
+                        insumos.add(insumo);
+                        skipBlank();
+                        aux = readField();
+                }
+	    }
+	}
+
+	return insumos;
+
+}
     
 }

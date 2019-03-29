@@ -85,22 +85,65 @@ public class LectorPDFImpresoVisual47 {
         index = text.indexOf(sub) + sub.length();
         index = text.indexOf(sub, index) + sub.length();
        
-        sub = "1";
+        sub = "AGREGACIÓN";
         index = text.indexOf(sub, index) + sub.length();
-        
+
         skipBlank();
-        nombreInsumo = readField();
-        skipBlank();
-        estadoAgregacion = readField();
-        skipBlank();
-        consumoAnual = readField();
-        skipBlank();
-        unidad = readField();
-        skipBlank();
-        
-        
-        
-        //almacenamiento = readField();
+        aux = readField();
+
+        if(aux.equals("1")){ //caso output 3, 5
+
+            skipBlank();
+            nombreInsumo = readField();
+            skipBlank();
+            estadoAgregacion = readField();
+            skipBlank();
+            consumoAnual = readField();
+            skipBlank();
+            unidad = readField();
+            skipBlank();
+            almacenamiento = readField();
+        }
+
+        if(aux.equals("Firma y Aclaración")){ //casos outputs 2 y 4
+            skipFooter();
+            aux = readField();
+
+            if(aux.equals("1")){ 
+
+                skipBlank();
+                nombreInsumo = readField();
+                skipBlank();
+                estadoAgregacion = readField();
+                skipBlank();
+                consumoAnual = readField();
+                skipBlank();
+                unidad = readField();
+                skipBlank();
+                almacenamiento = readField();
+
+            }
+        }
+
+        if(!(aux.equals("Firma y Aclaración") && aux.equals("1"))){
+
+            almacenamiento = aux;
+            skipBlank();
+            aux = readField();
+
+            if(aux.equals("1")){ 
+                skipBlank();
+                nombreInsumo = readField();
+                skipBlank();
+                estadoAgregacion = readField();
+                skipBlank();
+                consumoAnual = readField();
+                skipBlank();
+                unidad = readField();
+                skipBlank();
+                almacenamiento += readField();
+            }
+        }
                 
         String insumo = 
             "Nombre del insumo: " + nombreInsumo + "; \n" +

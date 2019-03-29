@@ -36,7 +36,7 @@ public class LectorPDFImpreso47Test {
 
     @BeforeEach
     public void setUp() throws IOException {
-        String pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
@@ -44,14 +44,14 @@ public class LectorPDFImpreso47Test {
         }
         instance1 = new LectorPDFImpreso47(text);
 
-        pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(2)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance2 = new LectorPDFImpreso47(text);
 
-        pdfFilePath = "E:\\Users\\MODERNIZACION05\\Desktop\\tempFormularios\\pdfTest\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        pdfFilePath = "D: \\Formulario de presentacion v4.7(3)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));

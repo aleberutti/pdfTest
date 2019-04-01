@@ -69,7 +69,7 @@ public class Form_Presentacion {
     private boolean incendio;
     private boolean riesgo;
     
-   public Form_Presentacion(String path) throws FileNotFoundException, IOException{
+   public Form_Presentacion(String path) throws IOException{
        this.init(path);
         //Indice de archivos a presentar en ventanilla
         this.contrato = datos.get(0).equals("1");
@@ -116,7 +116,7 @@ public class Form_Presentacion {
        
    }
    
-   public void init(String path) throws FileNotFoundException, IOException{
+   public void init(String path) throws IOException{
        File info = new File(path);
        FileReader fr = new FileReader(info);
        BufferedReader br = new BufferedReader(fr);

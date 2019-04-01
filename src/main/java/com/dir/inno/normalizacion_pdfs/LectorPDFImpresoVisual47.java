@@ -39,7 +39,7 @@ public class LectorPDFImpresoVisual47 {
     
     public Integer skipLine(){
         
-        while(text.charAt(index) != '\n'){
+        while(text.charAt(index) != '\n' && text.charAt(index) != '\r'){
             index++;
         }
         index++;
@@ -65,19 +65,15 @@ public class LectorPDFImpresoVisual47 {
     }
     
     public Integer skipFooter(){
-        skipBlank();
-        
-        for(int i = 0; i < 7; i++){
-            skipLine();
-        }
-        
+        String sub = "(03482) 449189 | (342) 5112121";
+        index = text.indexOf(sub,index) + sub.length();
+    
         return index;
     }
    
    public ArrayList<String> obtenerInsumos(){
 
 	ArrayList<String> insumos = new ArrayList<>();
-	Integer cantidad = 0;
 
 	String aux = null;
 	String nombreInsumo = null;
@@ -101,13 +97,12 @@ public class LectorPDFImpresoVisual47 {
 	index = text.indexOf(sub, index) + sub.length();
 
 	skipBlank();
-	aux = readField();
+	aux = readField();       
+        
+	while(StringUtils.isNumeric(aux) || !aux.replaceAll(" ", "").equals("SUSTANCIASAUXILIARESUTILIZADAS")){
 
-	while(StringUtils.isNumeric(aux) || !aux.equals("SUSTANCIAS  AUXILIARES UTILIZADAS")){
-		
-            cantidad++;		
-
-            if(StringUtils.isNumeric(aux)){ /*caso 3 y 5*/
+            if(StringUtils.isNumeric(aux)){ /*casos pdfs 3 y 5*/
+                    System.out.println("Entró en caso 3/5.");
                     skipBlank();
                     nombreInsumo = readField();
                     skipBlank();
@@ -126,16 +121,18 @@ public class LectorPDFImpresoVisual47 {
                         "Unidad de medida: " + unidad + "; \n"+
                         "Almacenamiento: " + almacenamiento + "; \n";
 
-                    //insumos.add(new ArrayList<>());
                     insumos.add(insumo);
                     skipBlank();
                     aux = readField();
+                    System.out.println("Aux: " + aux);
             }
 
-	    if(aux.equals("Firma y Aclaración")){ //casos output 2 y 4
-	    	
+	    if(aux.equals("Firma y Aclaración")){ //casos pdfs 2 y 4
+	    	System.out.println("Entró en caso 2/4.");
                 skipFooter();
+                skipBlank();
                 aux = readField();
+                System.out.println(aux);
                 if(StringUtils.isNumeric(aux)){ 
 
 	            skipBlank();
@@ -155,31 +152,30 @@ public class LectorPDFImpresoVisual47 {
 		            "Consumo anual del insumo: " + consumoAnual + "; \n"+
 		            "Unidad de medida: " + unidad + "; \n"+
 		            "Almacenamiento: " + almacenamiento + "; \n";
-
-		        //insumos.add(new ArrayList<>());
-		        insumos.add(insumo);
-		        skipBlank();
-		        aux = readField();
+                    
+                    insumos.add(insumo);
+                    skipBlank();
+                    aux = readField();
                 }
 	    }
 
-	    if(!(aux.equals("Firma y Aclaración") && StringUtils.isNumeric(aux))){
-
+	    if(!aux.equals("Firma y Aclaración") && !StringUtils.isNumeric(aux)){
+                
                 almacenamiento = aux;
                 skipBlank();
                 aux = readField();
 
                 if(StringUtils.isNumeric(aux)){ 
                     skipBlank();
-                    nombreInsumo = readField();
+                    nombreInsumo = readField();                    
                     skipBlank();
-                    estadoAgregacion = readField();
+                    estadoAgregacion = readField();                 
                     skipBlank();
                     consumoAnual = readField();
                     skipBlank();
                     unidad = readField();
                     skipBlank();
-                    almacenamiento += readField();
+                    almacenamiento += readField();                   
 
                     insumo = 
                             "Nombre del insumo: " + nombreInsumo + "; \n" +
@@ -188,14 +184,13 @@ public class LectorPDFImpresoVisual47 {
                             "Unidad de medida: " + unidad + "; \n"+
                             "Almacenamiento: " + almacenamiento + "; \n";
 
-                        //insumos.add(new ArrayList<>());
-                        insumos.add(insumo);
-                        skipBlank();
-                        aux = readField();
+
+                    insumos.add(insumo);
+                    skipBlank();
+                    aux = readField();
                 }
 	    }
 	}
-
 	return insumos;
 
 }

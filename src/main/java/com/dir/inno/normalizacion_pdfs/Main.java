@@ -35,8 +35,8 @@ public class Main {
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
-        
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+
         StringBuilder text;
         try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
@@ -46,19 +46,19 @@ public class Main {
         }
 
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
-        
+
         try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
-            pdf.pipe(new VisualOutputTarget(text));
+            pdf.pipe(new OutputTarget(text));
         }
-        
+
         //MOSTRAR SALIDA
         System.out.println(text);
-        
+
         LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
-        
+
         System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
         System.out.println("Nombre: " + lector.obtenerNombre());
@@ -101,7 +101,7 @@ public class Main {
         System.out.println("\nDomicilio Real: " + lectorV.obtenerDomicilioReal());
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
-        
+
         ArrayList<ArrayList<String>> partidas = lectorV.obtenerPartidasInm();
         for (Integer i = 0; i < partidas.size(); i++) {
             System.out.println("Partida inmobiliaria " + (i + 1) + '/'
@@ -109,8 +109,39 @@ public class Main {
             System.out.println("Lat: " + partidas.get(i).get(1)
                     + ", Long: " + partidas.get(i).get(2));
         }
-        
+
         System.out.println("\nDatos para la categorización ambiental: ");
         System.out.println(lectorV.obtenerDatosPlantaCatAmb());
+
+        System.out.println("\nPlantas fuera de la provincia: ");
+        ArrayList<ArrayList<String>> plantasFuera = lectorV.obtenerPlantasFueraProv();
+        if (plantasFuera.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < plantasFuera.size(); i++) {
+                System.out.println("Planta " + (i + 1) + '/'
+                        + plantasFuera.size() + ":\n"
+                        + plantasFuera.get(i).get(0) + ", "
+                        + plantasFuera.get(i).get(1) + ", "
+                        + plantasFuera.get(i).get(2) + ", "
+                        + plantasFuera.get(i).get(3));
+            }
+        }
+        
+        System.out.println("\nProductos: ");
+         ArrayList<ArrayList<String>> productos = lectorV.obtenerProductos();
+         if (productos.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < productos.size(); i++) {
+                System.out.println("Planta " + (i + 1) + '/'
+                        + productos.size() + ":\n"
+                        + productos.get(i).get(0) + ", "
+                        + productos.get(i).get(1) + ", "
+                        + productos.get(i).get(2) + ", "
+                        + productos.get(i).get(3) + ", "
+                        + productos.get(i).get(4));
+            }
+         }
     }
 }

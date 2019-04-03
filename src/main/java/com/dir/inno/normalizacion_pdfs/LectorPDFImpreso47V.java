@@ -35,6 +35,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         index = text.indexOf(sub, index) + sub.length();
 
         skipBlank();
+        @SuppressWarnings("UnusedAssignment")
         String temp = readField();
         do {
             partidas.add(new ArrayList<>());
@@ -364,5 +365,43 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
         datos += ",\nFecha inicio de actividades: " + date;
         return datos;
+    }
+
+    ArrayList<ArrayList<String>> obtenerPlantasFueraProv() {
+        ArrayList<ArrayList<String>> plantasFuera = new ArrayList<>();
+        String sub = "plantas ubicadas fuera de la provincia";
+        index = text.indexOf(sub) + sub.length();
+        sub = "LOCALIDAD";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "POSTAL";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (StringUtils.isNumeric(temp)) {
+            plantasFuera.add(new ArrayList<>(4));
+            skipBlank();
+            plantasFuera.get(plantasFuera.size() - 1).add(readField());
+            skipBlank();
+            plantasFuera.get(plantasFuera.size() - 1).add(new String());
+            plantasFuera.get(plantasFuera.size() - 1).add(new String());
+            plantasFuera.get(plantasFuera.size() - 1).set(2, readField());
+            skipBlank();
+            plantasFuera.get(plantasFuera.size() - 1).set(1, readField());
+            skipBlank();
+            plantasFuera.get(plantasFuera.size() - 1).add(readField());
+            skipBlank();
+            temp = readField();
+        }
+        return plantasFuera;
+    }
+
+    ArrayList<ArrayList<String>> obtenerProductos() {
+        ArrayList<ArrayList<String>> productos = new ArrayList<>();
+        String sub = "PRODUCTOS";
+        index = text.indexOf(sub) + sub.length();
+        sub = "AGREGACIÓN";
+        index = text.indexOf(sub, index) + sub.length();
+        
+        return productos;
     }
 }

@@ -472,39 +472,100 @@ public class LectorPDFImpreso47VTest {
         System.out.println("obtenerDatosPlantaCatAmb");
 
         String expResult = "DatosParaLaCategorizacionAmbientalDeActividades - Planta,\n"
-                + "Fecha inicio de actividades: " 
+                + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
         String result = instance1.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
-        
+
         expResult = "Planta 1,\n"
                 + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("26/02/2019");
         result = instance2.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
-        
+
         expResult = "dsadasdsa,\n"
                 + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("30/01/2019");
         result = instance3.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
-        
+
         expResult = "Planta 1,\n"
                 + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("26/02/2019");
         result = instance4.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
-        
+
         expResult = "Plantusi,\n"
                 + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("20/03/2019");
         result = instance5.obtenerDatosPlantaCatAmb();
         assertEquals(expResult, result);
-        
+
         expResult = "DatosParaLaCategorizacionAmbientalDeActividades - Planta,\n"
                 + "Fecha inicio de actividades: "
                 + new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
         result = instance6.obtenerDatosPlantaCatAmb();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerPlantasFueraProv method, of class LectorPDFImpreso47V.
+     */
+    @Test
+    public void testObtenerPlantasFueraProv() {
+        System.out.println("obtenerPlantasFueraProv");
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(4));
+        expResult.get(0).add("DomPlantaFueraDeSFE");
+        expResult.get(0).add("LocPlantaFueraSFE");
+        expResult.get(0).add("Entre Ríos");
+        expResult.get(0).add("3100");
+        ArrayList<ArrayList<String>> result = instance1.obtenerPlantasFueraProv();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        result = instance2.obtenerPlantasFueraProv();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        result = instance3.obtenerPlantasFueraProv();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        result = instance4.obtenerPlantasFueraProv();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(4));
+        expResult.add(new ArrayList<>(4));
+        expResult.get(0).add("AltaCalle");
+        expResult.get(0).add("ChubutAhre");
+        expResult.get(0).add("Chubut");
+        expResult.get(0).add("3333");
+        expResult.get(1).add("Alcorta");
+        expResult.get(1).add("CABA");
+        expResult.get(1).add("Buenos Aires");
+        expResult.get(1).add("1");
+        result = instance5.obtenerPlantasFueraProv();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(4));
+        expResult.add(new ArrayList<>(4));
+        expResult.add(new ArrayList<>(4));
+        expResult.get(0).add("DomPlantaFueraDeSFE");
+        expResult.get(0).add("LocPlantaFueraSFE");
+        expResult.get(0).add("Entre Ríos");
+        expResult.get(0).add("3100");
+        expResult.get(1).add("DomPlantaFueraDeSFE");
+        expResult.get(1).add("LocPlantaFueraSFE");
+        expResult.get(1).add("Entre Ríos");
+        expResult.get(1).add("3100");
+        expResult.get(2).add("DomPlantaFueraDeSFE");
+        expResult.get(2).add("LocPlantaFueraSFE");
+        expResult.get(2).add("Entre Ríos");
+        expResult.get(2).add("3100");
+        result = instance6.obtenerPlantasFueraProv();
         assertEquals(expResult, result);
     }
 }

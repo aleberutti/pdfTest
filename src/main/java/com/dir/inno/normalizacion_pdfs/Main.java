@@ -17,7 +17,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.xml.sax.SAXException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.util.Iterator;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
@@ -33,9 +32,10 @@ public class Main{
      * @param args the command line arguments
      */
     private static ArrayList<String> text = new ArrayList<>();
+    
     public static void main(String[] args)  throws IOException, TransformerException, ParserConfigurationException, SAXException {
         
-        
+        //CAMBIAR PATHS
         
         //Se necesita de un pdf estático SIN CERRAR
         String filename ="C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario IAC v2.5.2SD static.pdf";
@@ -65,12 +65,12 @@ public class Main{
             e3.printStackTrace();
           }
         //Formulario de presentacion
-//        Form_Presentacion activar = new Form_Presentacion("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion rb y cb info.txt");
-//        System.out.println(activar.toString());
+        Form_Presentacion activar = new Form_Presentacion("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion rb y cb info.txt");
+        System.out.println(activar.toString());
         
         //Formulario de EIA
-//        Form_EIA form_eia = new Form_EIA("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioEIA rb y cb info.txt");
-//        System.out.println(form_eia.toString());
+        Form_EIA form_eia = new Form_EIA("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioEIA rb y cb info.txt");
+        System.out.println(form_eia.toString());
 
         //Formulario de IAC
         Form_IAC form_iac = new Form_IAC("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioIAC rb y cb info.txt");

@@ -38,13 +38,13 @@ public class Main{
         //CAMBIAR PATHS
         
         //Se necesita de un pdf estático SIN CERRAR
-        String filename ="C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario IAC v2.5.2SD static.pdf";
+        String filename ="C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7 static.pdf";
         PDDocument document = PDDocument.load(new File(filename));
 
         
         printFields(document);
         
-        File f1= new File("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioIAC rb y cb info.txt");
+        File f1= new File("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioPresentacion rb y cb info.txt");
         
         
         if(!f1.exists()) f1.createNewFile();
@@ -65,16 +65,16 @@ public class Main{
             e3.printStackTrace();
           }
         //Formulario de presentacion
-        Form_Presentacion activar = new Form_Presentacion("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion rb y cb info.txt");
+        Form_Presentacion activar = new Form_Presentacion("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioPresentacion rb y cb info.txt");
         System.out.println(activar.toString());
         
-        //Formulario de EIA
-        Form_EIA form_eia = new Form_EIA("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioEIA rb y cb info.txt");
-        System.out.println(form_eia.toString());
-
-        //Formulario de IAC
-        Form_IAC form_iac = new Form_IAC("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioIAC rb y cb info.txt");
-        System.out.println(form_iac.toString());
+//        //Formulario de EIA
+//        Form_EIA form_eia = new Form_EIA("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioEIA rb y cb info.txt");
+//        System.out.println(form_eia.toString());
+//
+//        //Formulario de IAC
+//        Form_IAC form_iac = new Form_IAC("C:\\Users\\Administrador\\Desktop\\AB\\Almacenamiento PDFs editables\\PDFs editables\\FormularioIAC rb y cb info.txt");
+//        System.out.println(form_iac.toString());
 
         
     }

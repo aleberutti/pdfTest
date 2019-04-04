@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(2)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -79,9 +79,9 @@ public class Main {
 //                    + nomina.get(i).get(3));
 //        }
         
-        System.out.println(text);
+        //System.out.println(text);
 
-        System.out.println();
+        //System.out.println();
 
         //System.out.println("Representante Legal: " + lector.obtenerRepLegal());
         
@@ -91,9 +91,35 @@ public class Main {
         
         //System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
         
-        ArrayList<String> insumos = lectorVisual.obtenerInsumos();
-        for(Integer i = 0; i < insumos.size(); i++){
-                System.out.println(insumos.get(i));
-                }
+        /*Integer i;
+        ArrayList<String> listaInsumos = lectorVisual.obtenerInsumos();
+        for(i = 0; i < listaInsumos.size(); i++){
+            System.out.println("Insumos " + (i + 1) + '/' + listaInsumos.size() + ':');
+            System.out.println(listaInsumos.get(i) + "; "); 
+            
+        }*/
+        
+        ArrayList<ArrayList<String>> listaInsumos = lectorVisual.obtenerInsumos();
+        for (Integer i = 0; i < listaInsumos.size(); i++) {
+            System.out.println("Insumos " + (i + 1) + '/' + listaInsumos.size() + ':');
+            System.out.println(
+                    listaInsumos.get(i).get(0) + ", "
+                    + listaInsumos.get(i).get(1) + ", "
+                    + listaInsumos.get(i).get(2) + ", "
+                    + listaInsumos.get(i).get(3) + ", "
+                    + listaInsumos.get(i).get(4) + "; "); 
+                    
+        }
+        
+        ArrayList<ArrayList<String>> sustanciasAuxiliares = lectorVisual.obtenerSustAuxiliares();
+        for (Integer i = 0; i < sustanciasAuxiliares.size(); i++) {
+            System.out.println("Sustancia Auxiliar " + (i + 1) + '/' + sustanciasAuxiliares.size() + ':');
+            System.out.println(
+                    sustanciasAuxiliares.get(i).get(0) + ", "
+                    + sustanciasAuxiliares.get(i).get(1) + ", "
+                    + sustanciasAuxiliares.get(i).get(2) + ", "
+                    + sustanciasAuxiliares.get(i).get(3) + "; "); 
+                    
+        }
     }
 }

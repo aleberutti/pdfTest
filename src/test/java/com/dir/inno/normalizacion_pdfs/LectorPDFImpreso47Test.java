@@ -26,6 +26,9 @@ public class LectorPDFImpreso47Test {
     LectorPDFImpreso47 instance1;
     LectorPDFImpreso47 instance2;
     LectorPDFImpreso47 instance3;
+    LectorPDFImpreso47 instance4;
+    LectorPDFImpreso47 instance5;
+    LectorPDFImpreso47 instance6;
 
     public LectorPDFImpreso47Test() {
     }
@@ -57,6 +60,27 @@ public class LectorPDFImpreso47Test {
             pdf.pipe(new OutputTarget(text));
         }
         instance3 = new LectorPDFImpreso47(text);
+        
+        pdfFilePath = "D: \\Formulario de presentacion v4.7(4)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
+        instance4 = new LectorPDFImpreso47(text);
+        
+        pdfFilePath = "D: \\Formulario de presentacion v4.7(5)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
+        instance5 = new LectorPDFImpreso47(text);
+        
+        pdfFilePath = "D: \\Formulario de presentacion v4.7(6)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new OutputTarget(text));
+        }
+        instance6 = new LectorPDFImpreso47(text);
     }
 
     /**
@@ -76,6 +100,18 @@ public class LectorPDFImpreso47Test {
 
         expResult = "4.7";
         result = instance3.obtenerVersion();
+        assertEquals(expResult, result);
+        
+        expResult = "4.7";
+        result = instance4.obtenerVersion();
+        assertEquals(expResult, result);
+        
+        expResult = "4.7";
+        result = instance5.obtenerVersion();
+        assertEquals(expResult, result);
+        
+        expResult = "4.7";
+        result = instance6.obtenerVersion();
         assertEquals(expResult, result);
     }
 
@@ -97,6 +133,18 @@ public class LectorPDFImpreso47Test {
         expResult = "COCACOLA";
         result = instance3.obtenerNombre();
         assertEquals(expResult, result);
+        
+        expResult = "Empresa Ficticia";
+        result = instance4.obtenerNombre();
+        assertEquals(expResult, result);
+        
+        expResult = "Fact Society";
+        result = instance5.obtenerNombre();
+        assertEquals(expResult, result);
+        
+        expResult = "NombreCompleto/RazonSocial";
+        result = instance6.obtenerNombre();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -117,6 +165,17 @@ public class LectorPDFImpreso47Test {
         expResult = 20380539684L;
         result = instance3.obtenerCuit();
         assertEquals(expResult, result);
+        
+        expResult = 20380539684L;
+        result = instance4.obtenerCuit();
+        assertEquals(expResult, result);
+        
+        expResult = 3546825542L;
+        result = instance5.obtenerCuit();
+        assertEquals(expResult, result);
+        
+        expResult = 30303132333L;
+        result = instance6.obtenerCuit();
     }
 
     /**
@@ -137,6 +196,18 @@ public class LectorPDFImpreso47Test {
 
         expResult = new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2019");
         result = instance3.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+        
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("26/03/2019");
+        result = instance4.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+        
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("06/03/2019");
+        result = instance5.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+        
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        result = instance6.obtenerFechaInicioAct();
         assertEquals(expResult, result);
     }
 
@@ -160,6 +231,21 @@ public class LectorPDFImpreso47Test {
         expResult = new ArrayList<>();
         expResult.add(112004);
         result = instance3.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(112003);
+        result = instance4.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(181130);
+        result = instance5.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(155120);
+        result = instance6.obtenerActividades();
         assertEquals(expResult, result);
     }
 
@@ -305,5 +391,15 @@ public class LectorPDFImpreso47Test {
         expResult = "Acosta, Guillermo Oscar Ariel, Ingeniero Industrial, 0367";
         result = instance3.obtenerConsultor();
         assertEquals(expResult, result);
+    }
+    
+    public void testObtenerInsumos(){
+        System.out.println("obtenerInsumos");
+        
+        ArrayList<String> expResult = new ArrayList<>();
+        
+        
+        
+        
     }
 }

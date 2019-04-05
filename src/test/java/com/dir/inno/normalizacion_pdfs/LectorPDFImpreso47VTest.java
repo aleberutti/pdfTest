@@ -583,6 +583,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("12346");
         expResult.get(0).add("lt");
         expResult.get(0).add("TipoDeAlmacenamientoDelProducto");
+        expResult.get(0).add("Otro");
         ArrayList<ArrayList<String>> result = instance1.obtenerProductos();
         assertEquals(expResult, result);
         
@@ -594,11 +595,13 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("123");
         expResult.get(0).add("kg");
         expResult.get(0).add("almacenamiento");
+        expResult.get(0).add("Producto Industrial");
         expResult.get(1).add("producto2");
         expResult.get(1).add("Líquido");
         expResult.get(1).add("123231");
         expResult.get(1).add("m3");
         expResult.get(1).add("almacenamiento2");
+        expResult.get(1).add("Bien de Capital");
         result = instance2.obtenerProductos();
         assertEquals(expResult, result);
         
@@ -609,6 +612,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("21132");
         expResult.get(0).add("lt");
         expResult.get(0).add("sdadassad");
+        expResult.get(0).add("Bien de Capital");
         result = instance3.obtenerProductos();
         assertEquals(expResult, result);
         
@@ -620,11 +624,13 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("123");
         expResult.get(0).add("kg");
         expResult.get(0).add("almacenamiento");
+        expResult.get(0).add("Producto Industrial");
         expResult.get(1).add("producto2");
         expResult.get(1).add("Líquido");
         expResult.get(1).add("123231");
         expResult.get(1).add("m3");
         expResult.get(1).add("almacenamiento2");
+        expResult.get(1).add("Bien de Capital");
         result = instance4.obtenerProductos();
         assertEquals(expResult, result);
         
@@ -637,16 +643,19 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("135");
         expResult.get(0).add("kg");
         expResult.get(0).add("Tirado");
+        expResult.get(0).add("Bien de Capital");
         expResult.get(1).add("Prod2");
         expResult.get(1).add("Líquido");
         expResult.get(1).add("222");
         expResult.get(1).add("lt");
         expResult.get(1).add("Volcado");
+        expResult.get(1).add("Producto Industrial");
         expResult.get(2).add("Prod3");
         expResult.get(2).add("Semisólido");
         expResult.get(2).add("999");
         expResult.get(2).add("tn");
         expResult.get(2).add("Desparramado");
+        expResult.get(2).add("Otro");
         result = instance5.obtenerProductos();
         assertEquals(expResult, result);
         
@@ -660,21 +669,25 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("1234567890");
         expResult.get(0).add("lt");
         expResult.get(0).add("TipoDeAlmacenamientoDelProducto");
+        expResult.get(0).add("Otro");
         expResult.get(1).add("NombreProductoAElaborar2");
         expResult.get(1).add("Gaseoso");
         expResult.get(1).add("1234567890");
         expResult.get(1).add("m3");
         expResult.get(1).add("TipoDeAlmacenamientoDelProducto2");
+        expResult.get(1).add("Bien de Consumo");
         expResult.get(2).add("NombreProductoAElaborar3");
         expResult.get(2).add("Semisólido");
         expResult.get(2).add("1234567890");
         expResult.get(2).add("kg");
         expResult.get(2).add("TipoDeAlmacenamientoDelProducto3");
+        expResult.get(2).add("Otro");
         expResult.get(3).add("NombreProductoAElaborar4");
         expResult.get(3).add("Sólido");
         expResult.get(3).add("1234567890");
         expResult.get(3).add("tn");
         expResult.get(3).add("TipoDeAlmacenamientoDelProducto4");
+        expResult.get(3).add("Bien de Capital");
         result = instance6.obtenerProductos();
         assertEquals(expResult, result);
     }

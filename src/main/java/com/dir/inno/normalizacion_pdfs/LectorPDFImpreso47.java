@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -92,20 +93,6 @@ public class LectorPDFImpreso47 {
         
         String sub = "CUACM";
         index = 0;
-        /*
-        index = text.indexOf(sub) + sub.length();
-        skipBlank();
-        String codigoString = readField();
-        while (index != -1 && !"ESTANDAR".equals(codigoString)) {
-            Integer codigo = Integer.parseInt(codigoString);
-            if (!actividadesEmpresa.contains(codigo)) {
-                actividadesEmpresa.add(codigo);
-            }
-            skipBlank();
-            codigoString = readField();
-            index = text.indexOf(sub, index) + sub.length();
-        }
-         */
         do {
             index = text.indexOf(sub, index) + sub.length();
             skipBlank();
@@ -116,7 +103,6 @@ public class LectorPDFImpreso47 {
                     actividadesEmpresa.add(codigo);
                 }
             }
-            
         } while (index != -1 && index < 8000);
         
         return actividadesEmpresa;

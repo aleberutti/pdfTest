@@ -396,7 +396,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return plantasFuera;
     }
 
-    ArrayList<ArrayList<String>> obtenerProductos() {
+    public ArrayList<ArrayList<String>> obtenerProductos() {
         ArrayList<ArrayList<String>> productos = new ArrayList<>();
         String sub = "PRODUCTOS";
         index = text.indexOf(sub) + sub.length();
@@ -449,6 +449,21 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
                 temp = readField();
             }
         }
+        sub = "DE PRODUCTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        for(Integer i = 0; i < productos.size(); i++){
+            readField();
+            skipBlank();
+            productos.get(i).add(readField());
+            
+            if("Otro".equals(productos.get(i).get(5))){
+                skipBlank();
+                readField();
+            }
+            skipBlank();
+        }
+        
         return productos;
     }
 }

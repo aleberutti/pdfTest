@@ -452,18 +452,81 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         sub = "DE PRODUCTO";
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
-        for(Integer i = 0; i < productos.size(); i++){
+        for (Integer i = 0; i < productos.size(); i++) {
             readField();
             skipBlank();
             productos.get(i).add(readField());
-            
-            if("Otro".equals(productos.get(i).get(5))){
+
+            if ("Otro".equals(productos.get(i).get(5))) {
                 skipBlank();
                 readField();
             }
             skipBlank();
         }
-        
         return productos;
+    }
+
+    public ArrayList<ArrayList<String>> obtenerSubproductos() {
+        ArrayList<ArrayList<String>> subproductos = new ArrayList<>();
+        String sub = "SUBPRODUCTOS";
+        index = text.indexOf(sub) + sub.length();
+        sub = "AGREGACIÓN";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (!temp.contains("MATERIAS")) {
+            if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
+                subproductos.add(new ArrayList<>(5));
+                if (!StringUtils.isNumeric(temp)) {
+                    while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
+                        index++;
+                        temp = temp.substring(1);
+                    }
+                    subproductos.get(subproductos.size() - 1).add(temp);
+                } else {
+                    skipBlank();
+                    subproductos.get(subproductos.size() - 1).add(readField());
+                }
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                temp = "";
+                while (text.charAt(index) != ' ') {
+                    temp += text.charAt(index);
+                    index++;
+                }
+                subproductos.get(subproductos.size() - 1).add(temp);
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                temp = readField();
+            } else {
+                subproductos.add(new ArrayList<>(5));
+                skipBlank();
+                readField();
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                subproductos.get(subproductos.size() - 1).add(readField());
+                skipBlank();
+                temp += readField();
+                subproductos.get(subproductos.size() - 1).add(temp);
+                skipBlank();
+                temp = readField();
+            }
+            if (temp.contains("Firma")) {
+                sub = "(342) 5112121";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                temp = readField();
+            }
+        }
+        return subproductos;
     }
 }

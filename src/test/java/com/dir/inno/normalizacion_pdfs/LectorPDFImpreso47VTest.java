@@ -691,4 +691,130 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerProductos();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of obtenerSubproductos method, of class LectorPDFImpreso47V.
+     */
+    @Test
+    public void testObtenerSubproductos() {
+        System.out.println("obtenerSubproductos");
+        
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreSubProducto");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("1321321321");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("NombreAlmacenamientoSubProducto");
+        ArrayList<ArrayList<String>> result = instance1.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("Subprod");
+        expResult.get(0).add("Semisólido");
+        expResult.get(0).add("3836");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("almacenamiento213");
+        expResult.get(1).add("subprod2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("736");
+        expResult.get(1).add("kg");
+        expResult.get(1).add("almacenamiento65497");
+        result = instance2.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("dasdsa");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("123");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("dasad");
+        result = instance3.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("Subprod");
+        expResult.get(0).add("Semisólido");
+        expResult.get(0).add("3836");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("almacenamiento213");
+        expResult.get(1).add("subprod2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("736");
+        expResult.get(1).add("kg");
+        expResult.get(1).add("almacenamiento65497");
+        result = instance4.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("Subprod");
+        expResult.get(0).add("Semisólido");
+        expResult.get(0).add("3836");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("almacenamiento213");
+        expResult.get(1).add("subprod2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("736");
+        expResult.get(1).add("kg");
+        expResult.get(1).add("almacenamiento65497");
+        result = instance4.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("Sub1");
+        expResult.get(0).add("Semisólido");
+        expResult.get(0).add("5");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("QSY");
+        expResult.get(1).add("Sub2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("66");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("Podes no preguntartanto?");
+        expResult.get(2).add("Seub 3");
+        expResult.get(2).add("Sólido");
+        expResult.get(2).add("665");
+        expResult.get(2).add("lt");
+        expResult.get(2).add("Gracias");
+        result = instance5.obtenerSubproductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreSubProducto1");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("1321321321");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("NombreAlmacenamientoSubProducto1");
+        expResult.get(1).add("NombreSubProducto2");
+        expResult.get(1).add("Gaseoso");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("kg");
+        expResult.get(1).add("NombreAlmacenamientoSubProducto2");
+        expResult.get(2).add("NombreSubProducto3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("NombreAlmacenamientoSubProducto3");
+        expResult.get(3).add("NombreSubProducto4");
+        expResult.get(3).add("Sólido");
+        expResult.get(3).add("134567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoSubProducto4");
+        result = instance6.obtenerSubproductos();
+        assertEquals(expResult, result);
+    }
 }

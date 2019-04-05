@@ -289,5 +289,29 @@ public class LectorPDFImpresoVisual47 {
        
        return sustAuxiliares;
    }
+   /*metodo para obtener los nombres de los archivos correspondientes al 
+   lay-out de la planta, diagrama de proceso productivo, y relevamiento 
+   fotografico
+   */
+   public ArrayList<String> obtenerArchivosLayOut(){ 
+       ArrayList<String> archivos = new ArrayList<>();
+       
+       String sub, aux;
+       
+       sub = "LAY-OUT";
+       index = text.indexOf(sub);
+       
+       sub = "2.1";
+       index = text.indexOf(sub);
+       
+       skipLine();
+       skipBlank();
+       aux = readField();
+       System.out.println("Diagrama de Flujo: " + aux);
+       
+       
+       
+       return archivos;
+   }
     
 }

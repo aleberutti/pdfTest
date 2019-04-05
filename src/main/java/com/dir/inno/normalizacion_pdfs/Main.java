@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -91,14 +91,6 @@ public class Main {
         
         //System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
         
-        /*Integer i;
-        ArrayList<String> listaInsumos = lectorVisual.obtenerInsumos();
-        for(i = 0; i < listaInsumos.size(); i++){
-            System.out.println("Insumos " + (i + 1) + '/' + listaInsumos.size() + ':');
-            System.out.println(listaInsumos.get(i) + "; "); 
-            
-        }*/
-        
         ArrayList<ArrayList<String>> listaInsumos = lectorVisual.obtenerInsumos();
         for (Integer i = 0; i < listaInsumos.size(); i++) {
             System.out.println("Insumos " + (i + 1) + '/' + listaInsumos.size() + ':');
@@ -121,5 +113,12 @@ public class Main {
                     + sustanciasAuxiliares.get(i).get(3) + "; "); 
                     
         }
+        
+        ArrayList<String> archivosImagenes = lectorVisual.obtenerArchivosLayOut();
+        for(Integer i = 0; i < archivosImagenes.size(); i++){
+            System.out.println("Nombre del archivo " + (i + 1) + '/' + archivosImagenes.size() + ':');
+            System.out.println(archivosImagenes.get(i));
+        }
+        
     }
 }

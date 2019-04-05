@@ -568,4 +568,114 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerPlantasFueraProv();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of obtenerProductos method, of class LectorPDFImpreso47V.
+     */
+    @Test
+    public void testObtenerProductos() {
+        System.out.println("obtenerProductos");
+        
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreProductoAElaborar");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("12346");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("TipoDeAlmacenamientoDelProducto");
+        ArrayList<ArrayList<String>> result = instance1.obtenerProductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("producto");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("123");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenamiento");
+        expResult.get(1).add("producto2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("123231");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almacenamiento2");
+        result = instance2.obtenerProductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("dasdasdas");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("21132");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("sdadassad");
+        result = instance3.obtenerProductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("producto");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("123");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenamiento");
+        expResult.get(1).add("producto2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("123231");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almacenamiento2");
+        result = instance4.obtenerProductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("Prod1");
+        expResult.get(0).add("Sólido");
+        expResult.get(0).add("135");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("Tirado");
+        expResult.get(1).add("Prod2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("222");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("Volcado");
+        expResult.get(2).add("Prod3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("999");
+        expResult.get(2).add("tn");
+        expResult.get(2).add("Desparramado");
+        result = instance5.obtenerProductos();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreProductoAElaborar");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("TipoDeAlmacenamientoDelProducto");
+        expResult.get(1).add("NombreProductoAElaborar2");
+        expResult.get(1).add("Gaseoso");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("TipoDeAlmacenamientoDelProducto2");
+        expResult.get(2).add("NombreProductoAElaborar3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("kg");
+        expResult.get(2).add("TipoDeAlmacenamientoDelProducto3");
+        expResult.get(3).add("NombreProductoAElaborar4");
+        expResult.get(3).add("Sólido");
+        expResult.get(3).add("1234567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("TipoDeAlmacenamientoDelProducto4");
+        result = instance6.obtenerProductos();
+        assertEquals(expResult, result);
+    }
 }

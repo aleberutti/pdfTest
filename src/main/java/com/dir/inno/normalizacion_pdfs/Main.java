@@ -35,29 +35,28 @@ public class Main {
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
 
         StringBuilder text;
+
         try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
-
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
-
+        
         try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
-            pdf.pipe(new OutputTarget(text));
+            pdf.pipe(new VisualOutputTarget(text));
         }
-
+        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
+        
         //MOSTRAR SALIDA
         System.out.println(text);
-
-        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
 
         System.out.println("Version: " + lector.obtenerVersion() + "\r");
 

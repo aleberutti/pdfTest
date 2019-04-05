@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -401,7 +402,53 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         index = text.indexOf(sub) + sub.length();
         sub = "AGREGACIÓN";
         index = text.indexOf(sub, index) + sub.length();
-        
+        skipBlank();
+        String temp = readField();
+        while (!"Nº".equals(temp)) {
+            if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
+                productos.add(new ArrayList<>(5));
+                while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
+                    index++;
+                    temp = temp.substring(1);
+                }
+                productos.get(productos.size() - 1).add(temp);
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                temp = readField();
+            } else {
+                productos.add(new ArrayList<>(5));
+                skipBlank();
+                while (CharUtils.isAsciiNumeric(text.charAt(index))) {
+                    index++;
+                }
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                productos.get(productos.size() - 1).add(readField());
+                skipBlank();
+                temp += readField();
+                productos.get(productos.size() - 1).add(temp);
+                skipBlank();
+                temp = readField();
+            }
+            if (temp.contains("Firma")) {
+                sub = "(342) 5112121";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                temp = readField();
+            }
+        }
         return productos;
     }
 }

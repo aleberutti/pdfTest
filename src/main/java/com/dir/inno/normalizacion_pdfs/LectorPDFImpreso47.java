@@ -59,24 +59,6 @@ public class LectorPDFImpreso47 {
         String sub = "ACTIVIDADES DE LA EMPRESA: (*)";
         index = text.indexOf(sub) + sub.length();
         skipBlank();
-        /*
-        String cuit = text.substring(index, index + 2);
-        index++;
-        index += 2;
-        while ((text.charAt(index + 1) != ' ' && text.charAt(index + 1) != '\r')
-                || ((text.charAt(index + 1) == ' ')
-                && (text.charAt(index + 2) != ' ' || text.charAt(index + 2) != '\r'))) {
-            cuit += text.charAt(index + 1);
-            index++;
-        }
-        index += 2;
-        cuit += text.charAt(index + 1);
-        String cuit2 = new String();
-        for(Integer i = 0; i<cuit.length(); i++){
-            if(Character.isDigit(cuit.charAt(i))) cuit2+=cuit.charAt(i);
-        }
-        Long cuitN = Long.parseLong(cuit2);
-         */
         String cuit = readField();
         skipBlank();
         cuit += readField();

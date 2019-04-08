@@ -529,4 +529,70 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         }
         return subproductos;
     }
+
+    ArrayList<ArrayList<String>> obtenerMateriasPrimas() {
+        ArrayList<ArrayList<String>> materias = new ArrayList<>();
+        String sub = "MATERIAS";
+        index = text.indexOf(sub) + sub.length();
+        sub = "PRIMAS";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "AGREGACIÓN";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String temp = readField();
+        while (!temp.contains("INSUMOS")) {
+            if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
+                materias.add(new ArrayList<>(5));
+                if (!StringUtils.isNumeric(temp)) {
+                    while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
+                        index++;
+                        temp = temp.substring(1);
+                    }
+                    materias.get(materias.size() - 1).add(temp);
+                } else {
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                }
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                temp = "";
+                while (text.charAt(index) != ' ') {
+                    temp += text.charAt(index);
+                    index++;
+                }
+                materias.get(materias.size() - 1).add(temp);
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                temp = readField();
+            } else {
+                materias.add(new ArrayList<>(5));
+                skipBlank();
+                readField();
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                materias.get(materias.size() - 1).add(readField());
+                skipBlank();
+                temp += readField();
+                materias.get(materias.size() - 1).add(temp);
+                skipBlank();
+                temp = readField();
+            }
+            if (temp.contains("Firma")) {
+                sub = "(342) 5112121";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                temp = readField();
+            }
+        }
+        return materias;
+    }
 }

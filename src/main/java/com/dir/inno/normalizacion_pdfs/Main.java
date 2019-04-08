@@ -35,7 +35,7 @@ public class Main {
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
 
@@ -133,7 +133,7 @@ public class Main {
             System.out.print("No posee.");
         } else {
             for (Integer i = 0; i < productos.size(); i++) {
-                System.out.println("Planta " + (i + 1) + '/'
+                System.out.println("Producto " + (i + 1) + '/'
                         + productos.size() + ":\n"
                         + productos.get(i).get(0) + ", "
                         + productos.get(i).get(1) + ", "
@@ -143,6 +143,20 @@ public class Main {
             }
          }
          
-         
+         System.out.println("\nMaterias Primas: ");
+         ArrayList<ArrayList<String>> materias = lectorV.obtenerMateriasPrimas();
+         if (materias.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < materias.size(); i++) {
+                System.out.println("Materia Prima " + (i + 1) + '/'
+                        + materias.size() + ":\n"
+                        + materias.get(i).get(0) + ", "
+                        + materias.get(i).get(1) + ", "
+                        + materias.get(i).get(2) + ", "
+                        + materias.get(i).get(3) + ", "
+                        + materias.get(i).get(4));
+            }
+         }
     }
 }

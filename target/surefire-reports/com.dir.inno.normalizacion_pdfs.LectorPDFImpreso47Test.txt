@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.613 sec - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.92 sec - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47Test

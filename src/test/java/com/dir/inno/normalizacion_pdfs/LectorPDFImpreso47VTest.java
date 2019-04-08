@@ -817,4 +817,96 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerSubproductos();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of obtenerMateriasPrimas method, of class LectorPDFImpreso47V.
+     */
+    @Test
+    public void testObtenerMateriasPrimas() {
+        System.out.println("obtenerMateriasPrimas");
+        
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreMateriaPrima");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("123456");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("NombreAlmacenamientoMateriaPrima");
+        ArrayList<ArrayList<String>> result = instance1.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("matprima");
+        expResult.get(0).add("Sólido");
+        expResult.get(0).add("9543");
+        expResult.get(0).add("tn");
+        expResult.get(0).add("almac754654");
+        result = instance2.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("asd");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("1242");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("dsasdsad");
+        result = instance3.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("matprima");
+        expResult.get(0).add("Sólido");
+        expResult.get(0).add("9543");
+        expResult.get(0).add("tn");
+        expResult.get(0).add("almac754654");
+        result = instance4.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("UnaMateria");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("999");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("No se almacena");
+        expResult.get(1).add("Dos Materias");
+        expResult.get(1).add("Sólido");
+        expResult.get(1).add("888");
+        expResult.get(1).add("kg");
+        expResult.get(1).add("Tampoco");
+        result = instance5.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.add(new ArrayList<>(5));
+        expResult.get(0).add("NombreMateriaPrima1");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("1234567980");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("NombreAlmacenamientoMateriaPrima1");
+        expResult.get(1).add("NombreMateriaPrima2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("1234657980");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("NombreAlmacenamientoMateriaPrima");
+        expResult.get(2).add("NombreMateriaPrima3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("kg");
+        expResult.get(2).add("NombreAlmacenamientoMateriaPrima");
+        expResult.get(3).add("NombreMateriaPrima4");
+        expResult.get(3).add("Sólido");
+        expResult.get(3).add("124567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoMateriaPrima");
+        result = instance6.obtenerMateriasPrimas();
+        assertEquals(expResult, result);
+    }
 }

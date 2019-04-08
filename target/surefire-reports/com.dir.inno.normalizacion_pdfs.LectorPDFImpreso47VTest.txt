@@ -1,4 +1,48 @@
 -------------------------------------------------------------------------------
 Test set: com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.248 sec - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest
+Tests run: 11, Failures: 11, Errors: 0, Skipped: 0, Time elapsed: 0 sec <<< FAILURE! - in com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerPartidasInm()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerPartidasInm(LectorPDFImpreso47VTest.java:104)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerNomina()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerNomina(LectorPDFImpreso47VTest.java:183)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioReal()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioReal(LectorPDFImpreso47VTest.java:386)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerProductos()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerProductos(LectorPDFImpreso47VTest.java:587)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerSubproductos()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerSubproductos(LectorPDFImpreso47VTest.java:709)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioConst()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioConst(LectorPDFImpreso47VTest.java:274)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioLegal()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDomicilioLegal(LectorPDFImpreso47VTest.java:330)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerAdministradores()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerAdministradores(LectorPDFImpreso47VTest.java:448)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDatosPlantaCatAmb()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerDatosPlantaCatAmb(LectorPDFImpreso47VTest.java:477)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerPlantasFueraProv()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerPlantasFueraProv(LectorPDFImpreso47VTest.java:523)
+
+com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerMateriasPrimas()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.dir.inno.normalizacion_pdfs.LectorPDFImpreso47VTest.testObtenerMateriasPrimas(LectorPDFImpreso47VTest.java:835)
+

@@ -27,9 +27,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>pdfxfa</artifactId>
-            <version>2.0.1</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.mozilla</groupId>
@@ -83,13 +83,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <itext.version>RELEASE</itext.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>itext</id>
-            <name>iText Repository - releases</name>
-            <url>https://repo.itextsupport.com/releases</url>
-        </repository>
-    </repositories>
     <build>
         <plugins>
             <plugin>

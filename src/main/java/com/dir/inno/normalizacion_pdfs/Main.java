@@ -5,6 +5,23 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
+import com.dir.inno.normalizacion_pdfs.RByCB_Info.Form_Presentacion;
+import com.dir.inno.normalizacion_pdfs.RByCB_Info.RByCB_Info;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.xml.sax.SAXException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDNonTerminalField;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,6 +34,7 @@ import com.snowtide.pdf.VisualOutputTarget;
 import java.io.File;
 import java.text.ParseException;
 import pdfts.examples.XMLOutputTarget;
+
 
 /**
  *
@@ -33,6 +51,17 @@ public class Main {
      * @throws java.text.ParseException
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
+        
+        RByCB_Info presentacion = new RByCB_Info("presentacion");
+        RByCB_Info iac = new RByCB_Info("iac");
+        RByCB_Info eia = new RByCB_Info("eia");
+        
+        System.out.println(presentacion.printPresentacion());
+        System.out.println("----------------------------------------------------------------\n\n");
+        System.out.println(iac.printIAC());
+        System.out.println("----------------------------------------------------------------\n\n");
+        System.out.println(eia.printEIA());
+        System.out.println("----------------------------------------------------------------\n\n");
 
         String filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
@@ -158,5 +187,4 @@ public class Main {
                         + materias.get(i).get(4));
             }
          }
-    }
 }

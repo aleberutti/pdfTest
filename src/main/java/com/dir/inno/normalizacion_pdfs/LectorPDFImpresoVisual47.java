@@ -296,20 +296,49 @@ public class LectorPDFImpresoVisual47 {
    public ArrayList<String> obtenerArchivosLayOut(){ 
        ArrayList<String> archivos = new ArrayList<>();
        
-       String sub, aux;
+       String sub, aux, diagFlujo, layOut, relevFotografico;
        
        sub = "LAY-OUT";
        index = text.indexOf(sub);
-       
+       //caso pdf 1
        sub = "2.1";
        index = text.indexOf(sub);
        
        skipLine();
        skipBlank();
+       diagFlujo = readField();
+       System.out.println("Diagrama de Flujo: " + diagFlujo);
+       skipBlank();
        aux = readField();
-       System.out.println("Diagrama de Flujo: " + aux);
+       System.out.println("Aux: " + aux);
        
+       if(aux.equals("Firma y Aclaración")){//caso pdf 5
+           skipFooter();
+       }
        
+       if(aux.replace(" ","").equals("2.2NombredelarchivocorrespondientealLayoutdelaplantay/oLayoutdemáquinasyequipos")){
+            skipBlank();
+            layOut = readField();
+            System.out.println("Layout: " + layOut);
+       } else{
+            skipBlank();
+            skipLine();
+            skipBlank();
+            layOut = readField();
+            System.out.println("Layout: " + layOut);
+       }
+       
+       sub = "estado del predio):";
+       index = text.indexOf(sub, index) + sub.length();
+       skipBlank();
+       relevFotografico = readField();
+       skipBlank();
+       aux = readField();
+       
+       if(!aux.equals("Firma y Aclaración") && !aux.replace(" ", "").equals("3.LOCALIZACIÓN")){//caso pdf 2, 3, 4
+           relevFotografico += aux;
+       }
+       System.out.println("Relevamiento Fotográfico: " + relevFotografico);
        
        return archivos;
    }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dir.inno.normalizacion_pdfs;
+package com.dir.inno.normalizacion_pdfs.RByCB_Info;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -104,10 +104,11 @@ public class Form_IAC {
            
            this.datos.add(dato.replace(" ", ""));
        }
-       System.out.println(datos.size());
    }
     public String toString(){
         StringBuilder output = new StringBuilder();
+        output.append("Formulario IAC: \n\n");
+        
         output.append("Uso de los recursos naturales.\n");
         output.append("AGUA.\n");
         output.append("Captación de agua subterránea. ");

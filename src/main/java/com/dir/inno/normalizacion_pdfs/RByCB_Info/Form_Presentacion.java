@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dir.inno.normalizacion_pdfs;
+package com.dir.inno.normalizacion_pdfs.RByCB_Info;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -144,11 +144,13 @@ public class Form_Presentacion {
                }
            }
        }
-       System.out.println(datos.size());
    }
    
    public String toString(){
        StringBuilder string= new StringBuilder();
+       
+       string.append("Formulario de presentación: \n\n");
+
     //Tipo de sociedad   
        string.append("Tipo de sociedad de la empresa: "+ tipo.toString() +".\n\n");
     //Indice de archivos a presentar en ventanilla

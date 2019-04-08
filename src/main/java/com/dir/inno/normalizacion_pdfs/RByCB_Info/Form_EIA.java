@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dir.inno.normalizacion_pdfs;
+package com.dir.inno.normalizacion_pdfs.RByCB_Info;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,10 +61,11 @@ public class Form_EIA {
            
            this.datos.add(dato.replace(" ", ""));
        }
-       System.out.println(datos.size());
    }
     public String toString(){
         StringBuilder output = new StringBuilder();
+        output.append("Formulario EIA: \n\n");
+        
         output.append("Plan de gestión ambiental.\n");
         
         output.append("Gestión de residuos.\n");

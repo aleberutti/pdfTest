@@ -36,15 +36,15 @@ public class Main {
 
         String filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
-        
+
         StringBuilder text;
+
         try (Document pdf = PDF.open(filePath)) {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
-
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
         
         try (Document pdf = PDF.open(filePath)) {
@@ -53,12 +53,11 @@ public class Main {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
+        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
         
         //MOSTRAR SALIDA
         System.out.println(text);
-        
-        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
-        
+
         System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
         System.out.println("Nombre: " + lector.obtenerNombre());
@@ -72,9 +71,9 @@ public class Main {
             System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
         }
 
-        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
+        System.out.println("\rDomicilio Legal: " + lectorV.obtenerDomicilioLegal());
 
-        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
+        System.out.println("\rDomicilio Constituido: " + lectorV.obtenerDomicilioConst() + "\r");
 
         ArrayList<ArrayList<String>> nomina = lectorV.obtenerNomina();
         for (Integer i = 0; i < nomina.size(); i++) {
@@ -84,8 +83,8 @@ public class Main {
                     + nomina.get(i).get(2) + ", "
                     + nomina.get(i).get(3));
         }
-        /*
-        ArrayList<ArrayList<String>> admins = lector.obtenerAdministradores();
+
+        ArrayList<ArrayList<String>> admins = lectorV.obtenerAdministradores();
         for (Integer i = 0; i < admins.size(); i++) {
             System.out.println("Administrador " + (i + 1) + '/' + admins.size() + ':');
             System.out.println(admins.get(i).get(0) + ' '
@@ -93,17 +92,15 @@ public class Main {
                     + admins.get(i).get(2) + ", "
                     + admins.get(i).get(3));
         }
-*/
 
         System.out.println("\nRepresentante Legal: " + lector.obtenerRepLegal());
 
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
-        System.out.println("\nDomicilio Real: " + lector.obtenerDomicilioReal());
+        System.out.println("\nDomicilio Real: " + lectorV.obtenerDomicilioReal());
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
 
-        
         ArrayList<ArrayList<String>> partidas = lectorV.obtenerPartidasInm();
         for (Integer i = 0; i < partidas.size(); i++) {
             System.out.println("Partida inmobiliaria " + (i + 1) + '/'
@@ -111,5 +108,55 @@ public class Main {
             System.out.println("Lat: " + partidas.get(i).get(1)
                     + ", Long: " + partidas.get(i).get(2));
         }
+
+        System.out.println("\nDatos para la categorización ambiental: ");
+        System.out.println(lectorV.obtenerDatosPlantaCatAmb());
+
+        System.out.println("\nPlantas fuera de la provincia: ");
+        ArrayList<ArrayList<String>> plantasFuera = lectorV.obtenerPlantasFueraProv();
+        if (plantasFuera.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < plantasFuera.size(); i++) {
+                System.out.println("Planta " + (i + 1) + '/'
+                        + plantasFuera.size() + ":\n"
+                        + plantasFuera.get(i).get(0) + ", "
+                        + plantasFuera.get(i).get(1) + ", "
+                        + plantasFuera.get(i).get(2) + ", "
+                        + plantasFuera.get(i).get(3));
+            }
+        }
+        
+        System.out.println("\nProductos: ");
+         ArrayList<ArrayList<String>> productos = lectorV.obtenerProductos();
+         if (productos.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < productos.size(); i++) {
+                System.out.println("Producto " + (i + 1) + '/'
+                        + productos.size() + ":\n"
+                        + productos.get(i).get(0) + ", "
+                        + productos.get(i).get(1) + ", "
+                        + productos.get(i).get(2) + ", "
+                        + productos.get(i).get(3) + ", "
+                        + productos.get(i).get(4));
+            }
+         }
+         
+         System.out.println("\nMaterias Primas: ");
+         ArrayList<ArrayList<String>> materias = lectorV.obtenerMateriasPrimas();
+         if (materias.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < materias.size(); i++) {
+                System.out.println("Materia Prima " + (i + 1) + '/'
+                        + materias.size() + ":\n"
+                        + materias.get(i).get(0) + ", "
+                        + materias.get(i).get(1) + ", "
+                        + materias.get(i).get(2) + ", "
+                        + materias.get(i).get(3) + ", "
+                        + materias.get(i).get(4));
+            }
+         }
     }
 }

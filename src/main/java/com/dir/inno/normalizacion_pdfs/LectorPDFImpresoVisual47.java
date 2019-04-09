@@ -520,4 +520,48 @@ public class LectorPDFImpresoVisual47 {
        }
        return inmueblesAnexos;
    }
+   
+   public ArrayList<String> obtenerDimensionamiento(){
+       ArrayList<String> dimensiones = new ArrayList<>();
+       String sub, supTotal, supCubierta, potenciaInstalada, dotPersonal, aux;
+       
+       sub = "4. DIMENSIONAMIENTO";
+       index = text.indexOf(sub);
+       sub = "SUPERFICIE CUBIERTA (en m2): (*)";
+       index = text.indexOf(sub,index) + sub.length();
+       
+       skipBlank();
+       supTotal = readField();
+       System.out.println("supTotal: " + supTotal);
+       skipBlank();
+       supCubierta = readField();
+       System.out.println("supCubierta: " + supCubierta);
+       skipBlank();
+       aux = readField();
+       
+       if(aux.equals("Firma y Aclaración")){
+           skipFooter();
+           skipBlank();
+           skipLine();
+           skipBlank();
+           potenciaInstalada = readField();
+           System.out.println("potenciaInstalada: " + potenciaInstalada);
+           skipBlank();
+           dotPersonal = readField();
+           System.out.println("dotPersonal: " + dotPersonal);
+       }
+       else{
+           if(aux.replace(" ", "").equals("POTENCIAINSTALADA(enHP):(*)")){
+               skipLine();
+               skipBlank();
+               potenciaInstalada = readField();
+               System.out.println("potenciaInstalada: " + potenciaInstalada);
+               skipBlank();
+               dotPersonal = readField();
+               System.out.println("dotPersonal: " + dotPersonal);
+           }
+       }
+       
+       return dimensiones;
+   }
 }

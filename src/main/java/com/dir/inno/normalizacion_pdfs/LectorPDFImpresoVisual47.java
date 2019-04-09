@@ -361,7 +361,7 @@ public class LectorPDFImpresoVisual47 {
        
        return archivos;
    }
-   
+   /*Método para obtener el domicilio real de la planta*/
    public ArrayList<String> obtenerDomRealPlanta(){
        String sub = null, aux = null, aux1 = null, calle = null, numCalle = null, 
                piso = null, numDpto = null, provincia = null, departamento = null,
@@ -475,7 +475,9 @@ public class LectorPDFImpresoVisual47 {
      
        return datosDomReal;
    }
-   
+   /*Método para obtener los inmuebles anexos a la planta con sus
+   respectivas actividades
+   */
    public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
        ArrayList<ArrayList<String>> inmueblesAnexos = new ArrayList<>();
        String sub, aux, domicilio, actividad;
@@ -505,7 +507,7 @@ public class LectorPDFImpresoVisual47 {
                //promptEnterKey();
                
                skipBlank();
-               aux = readField();//saltea la X al final de cada linea
+               skipWord();//saltea la X al final de cada linea
                skipBlank();
                skipWord();
                skipBlank();

@@ -475,4 +475,47 @@ public class LectorPDFImpresoVisual47 {
      
        return datosDomReal;
    }
+   
+   public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
+       ArrayList<ArrayList<String>> inmueblesAnexos = new ArrayList<>();
+       String sub, aux, domicilio, actividad;
+    
+       sub = "EXISTEN INMUEBLES";
+       index = text.indexOf(sub);
+       sub = "ACTIVIDAD DESARROLLADA";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       skipWord();
+       Character num = text.charAt(index-1);
+       skipBlank();
+       aux = readField();
+       //System.out.println("Num: " + num);
+       //System.out.println("Aux: " + aux);
+       
+       if(StringUtils.isNumeric(Character.toString(num))){
+           while (!aux.replace(" ", "").equals("ENERGÍAELÉCTRICA:")){
+               ArrayList<String> inmueble = new ArrayList<>();
+               domicilio = aux;
+               //System.out.println("Domicilio: " + domicilio);
+               //promptEnterKey();
+               
+               skipBlank();
+               actividad = readField();
+               //System.out.println("Actividad Dom: " + actividad);
+               //promptEnterKey();
+               
+               skipBlank();
+               aux = readField();//saltea la X al final de cada linea
+               skipBlank();
+               skipWord();
+               skipBlank();
+               aux = readField();
+               
+               inmueble.add(domicilio);
+               inmueble.add(actividad);
+               inmueblesAnexos.add(inmueble); 
+           }
+       }
+       return inmueblesAnexos;
+   }
 }

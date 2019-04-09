@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -162,6 +162,17 @@ public class Main {
                 default:
                     break;
             }
+        }
+        System.out.println("\n");
+        
+        ArrayList<ArrayList<String>> inmueblesAnexos = lectorVisual.obtenerInmueblesAnexos();
+        System.out.println("Lista de inmuebles anexos" + "\n" + "==========");
+        for (Integer i = 0; i < inmueblesAnexos.size(); i++) {
+            System.out.println("Inmueble " + (i + 1) + '/' + inmueblesAnexos.size() + ':');
+            System.out.println(
+                    inmueblesAnexos.get(i).get(0) + ", "
+                    + inmueblesAnexos.get(i).get(1) + "; "
+                    ); 
         }
         System.out.println("\n");
     }

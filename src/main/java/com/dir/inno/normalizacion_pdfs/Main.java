@@ -33,6 +33,7 @@ public class Main {
      * @throws org.xml.sax.SAXException
      * @throws java.text.ParseException
      */
+    @SuppressWarnings("null")
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
         /*
@@ -48,7 +49,7 @@ public class Main {
         System.out.println("----------------------------------------------------------------\n\n");
          */
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Presentacion ejemplos\\Formulario de presentación v4.13 Nuevos Senderos_impreso.pdf";
 
         StringBuilder text;
 
@@ -58,13 +59,21 @@ public class Main {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        LectorPDFPresent lector = new LectorPDFPresent(text);
+        LectorPDFPresent lector = null;
+        LectorPDFPresent_47 lectorTemp = new LectorPDFPresent_47(text);
 
         //MOSTRAR SALIDA
         System.out.println(text);
-        
-        System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
+        switch (lectorTemp.obtenerVersion()) {
+            case "4.7":
+                lector = new LectorPDFPresent_47(text);
+                break;
+            case "4.13":
+                lector = new LectorPDFPresent_413(text);
+                break;
+        }
+        
         System.out.println("Nombre: " + lector.obtenerNombre());
 
         System.out.println("CUIT: " + lector.obtenerCuit());

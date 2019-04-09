@@ -17,7 +17,7 @@ import org.apache.commons.lang3.text.WordUtils;
  *
  * @author MODERNIZACION05
  */
-public class LectorPDFPresent {
+public abstract class LectorPDFPresent {
 
     protected Integer index;
     protected final StringBuilder text;
@@ -585,76 +585,6 @@ public class LectorPDFPresent {
         return plantasFuera;
     }
 
-    public ArrayList<ArrayList<String>> obtenerProductos() {
-        ArrayList<ArrayList<String>> productos = new ArrayList<>();
-        String sub = "PRODUCTOS";
-        index = text.indexOf(sub) + sub.length();
-        sub = "AGREGACIÓN";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        String temp = readField();
-        while (!"Nº".equals(temp)) {
-            if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
-                productos.add(new ArrayList<>(5));
-                while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
-                    index++;
-                    temp = temp.substring(1);
-                }
-                productos.get(productos.size() - 1).add(temp);
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                temp = readField();
-            } else {
-                productos.add(new ArrayList<>(5));
-                skipBlank();
-                while (CharUtils.isAsciiNumeric(text.charAt(index))) {
-                    index++;
-                }
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                productos.get(productos.size() - 1).add(readField());
-                skipBlank();
-                temp += readField();
-                productos.get(productos.size() - 1).add(temp);
-                skipBlank();
-                temp = readField();
-            }
-            if (temp.contains("Firma")) {
-                sub = "(342) 5112121";
-                index = text.indexOf(sub, index) + sub.length();
-                skipBlank();
-                temp = readField();
-            }
-        }
-        sub = "DE PRODUCTO";
-        index = text.indexOf(sub, index) + sub.length();
-        skipBlank();
-        for (Integer i = 0; i < productos.size(); i++) {
-            readField();
-            skipBlank();
-            productos.get(i).add(readField());
-
-            if ("Otro".equals(productos.get(i).get(5))) {
-                skipBlank();
-                readField();
-            }
-            skipBlank();
-        }
-        return productos;
-    }
-
     public ArrayList<ArrayList<String>> obtenerSubproductos() {
         ArrayList<ArrayList<String>> subproductos = new ArrayList<>();
         String sub = "SUBPRODUCTOS";
@@ -663,6 +593,13 @@ public class LectorPDFPresent {
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String temp = readField();
+        Integer x = index;
+        skipBlank();
+        String temp2 = readField();
+        index = x;
+        if (temp2.contains("MATERIAS")) {
+            return subproductos;
+        }
         while (!temp.contains("MATERIAS")) {
             if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
                 subproductos.add(new ArrayList<>(5));
@@ -792,5 +729,7 @@ public class LectorPDFPresent {
             return materias;
         }
     }
+    
+    public abstract ArrayList<ArrayList<String>> obtenerProductos();
 
 }

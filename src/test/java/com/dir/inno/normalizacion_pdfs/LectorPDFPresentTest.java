@@ -24,12 +24,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class LectorPDFPresentTest {
 
-    private LectorPDFPresent instance1;
-    private LectorPDFPresent instance2;
-    private LectorPDFPresent instance3;
-    private LectorPDFPresent instance4;
-    private LectorPDFPresent instance5;
-    private LectorPDFPresent instance6;
+    private LectorPDFPresent_47 instance1;
+    private LectorPDFPresent_47 instance2;
+    private LectorPDFPresent_47 instance3;
+    private LectorPDFPresent_47 instance4;
+    private LectorPDFPresent_47 instance5;
+    private LectorPDFPresent_47 instance6;
 
     public LectorPDFPresentTest() {
     }
@@ -47,7 +47,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance1 = new LectorPDFPresent(text);
+        instance1 = new LectorPDFPresent_47(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
@@ -55,7 +55,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance2 = new LectorPDFPresent(text);
+        instance2 = new LectorPDFPresent_47(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
@@ -63,7 +63,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance3 = new LectorPDFPresent(text);
+        instance3 = new LectorPDFPresent_47(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
@@ -71,7 +71,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance4 = new LectorPDFPresent(text);
+        instance4 = new LectorPDFPresent_47(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(5)_impreso.pdf";
@@ -79,7 +79,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance5 = new LectorPDFPresent(text);
+        instance5 = new LectorPDFPresent_47(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
@@ -87,7 +87,7 @@ public class LectorPDFPresentTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance6 = new LectorPDFPresent(text);
+        instance6 = new LectorPDFPresent_47(text);
     }
 
     @Test

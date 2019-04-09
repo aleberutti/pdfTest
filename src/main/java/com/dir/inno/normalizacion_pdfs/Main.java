@@ -5,22 +5,7 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
-import com.dir.inno.normalizacion_pdfs.RByCB_Info.Form_Presentacion;
 import com.dir.inno.normalizacion_pdfs.RByCB_Info.RByCB_Info;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.xml.sax.SAXException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.apache.pdfbox.pdmodel.interactive.form.PDNonTerminalField;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,12 +14,10 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
-import com.snowtide.pdf.OutputTarget;
 import com.snowtide.pdf.VisualOutputTarget;
 import java.io.File;
 import java.text.ParseException;
 import pdfts.examples.XMLOutputTarget;
-
 
 /**
  *
@@ -51,20 +34,21 @@ public class Main {
      * @throws java.text.ParseException
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
-        
+
+        /*
         RByCB_Info presentacion = new RByCB_Info("presentacion");
         RByCB_Info iac = new RByCB_Info("iac");
         RByCB_Info eia = new RByCB_Info("eia");
-        
+
         System.out.println(presentacion.printPresentacion());
         System.out.println("----------------------------------------------------------------\n\n");
         System.out.println(iac.printIAC());
         System.out.println("----------------------------------------------------------------\n\n");
         System.out.println(eia.printEIA());
         System.out.println("----------------------------------------------------------------\n\n");
-
+         */
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
 
         StringBuilder text;
 
@@ -72,21 +56,13 @@ public class Main {
             XMLOutputTarget xml = new XMLOutputTarget();
             pdf.pipe(xml);
             text = new StringBuilder();
-            pdf.pipe(new OutputTarget(text));
-        }
-        LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
-        
-        try (Document pdf = PDF.open(filePath)) {
-            XMLOutputTarget xml = new XMLOutputTarget();
-            pdf.pipe(xml);
-            text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        LectorPDFImpreso47V lectorV = new LectorPDFImpreso47V(text);
-        
+        LectorPDFPresent lector = new LectorPDFPresent(text);
+
         //MOSTRAR SALIDA
         System.out.println(text);
-
+        
         System.out.println("Version: " + lector.obtenerVersion() + "\r");
 
         System.out.println("Nombre: " + lector.obtenerNombre());
@@ -95,16 +71,19 @@ public class Main {
 
         System.out.println("Fecha Inicio Actividades: " + lector.obtenerFechaInicioAct() + "\r");
 
-        ArrayList<Integer> actividadesEmpresa = lector.obtenerActividades();
+        ArrayList<ArrayList<String>> actividadesEmpresa = lector.obtenerActividades();
         for (Integer i = 0; i < actividadesEmpresa.size(); i++) {
-            System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size() + " de la empresa: CUACM " + actividadesEmpresa.get(i));
+            System.out.println("Actividad " + (i + 1) + '/' + actividadesEmpresa.size());
+            System.out.println("Actividad " + actividadesEmpresa.get(i).get(0)
+                    + ", CUACM " + actividadesEmpresa.get(i).get(1)
+                    + ", Estandar amb. " + actividadesEmpresa.get(i).get(2));
         }
 
-        System.out.println("\rDomicilio Legal: " + lectorV.obtenerDomicilioLegal());
+        System.out.println("\rDomicilio Legal: " + lector.obtenerDomicilioLegal());
 
-        System.out.println("\rDomicilio Constituido: " + lectorV.obtenerDomicilioConst() + "\r");
+        System.out.println("\rDomicilio Constituido: " + lector.obtenerDomicilioConst() + "\r");
 
-        ArrayList<ArrayList<String>> nomina = lectorV.obtenerNomina();
+        ArrayList<ArrayList<String>> nomina = lector.obtenerNomina();
         for (Integer i = 0; i < nomina.size(); i++) {
             System.out.println("Autoridad Societaria " + (i + 1) + '/' + nomina.size() + ':');
             System.out.println(nomina.get(i).get(0) + ' '
@@ -113,7 +92,7 @@ public class Main {
                     + nomina.get(i).get(3));
         }
 
-        ArrayList<ArrayList<String>> admins = lectorV.obtenerAdministradores();
+        ArrayList<ArrayList<String>> admins = lector.obtenerAdministradores();
         for (Integer i = 0; i < admins.size(); i++) {
             System.out.println("Administrador " + (i + 1) + '/' + admins.size() + ':');
             System.out.println(admins.get(i).get(0) + ' '
@@ -126,11 +105,11 @@ public class Main {
 
         System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
-        System.out.println("\nDomicilio Real: " + lectorV.obtenerDomicilioReal());
+        System.out.println("\nDomicilio Real: " + lector.obtenerDomicilioReal());
 
         System.out.println("\nNombre archivo foto satelital: " + lector.obtenerNombreArchivoFotoSat());
 
-        ArrayList<ArrayList<String>> partidas = lectorV.obtenerPartidasInm();
+        ArrayList<ArrayList<String>> partidas = lector.obtenerPartidasInm();
         for (Integer i = 0; i < partidas.size(); i++) {
             System.out.println("Partida inmobiliaria " + (i + 1) + '/'
                     + partidas.size() + ": " + partidas.get(i).get(0));
@@ -139,10 +118,10 @@ public class Main {
         }
 
         System.out.println("\nDatos para la categorización ambiental: ");
-        System.out.println(lectorV.obtenerDatosPlantaCatAmb());
+        System.out.println(lector.obtenerDatosPlantaCatAmb());
 
         System.out.println("\nPlantas fuera de la provincia: ");
-        ArrayList<ArrayList<String>> plantasFuera = lectorV.obtenerPlantasFueraProv();
+        ArrayList<ArrayList<String>> plantasFuera = lector.obtenerPlantasFueraProv();
         if (plantasFuera.isEmpty()) {
             System.out.print("No posee.");
         } else {
@@ -155,10 +134,10 @@ public class Main {
                         + plantasFuera.get(i).get(3));
             }
         }
-        
-        System.out.println("\nProductos: ");
-         ArrayList<ArrayList<String>> productos = lectorV.obtenerProductos();
-         if (productos.isEmpty()) {
+
+        System.out.println("\n\nProductos: ");
+        ArrayList<ArrayList<String>> productos = lector.obtenerProductos();
+        if (productos.isEmpty()) {
             System.out.print("No posee.");
         } else {
             for (Integer i = 0; i < productos.size(); i++) {
@@ -170,11 +149,27 @@ public class Main {
                         + productos.get(i).get(3) + ", "
                         + productos.get(i).get(4));
             }
-         }
-         
-         System.out.println("\nMaterias Primas: ");
-         ArrayList<ArrayList<String>> materias = lectorV.obtenerMateriasPrimas();
-         if (materias.isEmpty()) {
+        }
+
+        System.out.println("\n\nSubproductos: ");
+        ArrayList<ArrayList<String>> subproductos = lector.obtenerSubproductos();
+        if (subproductos.isEmpty()) {
+            System.out.print("No posee.");
+        } else {
+            for (Integer i = 0; i < subproductos.size(); i++) {
+                System.out.println("Producto " + (i + 1) + '/'
+                        + subproductos.size() + ":\n"
+                        + subproductos.get(i).get(0) + ", "
+                        + subproductos.get(i).get(1) + ", "
+                        + subproductos.get(i).get(2) + ", "
+                        + subproductos.get(i).get(3) + ", "
+                        + subproductos.get(i).get(4));
+            }
+        }
+
+        System.out.println("\nMaterias Primas: ");
+        ArrayList<ArrayList<String>> materias = lector.obtenerMateriasPrimas();
+        if (materias.isEmpty()) {
             System.out.print("No posee.");
         } else {
             for (Integer i = 0; i < materias.size(); i++) {
@@ -186,6 +181,6 @@ public class Main {
                         + materias.get(i).get(3) + ", "
                         + materias.get(i).get(4));
             }
-         }
+        }
     }
 }

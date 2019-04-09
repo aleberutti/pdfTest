@@ -17,10 +17,199 @@ import org.apache.commons.lang3.text.WordUtils;
  *
  * @author MODERNIZACION05
  */
-public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
+public class LectorPDFPresent {
 
-    public LectorPDFImpreso47V(StringBuilder text) {
-        super(text);
+    protected Integer index;
+    protected final StringBuilder text;
+
+    public LectorPDFPresent(StringBuilder text) {
+        this.text = text;
+    }
+
+    /*Obtener versión del documento
+     */
+    public String obtenerVersion() {
+        String sub = "VERSIÓN";
+        index = text.indexOf(sub) + sub.length();
+        skipBlank();
+        return readField();
+    }
+
+    /*Obtener nombre/Razon social
+     */
+    public String obtenerNombre() {
+        String sub = "NOMBRE COMPLETO";
+        index = text.indexOf(sub) + sub.length();
+        sub = "RAZÓN SOCIAL";
+        index = text.indexOf(sub, index) + sub.length();
+        sub = "(*)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String nombre = new String();
+        while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
+                || ((text.charAt(index) == ' ')
+                && (text.charAt(index + 1) != ' ' || text.charAt(index + 1) != '\r'))) {
+            nombre += text.charAt(index);
+            index++;
+        }
+        return nombre;
+    }
+
+    /*Obtener CUIT de la empresa
+     */
+    public Long obtenerCuit() {
+        String sub = "Persona Física";
+        index = text.indexOf(sub) + sub.length();
+        skipBlank();
+        String cuit = readField();
+        skipBlank();
+        cuit += readField();
+        skipBlank();
+        cuit += readField();
+        Long cuitN = Long.parseLong(cuit);
+        return cuitN;
+    }
+
+    /*Fecha de inicio de actividades, formato Date
+     */
+    public Date obtenerFechaInicioAct() throws ParseException {
+        String sub = "Persona Física";
+        index = text.indexOf(sub) + sub.length();
+        skipBlank();
+        readField();
+        skipBlank();
+        readField();
+        skipBlank();
+        readField();
+        skipBlank();
+        String dateString = readField();
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        return date;
+    }
+
+    /*Devuelve un Array de enteros conteniendo los códigos CUACM
+    correspondientes a las actividades de la empresa.
+     */
+    public ArrayList<ArrayList<String>> obtenerActividades() {
+        ArrayList<ArrayList<String>> actividadesEmpresa = new ArrayList<>();
+        String sub = "ESTANDAR";
+        index = text.indexOf(sub) + sub.length();
+        String temp;
+        do {
+            skipBlank();
+            actividadesEmpresa.add(new ArrayList<>(3));
+            actividadesEmpresa.get(actividadesEmpresa.size() - 1).add(readField());
+            skipBlank();
+            actividadesEmpresa.get(actividadesEmpresa.size() - 1).add(readField());
+            skipBlank();
+            actividadesEmpresa.get(actividadesEmpresa.size() - 1).add(readField());
+            sub = "AMBIENTAL";
+            index = text.indexOf(sub, index) + sub.length();
+            skipBlank();
+            readField();
+            skipBlank();
+            temp = readField();
+            if (temp.contains("Firma")) {
+                sub = "Hipólito Yrigoyen 1001 - Reconquista";
+                index = text.indexOf(sub, index) + sub.length();
+                sub = "(03482) 449189 | (342) 5112121";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                temp = readField();
+            }
+            sub = "ESTANDAR";
+            index = text.indexOf(sub, index) + sub.length();
+            if (index == -1 + sub.length()) {
+                return actividadesEmpresa;
+            }
+        } while (!temp.contains("DOMICILIO"));
+        return actividadesEmpresa;
+    }
+
+    /*Funcion para mover el cursor hasta la proxima palabra ignorando espacios
+    y saltos de linea*/
+    protected Integer skipBlank() {
+        Integer skipped = 0;
+        while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
+            index++;
+            skipped++;
+        }
+        return skipped;
+    }
+
+    /*Método para leer un campo que puede contener espacios
+    hasta encontrar un salto de linea o mas de un espacio, 
+    dada una posicion de indice y el texto como parametros.
+     */
+    protected String readField() {
+        String field = new String();
+        while ((text.charAt(index) != ' '
+                && text.charAt(index) != '\r'
+                && text.charAt(index) != '\n') || (text.charAt(index) == ' ' && (text.charAt(index + 1) != ' '
+                && text.charAt(index + 1) != '\r'
+                && text.charAt(index + 1) != '\n')) || (text.charAt(index) == ' ' && (text.charAt(index + 1) == ' ' && (text.charAt(index + 2) != ' '
+                && text.charAt(index + 2) != '\r'
+                && text.charAt(index + 2) != '\n')))) {
+            field += text.charAt(index);
+            index++;
+        }
+        return field;
+    }
+
+    /*Obtener los datos del representante legal (nombre, apellido, dni)
+     */
+    public String obtenerRepLegal() {
+
+        String sub = "REPRESENTANTE LEGAL";
+        index = text.indexOf(sub) + sub.length();
+        sub = "N° DOCUMENTO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String apellido = readField();
+        apellido = WordUtils.capitalizeFully(apellido);
+
+        skipBlank();
+        String nombre = WordUtils.capitalizeFully(readField());
+
+        skipBlank();
+        String dniString = readField();
+        Integer dni = Integer.parseInt(dniString);
+
+        String rep = apellido + ' ' + nombre + ", " + dniString;
+        return rep;
+    }
+
+    /* Permite obtener los datos del consultor, experto o perito;
+    nombre y apellido, titulo y matrícula
+     */
+    public String obtenerConsultor() {
+        String sub = "Si el consultor, perito o experto no se encuentra en el desplegable";
+        index = text.indexOf(sub) + sub.length();
+        sub = "REGISTRO";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String consultor = readField();
+        if ("*".equals(consultor)) {
+            skipBlank();
+            consultor = readField();
+        }
+        consultor += ", ";
+        consultor = WordUtils.capitalizeFully(consultor);
+        skipBlank();
+        consultor += readField() + ", ";
+        skipBlank();
+        consultor += readField();
+        return consultor;
+    }
+
+    public String obtenerNombreArchivoFotoSat() {
+        String sub = "Nombre del archivo correspondiente a la foto satelital de ubicación";
+        index = text.indexOf(sub) + sub.length();
+        sub = "digital y en papel)";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        String nombre = readField();
+        return nombre;
     }
 
     public ArrayList<ArrayList<String>> obtenerPartidasInm() {
@@ -368,7 +557,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return datos;
     }
 
-    ArrayList<ArrayList<String>> obtenerPlantasFueraProv() {
+    public ArrayList<ArrayList<String>> obtenerPlantasFueraProv() {
         ArrayList<ArrayList<String>> plantasFuera = new ArrayList<>();
         String sub = "plantas ubicadas fuera de la provincia";
         index = text.indexOf(sub) + sub.length();
@@ -530,7 +719,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return subproductos;
     }
 
-    ArrayList<ArrayList<String>> obtenerMateriasPrimas() {
+    public ArrayList<ArrayList<String>> obtenerMateriasPrimas() {
         ArrayList<ArrayList<String>> materias = new ArrayList<>();
         String sub = "MATERIAS";
         index = text.indexOf(sub) + sub.length();
@@ -540,59 +729,68 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         index = text.indexOf(sub, index) + sub.length();
         skipBlank();
         String temp = readField();
-        while (!temp.contains("INSUMOS")) {
-            if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
-                materias.add(new ArrayList<>(5));
-                if (!StringUtils.isNumeric(temp)) {
-                    while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
-                        index++;
-                        temp = temp.substring(1);
+        Integer x = index;
+        skipBlank();
+        String temp2 = readField();
+        index = x;
+        if (temp2.contains("INSUMOS")) {
+            return materias;
+        } else {
+            while (!temp.contains("INSUMOS")) {
+                if (CharUtils.isAsciiNumeric(temp.charAt(0))) {
+                    materias.add(new ArrayList<>(5));
+                    if (!StringUtils.isNumeric(temp)) {
+                        while (CharUtils.isAsciiNumeric(temp.charAt(0)) || temp.charAt(0) == ' ') {
+                            index++;
+                            temp = temp.substring(1);
+                        }
+                        materias.get(materias.size() - 1).add(temp);
+                    } else {
+                        skipBlank();
+                        materias.get(materias.size() - 1).add(readField());
                     }
-                    materias.get(materias.size() - 1).add(temp);
-                } else {
                     skipBlank();
                     materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    temp = "";
+                    while (text.charAt(index) != ' ') {
+                        temp += text.charAt(index);
+                        index++;
+                    }
+                    materias.get(materias.size() - 1).add(temp);
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    temp = readField();
+                } else {
+                    materias.add(new ArrayList<>(5));
+                    skipBlank();
+                    readField();
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    materias.get(materias.size() - 1).add(readField());
+                    skipBlank();
+                    temp += readField();
+                    materias.get(materias.size() - 1).add(temp);
+                    skipBlank();
+                    temp = readField();
                 }
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                temp = "";
-                while (text.charAt(index) != ' ') {
-                    temp += text.charAt(index);
-                    index++;
+                if (temp.contains("Firma")) {
+                    sub = "(342) 5112121";
+                    index = text.indexOf(sub, index) + sub.length();
+                    skipBlank();
+                    temp = readField();
                 }
-                materias.get(materias.size() - 1).add(temp);
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                temp = readField();
-            } else {
-                materias.add(new ArrayList<>(5));
-                skipBlank();
-                readField();
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                materias.get(materias.size() - 1).add(readField());
-                skipBlank();
-                temp += readField();
-                materias.get(materias.size() - 1).add(temp);
-                skipBlank();
-                temp = readField();
             }
-            if (temp.contains("Firma")) {
-                sub = "(342) 5112121";
-                index = text.indexOf(sub, index) + sub.length();
-                skipBlank();
-                temp = readField();
-            }
+            return materias;
         }
-        return materias;
     }
+
 }

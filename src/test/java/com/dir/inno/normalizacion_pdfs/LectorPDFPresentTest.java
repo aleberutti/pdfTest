@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -21,16 +22,16 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author MODERNIZACION05
  */
-public class LectorPDFImpreso47VTest {
+public class LectorPDFPresentTest {
 
-    LectorPDFImpreso47V instance1;
-    LectorPDFImpreso47V instance2;
-    LectorPDFImpreso47V instance3;
-    LectorPDFImpreso47V instance4;
-    LectorPDFImpreso47V instance5;
-    LectorPDFImpreso47V instance6;
+    private LectorPDFPresent instance1;
+    private LectorPDFPresent instance2;
+    private LectorPDFPresent instance3;
+    private LectorPDFPresent instance4;
+    private LectorPDFPresent instance5;
+    private LectorPDFPresent instance6;
 
-    public LectorPDFImpreso47VTest() {
+    public LectorPDFPresentTest() {
     }
 
     @BeforeAll
@@ -46,7 +47,7 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance1 = new LectorPDFImpreso47V(text);
+        instance1 = new LectorPDFPresent(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
@@ -54,7 +55,7 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance2 = new LectorPDFImpreso47V(text);
+        instance2 = new LectorPDFPresent(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(3)_impreso.pdf";
@@ -62,7 +63,7 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance3 = new LectorPDFImpreso47V(text);
+        instance3 = new LectorPDFPresent(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(4)_impreso.pdf";
@@ -70,7 +71,7 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance4 = new LectorPDFImpreso47V(text);
+        instance4 = new LectorPDFPresent(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(5)_impreso.pdf";
@@ -78,7 +79,7 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance5 = new LectorPDFImpreso47V(text);
+        instance5 = new LectorPDFPresent(text);
 
         filePath = new File("").getAbsolutePath();
         filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
@@ -86,12 +87,316 @@ public class LectorPDFImpreso47VTest {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        instance6 = new LectorPDFImpreso47V(text);
+        instance6 = new LectorPDFPresent(text);
+    }
+
+    @Test
+    public void testObtenerVersion() {
+        System.out.println("obtenerVersion");
+
+        String expResult = "4.7";
+        String result = instance1.obtenerVersion();
+        assertEquals(expResult, result);
+
+        expResult = "4.7";
+        result = instance2.obtenerVersion();
+        assertEquals(expResult, result);
+
+        expResult = "4.7";
+        result = instance3.obtenerVersion();
+        assertEquals(expResult, result);
+
+        expResult = "4.7";
+        result = instance4.obtenerVersion();
+        assertEquals(expResult, result);
+
+        expResult = "4.7";
+        result = instance5.obtenerVersion();
+        assertEquals(expResult, result);
+
+        expResult = "4.7";
+        result = instance6.obtenerVersion();
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of obtenerPartidasInm method, of class LectorPDFImpreso47V.
+     * Test of obtenerNombre method, of class LectorPDFImpreso47.
      */
+    @Test
+    public void testObtenerNombre() {
+        System.out.println("obtenerNombre");
+
+        String expResult = "NombreCompleto/RazonSocial";
+        String result = instance1.obtenerNombre();
+        assertEquals(expResult, result);
+
+        expResult = "Empresa Ficticia";
+        result = instance2.obtenerNombre();
+        assertEquals(expResult, result);
+
+        expResult = "COCACOLA";
+        result = instance3.obtenerNombre();
+        assertEquals(expResult, result);
+
+        expResult = "Empresa Ficticia";
+        result = instance4.obtenerNombre();
+        assertEquals(expResult, result);
+
+        expResult = "Fact Society";
+        result = instance5.obtenerNombre();
+        assertEquals(expResult, result);
+
+        expResult = "NombreCompleto/RazonSocial";
+        result = instance6.obtenerNombre();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerCuit method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerCuit() {
+        System.out.println("obtenerCuit");
+
+        Long expResult = 30303132333L;
+        Long result = instance1.obtenerCuit();
+        assertEquals(expResult, result);
+
+        expResult = 20380539684L;
+        result = instance2.obtenerCuit();
+        assertEquals(expResult, result);
+
+        expResult = 20380539684L;
+        result = instance3.obtenerCuit();
+        assertEquals(expResult, result);
+
+        expResult = 20380539684L;
+        result = instance4.obtenerCuit();
+        assertEquals(expResult, result);
+
+        expResult = 3546825542L;
+        result = instance5.obtenerCuit();
+        assertEquals(expResult, result);
+
+        expResult = 30303132333L;
+        result = instance6.obtenerCuit();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerFechaInicioAct method, of class LectorPDFImpreso47.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testObtenerFechaInicioAct() throws Exception {
+        System.out.println("obtenerFechaInicioAct");
+
+        Date expResult = new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        Date result = instance1.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("26/03/2019");
+        result = instance2.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2019");
+        result = instance3.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("26/03/2019");
+        result = instance4.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("06/03/2019");
+        result = instance5.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+
+        expResult = new SimpleDateFormat("dd/MM/yyyy").parse("08/03/2019");
+        result = instance6.obtenerFechaInicioAct();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerActividades method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerActividades() {
+        System.out.println("obtenerActividades");
+
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("155120");
+        expResult.get(0).add("2");
+        ArrayList<ArrayList<String>> result = instance1.obtenerActividades();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("181130");
+        expResult.get(0).add("1");
+        expResult.get(1).add("Principal");
+        expResult.get(1).add("112003");
+        expResult.get(1).add("3");
+        expResult.get(2).add("Principal");
+        expResult.get(2).add("181120");
+        expResult.get(2).add("1");
+        result = instance2.obtenerActividades();
+        assertEquals(expResult, result);
+        
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("112004");
+        expResult.get(0).add("3");
+        result = instance3.obtenerActividades();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("181130");
+        expResult.get(0).add("1");
+        expResult.get(1).add("Principal");
+        expResult.get(1).add("112003");
+        expResult.get(1).add("3");
+        expResult.get(2).add("Principal");
+        expResult.get(2).add("181120");
+        expResult.get(2).add("1");
+        result = instance4.obtenerActividades();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("181130");
+        expResult.get(0).add("1");
+        expResult.get(1).add("Secundaria");
+        expResult.get(1).add("402001");
+        expResult.get(1).add("2");
+        result = instance5.obtenerActividades();
+        assertEquals(expResult, result);
+
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.add(new ArrayList<>(3));
+        expResult.get(0).add("Principal");
+        expResult.get(0).add("155120");
+        expResult.get(0).add("2");
+        expResult.get(1).add("Principal");
+        expResult.get(1).add("12230");
+        expResult.get(1).add("1");
+        expResult.get(2).add("Principal");
+        expResult.get(2).add("552112");
+        expResult.get(2).add("1");
+        result = instance6.obtenerActividades();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerRepLegal method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerRepLegal() {
+        System.out.println("obtenerRepLegal");
+
+        String expResult = "Apellidorepresentantlegal Nombrerepresentantelegal, 12345678";
+        String result = instance1.obtenerRepLegal();
+        assertEquals(expResult, result);
+
+        expResult = "Apellidorepleguno Nombrerepleguno, 76545678";
+        result = instance2.obtenerRepLegal();
+        assertEquals(expResult, result);
+
+        expResult = "Dassda Adssadsa, 12321";
+        result = instance3.obtenerRepLegal();
+        assertEquals(expResult, result);
+
+        expResult = "Apellidorepleguno Nombrerepleguno, 76545678";
+        result = instance4.obtenerRepLegal();
+        assertEquals(expResult, result);
+
+        expResult = "Lega Licenla, 420420";
+        result = instance5.obtenerRepLegal();
+        assertEquals(expResult, result);
+
+        expResult = "Apellidorepresentantlegal Nombrerepresentantelegal, 12345678";
+        result = instance6.obtenerRepLegal();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerConsultor method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerConsultor() {
+        System.out.println("obtenerConsultor");
+
+        String expResult = "Abbate, Alejandro Agustín, Licenciado en Saneamiento Ambiental, 0391";
+        String result = instance1.obtenerConsultor();
+        assertEquals(expResult, result);
+
+        expResult = "Acosta, Natalia Carolina, Licenciada en Geoecología y Medio Ambiente, 0232";
+        result = instance2.obtenerConsultor();
+        assertEquals(expResult, result);
+
+        expResult = "Acosta, Guillermo Oscar Ariel, Ingeniero Industrial, 0367";
+        result = instance3.obtenerConsultor();
+        assertEquals(expResult, result);
+
+        expResult = "Acosta, Natalia Carolina, Licenciada en Geoecología y Medio Ambiente, 0232";
+        result = instance4.obtenerConsultor();
+        assertEquals(expResult, result);
+
+        expResult = "Agretti, Saúl Emanuel, Ingeniero Agrónomo, 0115";
+        result = instance5.obtenerConsultor();
+        assertEquals(expResult, result);
+
+        expResult = "Abbate, Alejandro Agustín, Licenciado en Saneamiento Ambiental, 0391";
+        result = instance6.obtenerConsultor();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of obtenerNombreArchivoFotoSat method, of class LectorPDFImpreso47.
+     */
+    @Test
+    public void testObtenerNombreArchivoFotoSat() {
+        System.out.println("obtenerNombreArchivoFotoSat");
+
+        String expResult = "NombreArchivoFotoSatelitaldeUbicacion";
+        String result = instance1.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+
+        expResult = "archivo1";
+        result = instance2.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+
+        expResult = "dsaadssda";
+        result = instance3.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+
+        expResult = "archivo1";
+        result = instance4.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+
+        expResult = "adwddw";
+        result = instance5.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+
+        expResult = "NombreArchivoFotoSatelitaldeUbicacion";
+        result = instance6.obtenerNombreArchivoFotoSat();
+        assertEquals(expResult, result);
+    }
+
     @Test
     public void testObtenerPartidasInm() {
         System.out.println("obtenerPartidasInm");
@@ -575,7 +880,7 @@ public class LectorPDFImpreso47VTest {
     @Test
     public void testObtenerProductos() {
         System.out.println("obtenerProductos");
-        
+
         ArrayList<ArrayList<String>> expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("NombreProductoAElaborar");
@@ -586,7 +891,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("Otro");
         ArrayList<ArrayList<String>> result = instance1.obtenerProductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -604,7 +909,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("Bien de Capital");
         result = instance2.obtenerProductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("dasdasdas");
@@ -615,7 +920,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("Bien de Capital");
         result = instance3.obtenerProductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -633,7 +938,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("Bien de Capital");
         result = instance4.obtenerProductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -658,7 +963,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(2).add("Otro");
         result = instance5.obtenerProductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -698,7 +1003,7 @@ public class LectorPDFImpreso47VTest {
     @Test
     public void testObtenerSubproductos() {
         System.out.println("obtenerSubproductos");
-        
+
         ArrayList<ArrayList<String>> expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("NombreSubProducto");
@@ -708,7 +1013,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("NombreAlmacenamientoSubProducto");
         ArrayList<ArrayList<String>> result = instance1.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -724,7 +1029,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("almacenamiento65497");
         result = instance2.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("dasdsa");
@@ -734,7 +1039,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("dasad");
         result = instance3.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -750,7 +1055,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("almacenamiento65497");
         result = instance4.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -766,7 +1071,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("almacenamiento65497");
         result = instance4.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -788,7 +1093,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(2).add("Gracias");
         result = instance5.obtenerSubproductos();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -824,7 +1129,7 @@ public class LectorPDFImpreso47VTest {
     @Test
     public void testObtenerMateriasPrimas() {
         System.out.println("obtenerMateriasPrimas");
-        
+
         ArrayList<ArrayList<String>> expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("NombreMateriaPrima");
@@ -834,7 +1139,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("NombreAlmacenamientoMateriaPrima");
         ArrayList<ArrayList<String>> result = instance1.obtenerMateriasPrimas();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("matprima");
@@ -844,7 +1149,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("almac754654");
         result = instance2.obtenerMateriasPrimas();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("asd");
@@ -854,7 +1159,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("dsasdsad");
         result = instance3.obtenerMateriasPrimas();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.get(0).add("matprima");
@@ -864,7 +1169,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("almac754654");
         result = instance4.obtenerMateriasPrimas();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));
@@ -880,7 +1185,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(1).add("Tampoco");
         result = instance5.obtenerMateriasPrimas();
         assertEquals(expResult, result);
-        
+
         expResult = new ArrayList<>();
         expResult.add(new ArrayList<>(5));
         expResult.add(new ArrayList<>(5));

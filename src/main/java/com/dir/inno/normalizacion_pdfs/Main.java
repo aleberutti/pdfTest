@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -92,6 +92,7 @@ public class Main {
         //System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
         
         ArrayList<ArrayList<String>> listaInsumos = lectorVisual.obtenerInsumos();
+        System.out.println("Lista de Insumos" + "\n" + "==========");
         for (Integer i = 0; i < listaInsumos.size(); i++) {
             System.out.println("Insumos " + (i + 1) + '/' + listaInsumos.size() + ':');
             System.out.println(
@@ -99,11 +100,12 @@ public class Main {
                     + listaInsumos.get(i).get(1) + ", "
                     + listaInsumos.get(i).get(2) + ", "
                     + listaInsumos.get(i).get(3) + ", "
-                    + listaInsumos.get(i).get(4) + "; "); 
-                    
+                    + listaInsumos.get(i).get(4) + "; ");     
         }
+        System.out.println("\n");
         
         ArrayList<ArrayList<String>> sustanciasAuxiliares = lectorVisual.obtenerSustAuxiliares();
+        System.out.println("Lista de Sustancias Auxiliares" + "\n" + "==========");
         for (Integer i = 0; i < sustanciasAuxiliares.size(); i++) {
             System.out.println("Sustancia Auxiliar " + (i + 1) + '/' + sustanciasAuxiliares.size() + ':');
             System.out.println(
@@ -111,14 +113,56 @@ public class Main {
                     + sustanciasAuxiliares.get(i).get(1) + ", "
                     + sustanciasAuxiliares.get(i).get(2) + ", "
                     + sustanciasAuxiliares.get(i).get(3) + "; "); 
-                    
         }
+        System.out.println("\n");
         
         ArrayList<String> archivosImagenes = lectorVisual.obtenerArchivosLayOut();
+        System.out.println("Nombre de los archivos del Lay-Out" + "\n" + "==========");
         for(Integer i = 0; i < archivosImagenes.size(); i++){
             System.out.println("Nombre del archivo " + (i + 1) + '/' + archivosImagenes.size() + ':');
             System.out.println(archivosImagenes.get(i));
         }
+        System.out.println("\n");
         
+        ArrayList<String> datosDomReal = lectorVisual.obtenerDomRealPlanta();
+        System.out.println("Domicilio real de la planta." + "\n" + "==========");
+        for(Integer i = 0; i < datosDomReal.size(); i++){
+            //System.out.println("Nombre del archivo " + (i + 1) + '/' + archivosImagenes.size() + ':');
+            switch (i){
+                case 0:
+                    System.out.println("Calle: " + datosDomReal.get(i));
+                    break;
+                case 1:
+                    System.out.println("Numero de Calle: " + datosDomReal.get(i));
+                    break;
+                case 2:
+                    System.out.println("Piso: " + datosDomReal.get(i));
+                    break;
+                case 3:
+                    System.out.println("NºDpto: " + datosDomReal.get(i));
+                    break;
+                case 4:
+                    System.out.println("Provincia: " + datosDomReal.get(i));
+                    break;
+                case 5:
+                    System.out.println("Departamento: " + datosDomReal.get(i));
+                    break;
+                case 6:
+                    System.out.println("Localidad: " + datosDomReal.get(i));
+                    break;
+                case 7:
+                    System.out.println("Código postal: " + datosDomReal.get(i));
+                    break;
+                case 8:
+                    System.out.println("Zonificación: " + datosDomReal.get(i));
+                    break;
+                case 9:
+                    System.out.println("Nombre del Archivo: " + datosDomReal.get(i));
+                    break;
+                default:
+                    break;
+            }
+        }
+        System.out.println("\n");
     }
 }

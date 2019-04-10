@@ -94,7 +94,6 @@ public class LectorPDFImpresoVisual47 {
 	ArrayList<ArrayList<String>> insumos = new ArrayList<>();
         Integer indice = 0;
 	String aux, nombreInsumo, estadoAgregacion, consumoAnual, unidad, almacenamiento;
-	
 
 	/*String insumo = 
             "Nombre del insumo: " + nombreInsumo + "; \n" +
@@ -114,9 +113,7 @@ public class LectorPDFImpresoVisual47 {
 	aux = readField();       
         
 	while(StringUtils.isNumeric(aux) ||!(aux.replaceAll(" ", "").equals("SUSTANCIASAUXILIARESUTILIZADAS"))){
-            
             //System.out.println(aux.replaceAll(" ", ""));
-            
             if(StringUtils.isNumeric(aux)){ /*casos pdfs 3 y 5*/
                    // System.out.println("Entró en caso 3/5.");
                     insumos.add(new ArrayList<>());
@@ -162,7 +159,6 @@ public class LectorPDFImpresoVisual47 {
                 //System.out.println("Valor de Aux al inicio del caso: " + aux);
                 //promptEnterKey();
                 if(StringUtils.isNumeric(aux)){ 
-
 	            skipBlank();
 	            nombreInsumo = readField();
                     //System.out.println(nombreInsumo);
@@ -226,7 +222,6 @@ public class LectorPDFImpresoVisual47 {
 	    }
 	}
 	return insumos;
-
 }
    
    /*Método para obtener la lista de sustancias auxiliares utilizada por 
@@ -247,11 +242,8 @@ public class LectorPDFImpresoVisual47 {
            skipBlank();
            aux = readField();
 
-           
            while(!aux.replace(" ","").equals("LAY-OUT,DIAGRAMADEFLUJOSyRELEVAMIENTOFOTOGRÁFICO:(Sepresentaenformatodigitalyen")){
-               
                if(StringUtils.isNumeric(aux)){ //casos pdfs 2 y 4
-               
                     indice++;
                     sustAuxiliares.add(new ArrayList<>());
                     
@@ -291,22 +283,18 @@ public class LectorPDFImpresoVisual47 {
                    sustAuxiliares.get(indice - 1).add(sustancias);
                    sustAuxiliares.get(indice - 1).add(consumo);
                    sustAuxiliares.get(indice - 1).add(unidad);
-                   sustAuxiliares.get(indice - 1).add(almacenamiento);
-                   
+                   sustAuxiliares.get(indice - 1).add(almacenamiento);  
                }
                skipBlank();
                aux = readField();
-            }    
-           
+            }     
        }
-      
-       
        return sustAuxiliares;
    }
    
    /*metodo para obtener los nombres de los archivos correspondientes al 
-   lay-out de la planta, diagrama de proceso productivo, y relevamiento 
-   fotografico
+   * lay-out de la planta, diagrama de proceso productivo, y relevamiento 
+   * fotografico
    */
    public ArrayList<String> obtenerArchivosLayOut(){ 
        ArrayList<String> archivos = new ArrayList<>();
@@ -361,11 +349,18 @@ public class LectorPDFImpresoVisual47 {
        
        return archivos;
    }
+   
    /*Método para obtener el domicilio real de la planta*/
    public ArrayList<String> obtenerDomRealPlanta(){
-       String sub = null, aux = null, aux1 = null, calle = null, numCalle = null, 
-               piso = null, numDpto = null, provincia = null, departamento = null,
-               localidad = null, codPostal = null, zonificacion = null, nombreArchivo = null;
+       String sub, aux, aux1, calle, numCalle, 
+               piso = null, 
+               numDpto = null, 
+               provincia = null, 
+               departamento = null,
+               localidad = null, 
+               codPostal = null, 
+               zonificacion = null, 
+               nombreArchivo = null;
        Integer int1, int2, int3;
        ArrayList<String> datosDomReal = new ArrayList<>();
        
@@ -475,8 +470,9 @@ public class LectorPDFImpresoVisual47 {
      
        return datosDomReal;
    }
+   
    /*Método para obtener los inmuebles anexos a la planta con sus
-   respectivas actividades
+   * respectivas actividades
    */
    public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
        ArrayList<ArrayList<String>> inmueblesAnexos = new ArrayList<>();
@@ -521,9 +517,10 @@ public class LectorPDFImpresoVisual47 {
        return inmueblesAnexos;
    }
    
+   /*Método para obtener las dimensiones de la planta*/
    public ArrayList<String> obtenerDimensionamiento(){
        ArrayList<String> dimensiones = new ArrayList<>();
-       String sub, supTotal, supCubierta, potenciaInstalada, dotPersonal, aux;
+       String sub, supTotal, supCubierta, potenciaInstalada = null, dotPersonal = null, aux;
        
        sub = "4. DIMENSIONAMIENTO";
        index = text.indexOf(sub);
@@ -532,10 +529,10 @@ public class LectorPDFImpresoVisual47 {
        
        skipBlank();
        supTotal = readField();
-       System.out.println("supTotal: " + supTotal);
+       //System.out.println("supTotal: " + supTotal);
        skipBlank();
        supCubierta = readField();
-       System.out.println("supCubierta: " + supCubierta);
+       //System.out.println("supCubierta: " + supCubierta);
        skipBlank();
        aux = readField();
        
@@ -545,26 +542,31 @@ public class LectorPDFImpresoVisual47 {
            skipLine();
            skipBlank();
            potenciaInstalada = readField();
-           System.out.println("potenciaInstalada: " + potenciaInstalada);
+           //System.out.println("potenciaInstalada: " + potenciaInstalada);
            skipBlank();
            dotPersonal = readField();
-           System.out.println("dotPersonal: " + dotPersonal);
+           //System.out.println("dotPersonal: " + dotPersonal);
        }
        else{
            if(aux.replace(" ", "").equals("POTENCIAINSTALADA(enHP):(*)")){
                skipLine();
                skipBlank();
                potenciaInstalada = readField();
-               System.out.println("potenciaInstalada: " + potenciaInstalada);
+               //System.out.println("potenciaInstalada: " + potenciaInstalada);
                skipBlank();
                dotPersonal = readField();
-               System.out.println("dotPersonal: " + dotPersonal);
+               //System.out.println("dotPersonal: " + dotPersonal);
            }
        }
+       dimensiones.add(supTotal);
+       dimensiones.add(supCubierta);
+       dimensiones.add(potenciaInstalada);
+       dimensiones.add(dotPersonal);
        
        return dimensiones;
    }
    
+   /*Método para obtener la conformación del personal de la planta*/
    public ArrayList<ArrayList<String>> obtenerFormacionDePersonal(){
        ArrayList<ArrayList<String>> formacionPersonal = new ArrayList<>();
        String sub, cantObreros, espObreros, cantTecnicos, espTecnicos, cantProfesionales, espProfesionales;

@@ -8,10 +8,12 @@ package com.dir.inno.normalizacion_pdfs;
 import com.snowtide.PDF;
 import com.snowtide.pdf.Document;
 import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.VisualOutputTarget;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -29,7 +31,14 @@ public class LectorPDFImpreso47Test {
     LectorPDFImpreso47 instance4;
     LectorPDFImpreso47 instance5;
     LectorPDFImpreso47 instance6;
-
+    
+    LectorPDFImpresoVisual47 instanceVisual1;
+    LectorPDFImpresoVisual47 instanceVisual2;
+    LectorPDFImpresoVisual47 instanceVisual3;
+    LectorPDFImpresoVisual47 instanceVisual4;
+    LectorPDFImpresoVisual47 instanceVisual5;
+    LectorPDFImpresoVisual47 instanceVisual6;
+    
     public LectorPDFImpreso47Test() {
     }
 
@@ -54,33 +63,79 @@ public class LectorPDFImpreso47Test {
         }
         instance2 = new LectorPDFImpreso47(text);
 
-        pdfFilePath = "D: \\Formulario de presentacion v4.7(3)_impreso.pdf";
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(3)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance3 = new LectorPDFImpreso47(text);
         
-        pdfFilePath = "D: \\Formulario de presentacion v4.7(4)_impreso.pdf";
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(4)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance4 = new LectorPDFImpreso47(text);
         
-        pdfFilePath = "D: \\Formulario de presentacion v4.7(5)_impreso.pdf";
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(5)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance5 = new LectorPDFImpreso47(text);
         
-        pdfFilePath = "D: \\Formulario de presentacion v4.7(6)_impreso.pdf";
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
         try (Document pdf = PDF.open(pdfFilePath)) {
             text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
         }
         instance6 = new LectorPDFImpreso47(text);
+        
+        /*
+        * Usando VisualOutputTarget para la salida.
+        */
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
+        StringBuilder textVisual;
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual1 = new LectorPDFImpresoVisual47(text);
+
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual2 = new LectorPDFImpresoVisual47(text);
+
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual3 = new LectorPDFImpresoVisual47(text);
+        
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(4)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual4 = new LectorPDFImpresoVisual47(text);
+        
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(5)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual5 = new LectorPDFImpresoVisual47(text);
+        
+        pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        try (Document pdf = PDF.open(pdfFilePath)) {
+            text = new StringBuilder();
+            pdf.pipe(new VisualOutputTarget(text));
+        }
+        instanceVisual6 = new LectorPDFImpresoVisual47(text);
     }
 
     /**
@@ -150,7 +205,7 @@ public class LectorPDFImpreso47Test {
     /**
      * Test of obtenerCuit method, of class LectorPDFImpreso47.
      */
-    @Test
+    @Ignore
     public void testObtenerCuit() {
         System.out.println("obtenerCuit");
 
@@ -214,7 +269,7 @@ public class LectorPDFImpreso47Test {
     /**
      * Test of obtenerActividades method, of class LectorPDFImpreso47.
      */
-    @Test
+    @Ignore
     public void testObtenerActividades() {
         System.out.println("obtenerActividades");
 
@@ -393,13 +448,259 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult, result);
     }
     
+    /*
+    * Test of obtenerInsumos method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
     public void testObtenerInsumos(){
         System.out.println("obtenerInsumos");
         
-        ArrayList<String> expResult = new ArrayList<>();
+        //pdf1
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreInsumos");
+        expResult.get(0).add("Sólido");
+        expResult.get(0).add("123456");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("NombreAlmacenamientoInsumos");
+        ArrayList<ArrayList<String>> result = instanceVisual1.obtenerInsumos();
+        assertEquals(expResult, result);
         
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("insumo desconocido");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("7551");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenaje");
+        result = instanceVisual2.obtenerInsumos();
+        assertEquals(expResult, result);
         
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("213132");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("213");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("das213");
+        result = instanceVisual3.obtenerInsumos();
+        assertEquals(expResult, result);
         
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("insumo desconocido");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("7551");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenaje");
+        result = instanceVisual4.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("InsumoUno");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("6");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("Amlacen");
+        expResult.get(1).add("UnsimoDos");
+        expResult.get(1).add("Gaseoso");
+        expResult.get(1).add("999");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("Container");
+        result = instanceVisual5.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreInsumos1");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("NombreAlmacenamientoInsumos1");
+        expResult.get(1).add("NombreInsumos2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("NombreAlmacenamientoInsumos2");
+        expResult.get(2).add("NombreInsumos3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("kg");
+        expResult.get(2).add("NombreAlmacenamientoInsumos3");
+        expResult.get(3).add("NombreInsumos4");
+        expResult.get(3).add("Sólido");
+        expResult.get(3).add("1234567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoInsumos4");
+        
+        result = instanceVisual6.obtenerInsumos();
+        assertEquals(expResult, result);
+    }
+    
+    /*
+    * Test of obtenerSustAuxiliares method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerSustAuxiliares(){
+        System.out.println("obtenerSustAuxiliares");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreSustAuxiliaresYFluidos");
+        expResult.get(0).add("1234567");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("NombreAlmacenamientoSustAuxiliaresYFluidos");
+        result = instanceVisual1.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sustancia");
+        expResult.get(0).add("282");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almac233");
+        expResult.get(1).add("fluido");
+        expResult.get(1).add("854");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almac6565");
+        result = instanceVisual2.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instanceVisual3.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sustancia");
+        expResult.get(0).add("282");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almac233");
+        expResult.get(1).add("fluido");
+        expResult.get(1).add("854");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almac6565");
+        result = instanceVisual4.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        result = instanceVisual5.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreSustAuxiliaresYFluidos1");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("NombreAlmacenamientoSustAuxiliaresYFluidos1");
+        expResult.get(1).add("NombreSustAuxiliaresYFluidos2");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("NombreAlmacenamientoSustAuxiliaresYFluidos2");
+        expResult.get(2).add("NombreSustAuxiliaresYFluidos3");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("NombreAlmacenamientoSustAuxiliaresYFluidos3");
+        expResult.get(3).add("NombreSustAuxiliaresYFluidos4");
+        expResult.get(3).add("1234567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoSustAuxiliaresYFluidos4");
+        result = instanceVisual6.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /*
+    * Test of obtenerArchivosLayOut method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerArchivosLayOut(){
+        System.out.println("obtenerArchivosLayOut");
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("Nombre del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre del archivo correspondiente al Layout de la planta y/o Layout de máquinas y equipos 2.1");
+        expResult.add("2.3 Nombre del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instanceVisual1.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instanceVisual2.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("12342t");
+        expResult.add("123321");
+        expResult.add("132123231123");
+        result = instanceVisual3.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instanceVisual4.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("DiagramaFlujo_2.1");
+        expResult.add("DiagramaPlanta_v1");
+        expResult.add("RelevamientoFot_4");
+        result = instanceVisual5.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("Nombre del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre del archivo correspondiente al Layout de la planta y/o Layout de máquinas y equipos 2.1");
+        expResult.add("2.3 Nombre del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instanceVisual6.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+    }
+    
+    /*
+    * Test of obtenerDomRealPlanta method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerDomRealPlanta(){
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
         
     }
 }

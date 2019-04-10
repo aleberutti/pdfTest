@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -196,5 +196,15 @@ public class Main {
             
         }
         System.out.println("\n");
+        
+        ArrayList<ArrayList<String>> formacionPersonal = lectorVisual.obtenerFormacionDePersonal();
+        System.out.println("Formacion de personal." + "\n" + "==========");
+        for (Integer i = 0; i < formacionPersonal.size(); i++) {
+            System.out.println("Personal " + (i + 1) + '/' + formacionPersonal.size() + ':');
+            System.out.println(
+                    formacionPersonal.get(i).get(0) + ", "
+                    + formacionPersonal.get(i).get(1) + "; "
+                    ); 
+        }
     }
 }

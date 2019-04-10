@@ -564,4 +564,70 @@ public class LectorPDFImpresoVisual47 {
        
        return dimensiones;
    }
+   
+   public ArrayList<ArrayList<String>> obtenerFormacionDePersonal(){
+       ArrayList<ArrayList<String>> formacionPersonal = new ArrayList<>();
+       String sub, cantObreros, espObreros, cantTecnicos, espTecnicos, cantProfesionales, espProfesionales;
+       
+       sub = "FORMACIÓN  DE PERSONAL:";
+       index = text.indexOf(sub) + sub.length();
+      
+       //levanto info de obreros
+       sub = "Obreros:";
+       index = text.indexOf(sub,index) + sub.length();
+       sub = "Cantidad:";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       cantObreros = readField();
+       //System.out.println("cantObreros: " + cantObreros);
+       sub = "Capacitación/";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       espObreros = readField();
+       //System.out.println("espObreros: " + espObreros);
+       
+       //levanto info de tecnicos
+       sub = "Técnicos:";
+       index = text.indexOf(sub,index) + sub.length();
+       sub = "Cantidad:";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       cantTecnicos = readField();
+       //System.out.println("cantTecnicos: " + cantTecnicos);
+       sub = "Capacitación/";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       espTecnicos = readField();
+       //System.out.println("espTecnicos: " + espTecnicos);
+       
+       //levanto info de profesionales
+       sub = "Profesionales:";
+       index = text.indexOf(sub,index) + sub.length();
+       sub = "Cantidad:";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       cantProfesionales = readField();
+       //System.out.println("cantProfesionales: " + cantProfesionales);
+       sub = "Capacitación/";
+       index = text.indexOf(sub,index) + sub.length();
+       skipBlank();
+       espProfesionales = readField();
+       //System.out.println("espTecnicos: " + espProfesionales);
+       
+       ArrayList<String> obreros = new ArrayList<>();
+       ArrayList<String> tecnicos = new ArrayList<>();
+       ArrayList<String> profesionales = new ArrayList<>();
+       
+       obreros.add(cantObreros);
+       obreros.add(espObreros);
+       tecnicos.add(cantTecnicos);
+       tecnicos.add(espTecnicos);
+       profesionales.add(cantProfesionales);
+       profesionales.add(espProfesionales);
+       formacionPersonal.add(obreros);
+       formacionPersonal.add(tecnicos);
+       formacionPersonal.add(profesionales);
+       
+       return formacionPersonal;
+   }
 }

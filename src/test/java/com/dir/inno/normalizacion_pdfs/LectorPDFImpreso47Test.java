@@ -701,6 +701,320 @@ public class LectorPDFImpreso47Test {
         
         //pdf1
         expResult = new ArrayList<>();
+        expResult.add("CalleDomRealPlanta");
+        expResult.add("numDomRealPlant");
+        expResult.add(null);
+        expResult.add(null);
+        expResult.add("Santa Fe");
+        expResult.add("ROSARIO");
+        expResult.add("ROSARIO");
+        expResult.add("2000");
+        expResult.add("Parque Industrial");
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        result = instanceVisual1.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
         
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("Calle ubicacion de planta");
+        expResult.add("09877");
+        expResult.add("11");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASTELLANOS");
+        expResult.add("AURELIA");
+        expResult.add("2301");
+        expResult.add("Industrial/Rural");
+        expResult.add("archivo1");
+        result = instanceVisual2.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("dssadsaads");
+        expResult.add("131212");
+        expResult.add("21");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASEROS");
+        expResult.add("AREQUITO");
+        expResult.add("2183");
+        expResult.add("Parque Industrial");
+        expResult.add("dsaadssda");
+        result = instanceVisual3.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("Calle ubicacion de planta");
+        expResult.add("09877");
+        expResult.add("11");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASTELLANOS");
+        expResult.add("AURELIA");
+        expResult.add("2301");
+        expResult.add("Industrial/Rural");
+        expResult.add("archivo1");
+        result = instanceVisual4.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("Callecinha");
+        expResult.add("89498");
+        expResult.add("3");
+        expResult.add(null);
+        expResult.add("Santa Fe");
+        expResult.add("GARAY");
+        expResult.add("SANTA ROSA DE CALCHINES");
+        expResult.add("3022");
+        expResult.add("Otras Zonas");
+        expResult.add("adwddw");
+        result = instanceVisual5.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("CalleDomRealPlanta");
+        expResult.add("numDomRealPlant");
+        expResult.add(null);
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("ROSARIO");
+        expResult.add("ROSARIO");
+        expResult.add("2000");
+        expResult.add("Parque Industrial");
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        result = instanceVisual6.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+    }
+    
+    /*
+    * Test of obtenerInmueblesAnexos method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerInmueblesAnexos(){
+        System.out.println("obtenerInmueblesAnexos");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("DomicilioInmuebleAnexo");
+        expResult.get(0).add("ActividadInmuebleAnexo");
+        result = instanceVisual1.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("domicilio inmueble anexo");
+        expResult.get(0).add("trabajo muy duro como un esclavo");
+        result = instanceVisual2.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        //expResult.add(new ArrayList<>());
+        //expResult.get(0).add("");
+        //expResult.get(0).add("");
+        result = instanceVisual3.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("domicilio inmueble anexo");
+        expResult.get(0).add("trabajo muy duro como un esclavo");
+        result = instanceVisual4.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Anexalo1");
+        expResult.get(0).add("Anexamiento");
+        expResult.get(1).add("Anexalo2");
+        expResult.get(1).add("Inanexamiento");
+        result = instanceVisual5.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("DomicilioInmuebleAnexo1");
+        expResult.get(0).add("ActividadInmuebleAnexo1");
+        expResult.get(1).add("DomicilioInmuebleAnexo2");
+        expResult.get(1).add("ActividadInmuebleAnexo2");
+        expResult.get(2).add("DomicilioInmuebleAnexo3");
+        expResult.get(2).add("ActividadInmuebleAnexo3");
+        expResult.get(3).add("DomicilioInmuebleAnexo4");
+        expResult.get(3).add("ActividadInmuebleAnexo4");
+        result = instanceVisual6.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+    }
+    
+     /*
+    * Test of obtenerDimensionamiento method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerDimensionamiento(){
+        System.out.println("obtenerDimensionamiento");
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("superf");
+        expResult.add("supcub");
+        expResult.add("potins");
+        expResult.add("1234");
+        result = instanceVisual1.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("26215");
+        expResult.add("907821");
+        expResult.add("86219");
+        expResult.add("8868");
+        result = instanceVisual2.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("313213");
+        expResult.add("123123");
+        expResult.add("13123");
+        expResult.add("123");
+        result = instanceVisual3.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("26215");
+        expResult.add("907821");
+        expResult.add("86219");
+        expResult.add("8868");
+        result = instanceVisual4.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("56566");
+        expResult.add("56400");
+        expResult.add("7894");
+        expResult.add("65");
+        result = instanceVisual5.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("superf");
+        expResult.add("supcub");
+        expResult.add("potins");
+        expResult.add("1234");
+        result = instanceVisual6.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+    }
+    
+    /*
+    * Test of obtenerFormacionDePersonal method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerFormacionDePersonal(){
+        System.out.println("obtenerFormacionDePersonal");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("1234");
+        expResult.get(0).add("cantidad de obreros - capacitacion/especialidades");
+        expResult.get(1).add("1234");
+        expResult.get(1).add("cantidad de técnicos - capacitacion/especialidades");
+        expResult.get(2).add("1234");
+        expResult.get(2).add("cantidad de profesionales - capacitacion/especialidades");
+        result = instanceVisual1.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("21");
+        expResult.get(0).add("Ño");
+        expResult.get(1).add("56");
+        expResult.get(1).add("SI");
+        expResult.get(2).add("654");
+        expResult.get(2).add("Ñi");
+        result = instanceVisual2.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("32123");
+        expResult.get(0).add("dasdsasd");
+        expResult.get(1).add("12321");
+        expResult.get(1).add("dasdas");
+        expResult.get(2).add("1221");
+        expResult.get(2).add("dsadsdasdsa");
+        result = instanceVisual3.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("21");
+        expResult.get(0).add("Ño");
+        expResult.get(1).add("56");
+        expResult.get(1).add("SI");
+        expResult.get(2).add("654");
+        expResult.get(2).add("Ñi");
+        result = instanceVisual4.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("12");
+        expResult.get(0).add("Obreros");
+        expResult.get(1).add("65");
+        expResult.get(1).add("Tecnicos");
+        expResult.get(2).add("8");
+        expResult.get(2).add("Profesinales");
+        result = instanceVisual5.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("1234");
+        expResult.get(0).add("cantidad de obreros - capacitacion/especialidades");
+        expResult.get(1).add("1234");
+        expResult.get(1).add("cantidad de técnicos - capacitacion/especialidades");
+        expResult.get(2).add("1234");
+        expResult.get(2).add("cantidad de profesionales - capacitacion/especialidades");
+        result = instanceVisual6.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
     }
 }

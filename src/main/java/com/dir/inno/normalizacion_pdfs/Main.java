@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(6)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(1)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -42,17 +42,17 @@ public class Main {
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
-        //LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
+        LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
         LectorPDFImpresoVisual47 lectorVisual = new LectorPDFImpresoVisual47(text);
-
+        //System.out.println(text);
         /*
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         Source input = new DOMSource(xml.getXMLDocument());
         Result output = new StreamResult(new File("output.xml"));
         transformer.transform(input, output);
          */
-//        System.out.println(text);
-//
+        //System.out.println(text);
+
 //        System.out.println("Version: " + lector.obtenerVersion() + "\r");
 //
 //        System.out.println("Nombre: " + lector.obtenerNombre());
@@ -78,19 +78,15 @@ public class Main {
 //                    + nomina.get(i).get(2) + ", "
 //                    + nomina.get(i).get(3));
 //        }
-        
-        //System.out.println(text);
+//        
+//        
+//
+//        System.out.println();
+//
+//        System.out.println("Representante Legal: " + lector.obtenerRepLegal());
+//        
+//        System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
 
-        //System.out.println();
-
-        //System.out.println("Representante Legal: " + lector.obtenerRepLegal());
-        
-        //System.out.println("Consultor/Experto: " + lector.obtenerConsultor());
-        
-        //System.out.println("Insumos:\n" + lector.obtenerInsumos());
-        
-        //System.out.println("Insumos:\n" + lectorVisual.obtenerInsumos());
-        
         ArrayList<ArrayList<String>> listaInsumos = lectorVisual.obtenerInsumos();
         System.out.println("Lista de Insumos" + "\n" + "==========");
         for (Integer i = 0; i < listaInsumos.size(); i++) {
@@ -205,6 +201,18 @@ public class Main {
                     formacionPersonal.get(i).get(0) + ", "
                     + formacionPersonal.get(i).get(1) + "; "
                     ); 
+        }
+        System.out.println("\n");
+        
+        ArrayList<ArrayList<String>> emisionGaseosaNatural = lectorVisual.obtenerEmisionGaseosaNatural();
+        System.out.println("Emisiones Gaseosas de Componentes Naturales" + "\n" + "==========");
+        for(Integer i = 0; i < emisionGaseosaNatural.size(); i++){
+            System.out.println("Emisiones Gaseosas de Componentes Naturales" +" "+(i + 1) + '/' + emisionGaseosaNatural.size() + ':');
+            System.out.println(
+                emisionGaseosaNatural.get(i).get(0) + ","
+                + emisionGaseosaNatural.get(i).get(1) + ","
+                + emisionGaseosaNatural.get(i).get(2) + ";"
+            );
         }
     }
 }

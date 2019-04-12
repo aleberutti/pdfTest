@@ -23,7 +23,7 @@ public class LectorPDFImpresoVisual47 {
         this.text = text;
     }
     
-    /*Método para leer una palabra y guardarla en un string*/
+    /**Método para leer una palabra y guardarla en un string*/
     private String readField() {
         String field = new String();
         while ((text.charAt(index) != ' '
@@ -39,7 +39,7 @@ public class LectorPDFImpresoVisual47 {
         return field;
     }
     
-    /*Método para saltear una linea de texto*/
+    /**Método para saltear una linea de texto*/
     public Integer skipLine(){
         
         while(text.charAt(index) != '\n' && text.charAt(index) != '\r'){
@@ -49,7 +49,7 @@ public class LectorPDFImpresoVisual47 {
         return index;
     }
     
-    /*Método que saltea una palabra*/
+    /**Método que saltea una palabra*/
     public Integer skipWord(){
 
         while ((text.charAt(index) != ' ' && text.charAt(index) != '\r')
@@ -61,7 +61,7 @@ public class LectorPDFImpresoVisual47 {
         return index;
     }
    
-    /*Método que saltea los caracteres en blanco*/
+    /**Método que saltea los caracteres en blanco*/
     private Integer skipBlank() {
         while (text.charAt(index) == ' ' || text.charAt(index) == '\r' || text.charAt(index) == '\n') {
             index++;
@@ -69,7 +69,7 @@ public class LectorPDFImpresoVisual47 {
         return index;
     }
     
-    /*Método que permite saltear el pie de página de los pdfs*/
+    /**Método que permite saltear el pie de página de los pdfs*/
     public Integer skipFooter(){
         String sub = "(03482) 449189 | (342) 5112121";
         index = text.indexOf(sub,index) + sub.length();
@@ -77,8 +77,8 @@ public class LectorPDFImpresoVisual47 {
         return index;
     }
     
-    /*Método utilizado para debug. Permite pausar la ejecución del programa
-    y renaudar la misma mediante la pulsación de la tecla enter.
+    /**Método utilizado para debug. Permite pausar la ejecución del programa
+    *y renaudar la misma mediante la pulsación de la tecla enter.
     */
     public void promptEnterKey(){
         System.out.println("Press \"ENTER\" to continue...");
@@ -86,8 +86,8 @@ public class LectorPDFImpresoVisual47 {
         scanner.nextLine();
     }//usado para debuguear
    
-    /*Método para obtener la lista de insumos utilizada por la planta
-    de producción
+    /**Método para obtener la lista de insumos utilizada por la planta
+    *de producción
     */
    public ArrayList<ArrayList<String>> obtenerInsumos(){
 
@@ -224,7 +224,7 @@ public class LectorPDFImpresoVisual47 {
 	return insumos;
 }
    
-   /*Método para obtener la lista de sustancias auxiliares utilizada por 
+   /**Método para obtener la lista de sustancias auxiliares utilizada por 
    la planta de producción.
    */
    public ArrayList<ArrayList<String>> obtenerSustAuxiliares(){
@@ -292,7 +292,7 @@ public class LectorPDFImpresoVisual47 {
        return sustAuxiliares;
    }
    
-   /*metodo para obtener los nombres de los archivos correspondientes al 
+   /**Método para obtener los nombres de los archivos correspondientes al 
    * lay-out de la planta, diagrama de proceso productivo, y relevamiento 
    * fotografico
    */
@@ -350,7 +350,7 @@ public class LectorPDFImpresoVisual47 {
        return archivos;
    }
    
-   /*Método para obtener el domicilio real de la planta*/
+   /**Método para obtener el domicilio real de la planta*/
    public ArrayList<String> obtenerDomRealPlanta(){
        String sub, aux, aux1, calle, numCalle, 
                piso = null, 
@@ -471,7 +471,7 @@ public class LectorPDFImpresoVisual47 {
        return datosDomReal;
    }
    
-   /*Método para obtener los inmuebles anexos a la planta con sus
+   /**Método para obtener los inmuebles anexos a la planta con sus
    * respectivas actividades
    */
    public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
@@ -517,7 +517,7 @@ public class LectorPDFImpresoVisual47 {
        return inmueblesAnexos;
    }
    
-   /*Método para obtener las dimensiones de la planta*/
+   /**Método para obtener las dimensiones de la planta*/
    public ArrayList<String> obtenerDimensionamiento(){
        ArrayList<String> dimensiones = new ArrayList<>();
        String sub, supTotal, supCubierta, potenciaInstalada = null, dotPersonal = null, aux;
@@ -566,7 +566,7 @@ public class LectorPDFImpresoVisual47 {
        return dimensiones;
    }
    
-   /*Método para obtener la conformación del personal de la planta*/
+   /**Método para obtener la conformación del personal de la planta*/
    public ArrayList<ArrayList<String>> obtenerFormacionDePersonal(){
        ArrayList<ArrayList<String>> formacionPersonal = new ArrayList<>();
        String sub, cantObreros, espObreros, cantTecnicos, espTecnicos, cantProfesionales, espProfesionales;
@@ -632,4 +632,132 @@ public class LectorPDFImpresoVisual47 {
        
        return formacionPersonal;
    }
-}
+   
+   /**
+    * Método para obtener emisiones gaseosas de componentes naturales
+     *  
+    */
+   public ArrayList<ArrayList<String>> obtenerEmisionGaseosaNatural(){
+       ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
+       String sub,emision, proceso, tratamiento, aux;
+       Integer point1, point2, flag = 0;
+       
+       sub = "GASEOSAS";
+       index = text.indexOf(sub);
+       sub = "No";
+       index = text.indexOf(sub, index) + sub.length();
+       skipBlank();
+       aux = readField();
+       //System.out.println("Aux: " + aux);
+       
+       if(aux.replace(" ","").equals("¿Poseeemisionesdegasesdecombustióndecombustibleslíquidos?(*)")){
+           //caso pdf 5
+           //System.out.println("No hay emisiones gaseosas provenientes de insumos naturales.");
+           return emisionGas;
+       } 
+       else
+       {
+           
+           if(aux.replace(" ","").equals("FirmayAclaración")){
+           skipFooter();
+           }
+           if(aux.equals("EMISIÓN")){
+               //System.out.println("Reconoció Emision");
+               sub = "TRATAMIENTO";
+               index = text.indexOf(sub,index) + sub.length();
+               point1 = index;
+               skipBlank();
+               aux = readField();
+               //System.out.println("Aux: " + aux);
+               point2 = index - aux.length();
+               //System.out.println("Espacios hasta la sig palabra antes de loopear: " + (point2 - point1));
+               
+               if((point2 - point1) <= 30){
+                   //casos pdf 2 y 4
+                   index = index - aux.length();
+                   
+                   while(!aux.replace(" ","").equals("Agregarfila")){
+                       ArrayList<String> fila = new ArrayList<>();
+                       
+                       if (flag == 0){
+                           aux = readField();
+                           flag = 1;
+                       }
+                       emision = aux;
+                       //System.out.println("Emisión: " + emision);
+                       skipBlank();
+                       proceso = readField();
+                       //System.out.println("Proceso: " + proceso);
+                       skipBlank();
+                       tratamiento = readField();
+                       //System.out.println("Tratamiento: " + tratamiento);
+                       skipBlank();
+                       aux = readField();
+                       //System.out.println("Aux: " + aux);
+                       fila.add(emision);
+                       fila.add(proceso);
+                       fila.add(tratamiento);
+                       emisionGas.add(fila);
+                   }
+               }
+               else{
+                   /*casos pdfs 1 y 6 -> DETALLE: El código está asquerosamente harcodeado, dado que hay campos
+                    distintos con sólo un caracter en blanco de separación, con lo que es imposible de distinguir cuando
+                    tenemos una palabra distinta en el mismo campo de una palabra distinta en otro campo. Específicamente 
+                    los campos son proceso y tratamiento.
+                   */
+                   //index = index - aux.length();
+                   String strSplit[];
+                   //promptEnterKey();
+                   while(!aux.replace(" ","").equals("Agregarfila")){
+                       ArrayList<String> fila = new ArrayList<>();
+                       if (flag == 0){
+                           strSplit = aux.split("\\s");
+//                           promptEnterKey();
+//                           System.out.println("strSplit[0]");
+//                           System.out.println(strSplit[0]);
+//                           promptEnterKey();
+//                           System.out.println("strSplit[1]");
+//                           System.out.println(strSplit[1]);
+                           flag = 1;
+                       }
+                       strSplit = aux.split("\\s");
+                       proceso = strSplit[0];
+//                       System.out.println("Proceso: " + proceso);
+//                       skipBlank();
+                       tratamiento = strSplit[1];
+//                       System.out.println("Tratamiento: " + tratamiento);
+                       skipBlank();
+                       emision = readField();
+//                       System.out.println("Emisión: " + emision);
+                       skipBlank();
+                       proceso += readField();
+//                       System.out.println("Proceso: " + proceso);
+                       skipBlank();
+                       tratamiento += readField();
+//                       System.out.println("Tratamiento: " + tratamiento);
+                       skipBlank();
+                       aux = readField();
+                       fila.add(emision);
+                       fila.add(proceso);
+                       fila.add(tratamiento);
+                       emisionGas.add(fila);
+//                       promptEnterKey();
+                   }
+               }
+               
+           }
+           else{
+               skipBlank();
+               aux = readField();
+               if(aux.replace(" ","").equals("¿Poseeemisionesdegasesdecombustióndecombustibleslíquidos?(*)")){
+                   //caso pdf 3
+                   //System.out.println("Entro a emisiones de comb liquidos despues de skipFooter();");
+                   return emisionGas;
+                }
+            }     
+        
+        }
+     return emisionGas;
+   }   
+    

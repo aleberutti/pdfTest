@@ -448,7 +448,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult, result);
     }
     
-    /*
+    /**
     * Test of obtenerInsumos method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -547,7 +547,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult, result);
     }
     
-    /*
+    /**
     * Test of obtenerSustAuxiliares method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -633,7 +633,7 @@ public class LectorPDFImpreso47Test {
         
     }
     
-    /*
+    /**
     * Test of obtenerArchivosLayOut method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -691,7 +691,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult, result);
     }
     
-    /*
+    /**
     * Test of obtenerDomRealPlanta method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -790,7 +790,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult,result);
     }
     
-    /*
+    /**
     * Test of obtenerInmueblesAnexos method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -860,7 +860,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult,result);
     }
     
-     /*
+     /**
     * Test of obtenerDimensionamiento method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -924,7 +924,7 @@ public class LectorPDFImpreso47Test {
         assertEquals(expResult,result);
     }
     
-    /*
+    /**
     * Test of obtenerFormacionDePersonal method, of class LectorPDFImpresoVisual47.
     */
     @Test
@@ -1015,6 +1015,82 @@ public class LectorPDFImpreso47Test {
         expResult.get(2).add("1234");
         expResult.get(2).add("cantidad de profesionales - capacitacion/especialidades");
         result = instanceVisual6.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+    * Test of obtenerFormacionDePersonal method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerEmisionGaseosaNatural(){
+        System.out.println("obtenerEmisionGaseosaNatural");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("nombreEmisionGaseosa");
+        expResult.get(0).add("NombreProcesoGeneradorDeEmisionesGaseosas");
+        expResult.get(0).add("NombreTratamientoDeEmisionesGaseosas");
+        result = instanceVisual1.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("proceso1");
+        expResult.get(0).add("tratamiento1");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("proceso2");
+        expResult.get(1).add("tratamiento2");
+        result = instanceVisual2.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instanceVisual3.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("proceso1");
+        expResult.get(0).add("tratamiento1");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("proceso2");
+        expResult.get(1).add("tratamiento2");
+        result = instanceVisual4.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        result = instanceVisual5.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("nombreEmisionGaseosa1");
+        expResult.get(0).add("NombreProcesoGeneradorDeEmisionesGaseosas1");
+        expResult.get(0).add("NombreTratamientoDeEmisionesGaseosas1");
+        expResult.get(1).add("nombreEmisionGaseosa2");
+        expResult.get(1).add("NombreProcesoGeneradorDeEmisionesGaseosas2");
+        expResult.get(1).add("NombreTratamientoDeEmisionesGaseosas2");
+        expResult.get(2).add("nombreEmisionGaseosa3");
+        expResult.get(2).add("NombreProcesoGeneradorDeEmisionesGaseosas3");
+        expResult.get(2).add("NombreTratamientoDeEmisionesGaseosas3");
+        expResult.get(3).add("nombreEmisionGaseosa4");
+        expResult.get(3).add("NombreProcesoGeneradorDeEmisionesGaseosas4");
+        expResult.get(3).add("NombreTratamientoDeEmisionesGaseosas4");
+        result = instanceVisual6.obtenerEmisionGaseosaNatural();
         assertEquals(expResult, result);
     }
 }

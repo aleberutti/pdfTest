@@ -214,5 +214,17 @@ public class Main {
                 + emisionGaseosaNatural.get(i).get(2) + ";"
             );
         }
+        System.out.println("\n");
+        
+        ArrayList<ArrayList<String>> emisionGasCombustion = lectorVisual.obtenerEmisionGasCombustion();
+        System.out.println("Emisiones Gaseosas de Combustibles" + "\n" + "==========");
+        for(Integer i = 0; i < emisionGasCombustion.size(); i++){
+            System.out.println("Emisiones Gaseosas de Combustibles" +" "+(i + 1) + '/' + emisionGasCombustion.size() + ':');
+            System.out.println(
+                emisionGasCombustion.get(i).get(0) + ","
+                + emisionGasCombustion.get(i).get(1) + ","
+                + emisionGasCombustion.get(i).get(2) + ";"
+            );
+        }
     }
 }

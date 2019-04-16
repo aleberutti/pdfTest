@@ -760,152 +760,171 @@ public class LectorPDFImpresoVisual47 {
         }
      return emisionGas;
    }  
+   
    /** método que retorna la lista de gases emitidos por la combustión de 
     * combustibles líquidos
    */
-     
-public ArrayList<ArrayList<String>> obtenerEmisionGasCombustion(){
-    ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
-    String sub, aux, emision, proceso, tratamiento, strSplit[];
-    
-    sub = "combustibles líquidos? (*)";
-    index = text.indexOf(sub);
-    sub = "No";
-    index = text.indexOf(sub,index) + sub.length();
-    //index = text.indexOf(sub,index) + sub.length();
-    skipBlank();
-    aux = readField();
-    System.out.println("Aux: " + aux);
-    
-    switch(aux.replace(" ","")){
-        
-        case "FirmayAclaración": 
-            skipFooter();
-            skipBlank();
-            aux = readField();
-            if (aux.replace(" ","").equals("EMISIÓN")){
-                
-                sub = "TRATAMIENTO";
+   public ArrayList<ArrayList<String>> obtenerEmisionGasCombustion(){
+        ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
+        String sub, aux, emision, proceso, tratamiento, strSplit[];
+
+        sub = "combustibles líquidos? (*)";
+        index = text.indexOf(sub);
+        sub = "No";
+        index = text.indexOf(sub,index) + sub.length();
+        //index = text.indexOf(sub,index) + sub.length();
+        skipBlank();
+        aux = readField();
+       //System.out.println("Aux: " + aux);
+
+        switch(aux.replace(" ","")){
+
+            case "FirmayAclaración": //2, 5 y 6
+                skipFooter();
                 skipBlank();
                 aux = readField();
-                index = index - aux.length();
-                //caso pdfs 2 y 5
-                if(aux.length() < 30){
-                    while(!aux.replace(" ","").equals("Agregarfila")){
-                    ArrayList<String> fila = new ArrayList<>();
-                    index = index - aux.length();
-                    emision = readField();
+                if (aux.replace(" ","").equals("EMISIÓN")){
+
+                    sub = "TRATAMIENTO";
+                    index = text.indexOf(sub,index) + sub.length();
                     skipBlank();
-                    proceso = readField();
-                    skipBlank();
-                    tratamiento = readField();
+                    aux = readField(); //Emision 3
+                    //System.out.println("Aux 2, 5 y 6: " + aux);
+                    //promptEnterKey();
+                    //index = index - aux.length();
+                    //caso pdfs 2 y 5
+                    if(aux.length() < 30){
+                        while(!aux.replace(" ","").equals("Agregarfila")){
+                        ArrayList<String> fila = new ArrayList<>();
+                        //index = index - aux.length();
+                        emision = aux;
+                        skipBlank();
+                        proceso = readField();
+                        skipBlank();
+                        tratamiento = readField();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(emision);
+                        fila.add(proceso);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                        }        
+                    }
+                    else { // caso pdf 6
+                        while(!aux.replace(" ","").equals("Agregarfila")){
+                            ArrayList<String> fila = new ArrayList<>();
+                            //index = index - aux.length();
+                            //skipBlank();
+                            //aux = readField();
+                            strSplit = aux.split("\\s");
+                            emision = strSplit[0];
+                            //System.out.println("emision: " + emision);
+                            proceso = strSplit[1];
+                            //System.out.println("proceso: " + proceso);
+                            tratamiento = strSplit[2];
+                            //System.out.println("tratamiento: " + tratamiento);
+                            skipBlank();
+                            emision += readField();
+                            //System.out.println("emisionf: " + emision);
+                            skipBlank();
+                            proceso += readField();
+                            //System.out.println("procesof: " + proceso);
+                            skipBlank();
+                            tratamiento +=readField();
+                            //System.out.println("tratamientof: " + tratamiento);
+                            skipBlank();
+                            aux = readField();
+                            //System.out.println("Aux al final del loop: " + aux);
+
+                            fila.add(emision);
+                            fila.add(proceso);
+                            fila.add(tratamiento);
+                            emisionGas.add(fila);
+                        }
+                    }
+
+                }
+                break;
+
+            case "EMISIÓN": //1 y 4
+                sub = "TRATAMIENTO";
+                index = text.indexOf(sub,index) + sub.length();
+                skipBlank();
+                aux = readField();
+                //System.out.println("Aux caso 1 y 4: " + aux);
+                if(aux.replace(" ","").equals("FirmayAclaración")){
+                    skipFooter();
                     skipBlank();
                     aux = readField();
-                    
-                    fila.add(emision);
-                    fila.add(proceso);
-                    fila.add(tratamiento);
-                    emisionGas.add(fila);
-                    }        
+                    //System.out.println("Aux caso 1 y 4 dentro de skipfooter: " + aux);
+                    skipBlank();
+
                 }
-                else { // caso pdf 6
+                //caso pdf1 
+                if(aux.length() > 30){
                     while(!aux.replace(" ","").equals("Agregarfila")){
                         ArrayList<String> fila = new ArrayList<>();
-                        index = index - aux.length();
-                        skipBlank();
-                        aux = readField();
+                        //index = index - aux.length();
+                        //skipBlank();
+                        //aux = readField();
+                       // System.out.println("Aux dentro del while: " + aux);
                         strSplit = aux.split("\\s");
                         emision = strSplit[0];
-                        proceso = strSplit[1];
-                        tratamiento = strSplit[2];
+                        //System.out.println("Emision: " + emision);
+                        proceso = strSplit[2];//se saltea una posicion porque guarda un caracter vacio
+                        //System.out.println("Proceso: " + proceso);
+                        tratamiento = strSplit[3];
+                        //System.out.println("Tratamiento: " + tratamiento);
                         skipBlank();
                         emision += readField();
+                        //System.out.println("Emision1: " + emision);
                         skipBlank();
                         proceso += readField();
+                        //System.out.println("Proceso1: " + proceso);
                         skipBlank();
                         tratamiento +=readField();
+                        //System.out.println("Tratamiento1: " + tratamiento);
+                        skipBlank();
                         aux = readField();
-                        
+                        //System.out.println("Aux fin de loop: " + tratamiento);
+                        skipBlank();
                         fila.add(emision);
                         fila.add(proceso);
                         fila.add(tratamiento);
                         emisionGas.add(fila);
                     }
                 }
-                
-            }
-            break;
-        
-        case "EMISIÓN":
-            skipBlank();
-            aux = readField();
-            System.out.println("Aux despues de emision1: " + aux);
-            skipBlank();
-            aux = readField();
-            System.out.println("Aux despues de emision2: " + aux);
-            skipBlank();
-            aux = readField();
-            System.out.println("Aux despues de emision3: " + aux);
-            promptEnterKey();
-            if(aux.replace(" ","").equals("FirmayAclaración")){
-                skipFooter();
-            }
-            //caso pdf1 
-            if(aux.length() > 30){
-                while(!aux.replace(" ","").equals("Agregarfila")){
-                    ArrayList<String> fila = new ArrayList<>();
-                    //index = index - aux.length();
-                    skipBlank();
-                    aux = readField();
-                    System.out.println("Aux dentro del while: " + aux);
-                    strSplit = aux.split("\\s");
-                    emision = strSplit[0];
-                    proceso = strSplit[1];
-                    tratamiento = strSplit[2];
-                    skipBlank();
-                    emision += readField();
-                    skipBlank();
-                    proceso += readField();
-                    skipBlank();
-                    tratamiento +=readField();
-                    aux = readField();
+                else { //caso pdf 4 //por ahora funciona
+                    while(!aux.replace(" ","").equals("Agregarfila")){
+                        //System.out.println("Entro en el caso 4");
+                        ArrayList<String> fila = new ArrayList<>();
+                        index = index - aux.length();
+                        emision = readField();
+                        skipBlank();
+                        proceso = readField();
+                        skipBlank();
+                        tratamiento = readField();
+                        skipBlank();
+                        aux = readField();
 
-                    fila.add(emision);
-                    fila.add(proceso);
-                    fila.add(tratamiento);
-                    emisionGas.add(fila);
+                        fila.add(emision);
+                        fila.add(proceso);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                    }        
                 }
-            }
-            else { //caso pdf 4
-                while(!aux.replace(" ","").equals("Agregarfila")){
-                    System.out.println("Entro en el caso 4");
-                    ArrayList<String> fila = new ArrayList<>();
-                    index = index - aux.length();
-                    emision = readField();
-                    skipBlank();
-                    proceso = readField();
-                    skipBlank();
-                    tratamiento = readField();
-                    skipBlank();
-                    aux = readField();
-                    
-                    fila.add(emision);
-                    fila.add(proceso);
-                    fila.add(tratamiento);
-                    emisionGas.add(fila);
-                }        
-            }
-            break;
-            
-        case "¿Poseeemisionesdegasesnocontempladosenlaspreguntasanteriores?(*)":
-            break;
-    }
-    
-    
-    
+                break;
+
+            case "¿Poseeemisionesdegasesnocontempladosenlaspreguntasanteriores?(*)":
+                break;
+        }
 
 
-    return emisionGas;
-    }  
-}
+
+
+
+        return emisionGas;
+        }  
+   }
 

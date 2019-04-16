@@ -1093,4 +1093,80 @@ public class LectorPDFImpreso47Test {
         result = instanceVisual6.obtenerEmisionGaseosaNatural();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Test of obtenerEmisionGasCombustion(), of class lectorPDFImpresoVisual47
+     */
+    @Test
+    public void testobtenerEmisionGasCombustion(){
+        System.out.println("obtenerEmisionGasCombustion");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreEmisionGasDeCombustionDeCombLiquidos");
+        expResult.get(0).add("ProcesoGeneradorEmisionGasDeCombLiquido");
+        expResult.get(0).add("TratamientoGasDeCombustionDeCombLiquidos");
+        result = instanceVisual1.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision3");
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("tratam3");
+        result = instanceVisual2.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instanceVisual3.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision3");
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("tratam3");
+        result = instanceVisual4.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("Proceso1");
+        expResult.get(0).add("No Se trata");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("Proceso2");
+        expResult.get(1).add("Si Se Trata");
+        result = instanceVisual5.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreEmisionGasDeCombustionDeCombLiquidos1");
+        expResult.get(0).add("ProcesoGeneradorEmisionGasDeCombLiquido1");
+        expResult.get(0).add("TratamientoGasDeCombustionDeCombLiquidos1");
+        expResult.get(1).add("NombreEmisionGasDeCombustionDeCombLiquidos2");
+        expResult.get(1).add("ProcesoGeneradorEmisionGasDeCombLiquido2");
+        expResult.get(1).add("TratamientoGasDeCombustionDeCombLiquidos2");
+        expResult.get(2).add("NombreEmisionGasDeCombustionDeCombLiquidos3");
+        expResult.get(2).add("ProcesoGeneradorEmisionGasDeCombLiquido3");
+        expResult.get(2).add("TratamientoGasDeCombustionDeCombLiquidos3");
+        expResult.get(3).add("NombreEmisionGasDeCombustionDeCombLiquidos4");
+        expResult.get(3).add("ProcesoGeneradorEmisionGasDeCombLiquido4");
+        expResult.get(3).add("TratamientoGasDeCombustionDeCombLiquidos4");
+        result = instanceVisual6.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+    }
 }

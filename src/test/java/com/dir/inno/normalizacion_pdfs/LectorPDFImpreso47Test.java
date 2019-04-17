@@ -1169,4 +1169,80 @@ public class LectorPDFImpreso47Test {
         result = instanceVisual6.obtenerEmisionGasCombustion();
         assertEquals(expResult, result);
     }
+    
+    /**
+    * Test of obtenerEmisionGasNoContemplado(), of class lectorPDFImpresoVisual47
+    */
+    @Test
+    public void testobtenerEmisionGasNoContemplado(){
+        System.out.println("obtenerEmisionGasNoContemplado");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores");
+        expResult.get(0).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores");
+        expResult.get(0).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores");
+        result = instanceVisual1.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proce4");
+        expResult.get(0).add("Comp4");
+        expResult.get(0).add("Trat4");
+        result = instanceVisual2.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instanceVisual3.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proce4");
+        expResult.get(0).add("Comp4");
+        expResult.get(0).add("Trat4");
+        result = instanceVisual4.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("Componente3");
+        expResult.get(0).add("Tratamiento3");
+        expResult.get(1).add("Proceso4");
+        expResult.get(1).add("Componente4");
+        expResult.get(1).add("Trat4");
+        result = instanceVisual5.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores1");
+        expResult.get(0).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores1");
+        expResult.get(0).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores1");
+        expResult.get(1).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores2");
+        expResult.get(1).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores2");
+        expResult.get(1).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores2");
+        expResult.get(2).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores3");
+        expResult.get(2).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores3");
+        expResult.get(2).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores3");
+        expResult.get(3).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores4");
+        expResult.get(3).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores4");
+        expResult.get(3).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores4");
+        result = instanceVisual6.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+    }
 }

@@ -33,7 +33,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException, SAXException, ParseException {
 
-        String pdfFilePath = "D:\\Formulario de presentacion v4.7(3)_impreso.pdf";
+        String pdfFilePath = "D:\\Formulario de presentacion v4.7(2)_impreso.pdf";
 
         StringBuilder text;
         try (Document pdf = PDF.open(pdfFilePath)) {
@@ -226,5 +226,18 @@ public class Main {
                 + emisionGasCombustion.get(i).get(2) + ";"
             );
         }
+        System.out.println("\n");
+        
+        ArrayList<ArrayList<String>> emisionGasNoContemplado = lectorVisual.obtenerEmisionGasNoContemplado();
+        System.out.println("Emisiones de gases no contemplados en el formulario: " + "\n" + "==========");
+        for(Integer i = 0; i < emisionGasNoContemplado.size(); i++){
+            System.out.println("Emisiones de gases no contemplados en el formulario: " +" "+(i + 1) + '/' + emisionGasNoContemplado.size() + ':');
+            System.out.println(
+                emisionGasNoContemplado.get(i).get(0) + ","
+                + emisionGasNoContemplado.get(i).get(1) + ","
+                + emisionGasNoContemplado.get(i).get(2) + ";"
+            );
+        }
+        System.out.println("\n");
     }
 }

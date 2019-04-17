@@ -89,7 +89,7 @@ public class LectorPDFImpresoVisual47 {
     /**Método para obtener la lista de insumos utilizada por la planta
     *de producción
     */
-   public ArrayList<ArrayList<String>> obtenerInsumos(){
+    public ArrayList<ArrayList<String>> obtenerInsumos(){
 
 	ArrayList<ArrayList<String>> insumos = new ArrayList<>();
         Integer indice = 0;
@@ -224,10 +224,10 @@ public class LectorPDFImpresoVisual47 {
 	return insumos;
 }
    
-   /**Método para obtener la lista de sustancias auxiliares utilizada por 
+    /**Método para obtener la lista de sustancias auxiliares utilizada por 
    la planta de producción.
    */
-   public ArrayList<ArrayList<String>> obtenerSustAuxiliares(){
+    public ArrayList<ArrayList<String>> obtenerSustAuxiliares(){
        ArrayList<ArrayList<String>> sustAuxiliares = new ArrayList<>();
        String sustancias, consumo, unidad, almacenamiento;
        Integer indice = 0;
@@ -292,11 +292,11 @@ public class LectorPDFImpresoVisual47 {
        return sustAuxiliares;
    }
    
-   /**Método para obtener los nombres de los archivos correspondientes al 
+    /**Método para obtener los nombres de los archivos correspondientes al 
    * lay-out de la planta, diagrama de proceso productivo, y relevamiento 
    * fotografico
    */
-   public ArrayList<String> obtenerArchivosLayOut(){ 
+    public ArrayList<String> obtenerArchivosLayOut(){ 
        ArrayList<String> archivos = new ArrayList<>();
        
        String sub, aux, diagFlujo, layOut, relevFotografico;
@@ -350,8 +350,8 @@ public class LectorPDFImpresoVisual47 {
        return archivos;
    }
    
-   /**Método para obtener el domicilio real de la planta*/
-   public ArrayList<String> obtenerDomRealPlanta(){
+    /**Método para obtener el domicilio real de la planta*/
+    public ArrayList<String> obtenerDomRealPlanta(){
        String sub, aux, aux1, calle, numCalle, 
                piso = null, 
                numDpto = null, 
@@ -471,10 +471,10 @@ public class LectorPDFImpresoVisual47 {
        return datosDomReal;
    }
    
-   /**Método para obtener los inmuebles anexos a la planta con sus
+    /**Método para obtener los inmuebles anexos a la planta con sus
    * respectivas actividades
    */
-   public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
+    public ArrayList<ArrayList<String>> obtenerInmueblesAnexos(){
        ArrayList<ArrayList<String>> inmueblesAnexos = new ArrayList<>();
        String sub, aux, domicilio, actividad;
     
@@ -517,8 +517,8 @@ public class LectorPDFImpresoVisual47 {
        return inmueblesAnexos;
    }
    
-   /**Método para obtener las dimensiones de la planta*/
-   public ArrayList<String> obtenerDimensionamiento(){
+    /**Método para obtener las dimensiones de la planta*/
+    public ArrayList<String> obtenerDimensionamiento(){
        ArrayList<String> dimensiones = new ArrayList<>();
        String sub, supTotal, supCubierta, potenciaInstalada = null, dotPersonal = null, aux;
        
@@ -566,8 +566,8 @@ public class LectorPDFImpresoVisual47 {
        return dimensiones;
    }
    
-   /**Método para obtener la conformación del personal de la planta*/
-   public ArrayList<ArrayList<String>> obtenerFormacionDePersonal(){
+    /**Método para obtener la conformación del personal de la planta*/
+    public ArrayList<ArrayList<String>> obtenerFormacionDePersonal(){
        ArrayList<ArrayList<String>> formacionPersonal = new ArrayList<>();
        String sub, cantObreros, espObreros, cantTecnicos, espTecnicos, cantProfesionales, espProfesionales;
        
@@ -633,11 +633,11 @@ public class LectorPDFImpresoVisual47 {
        return formacionPersonal;
    }
    
-   /**
+    /**
     * Método para obtener emisiones gaseosas de componentes naturales
      *  
     */
-   public ArrayList<ArrayList<String>> obtenerEmisionGaseosaNatural(){
+    public ArrayList<ArrayList<String>> obtenerEmisionGaseosaNatural(){
        ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
        String sub,emision, proceso, tratamiento, aux;
        Integer point1, point2, flag = 0;
@@ -761,10 +761,10 @@ public class LectorPDFImpresoVisual47 {
      return emisionGas;
    }  
    
-   /** método que retorna la lista de gases emitidos por la combustión de 
+    /** método que retorna la lista de gases emitidos por la combustión de 
     * combustibles líquidos
    */
-   public ArrayList<ArrayList<String>> obtenerEmisionGasCombustion(){
+    public ArrayList<ArrayList<String>> obtenerEmisionGasCombustion(){
         ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
         String sub, aux, emision, proceso, tratamiento, strSplit[];
 
@@ -926,5 +926,140 @@ public class LectorPDFImpresoVisual47 {
 
         return emisionGas;
         }  
-   }
+
+    /**
+     * Método que retorna la lista de gases emitidos no contemplados en el pdf
+     */
+    public ArrayList<ArrayList<String>> obtenerEmisionGasNoContemplado(){
+        ArrayList<ArrayList<String>> emisionGas = new ArrayList<>();
+        String sub, aux, strArray[], proceso, componentes, tratamiento;
+
+        //me posiciono en la zona
+        sub = "anteriores? (*)";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+
+        switch (aux.replace(" ","")){
+            case "¿Enelestablecimientosegeneranefluentesoresiduoslíquidos?(*)": //caso 3
+                break;
+
+            case "PROCESO": //casos 1, 2 y 4
+                sub = "TRATAMIENTO";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                aux = readField();
+                System.out.println("Aux caso 1 antes del if: " + aux);
+                if(aux.length() > 32){ //caso 1
+                    while(!aux.replace(" ","").equals("Agregarfila")){
+                        ArrayList<String> fila = new ArrayList<>();
+                        strArray = aux.split("\\s");
+                        proceso = strArray[0];
+                        componentes = strArray[1];
+                        tratamiento = strArray[2];
+                        skipBlank();
+                        proceso += readField();
+                        skipBlank();
+                        componentes += readField();
+                        skipBlank();
+                        tratamiento += readField();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                        }
+                }
+                else{
+                    System.out.println("Entro a los casos 2 o 4.");
+                    while(!aux.replace(" ","").equals("Agregarfila")){ //caso 2 y 4
+                        ArrayList<String> fila = new ArrayList<>();
+                        proceso = aux;
+                        System.out.println("Proceso :" + proceso);
+                        skipBlank();
+                        componentes = readField();
+                        System.out.println("Componentes: " + componentes);
+                        skipBlank();
+                        tratamiento = readField();
+                        System.out.println("Tratamiento: " + tratamiento);
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                    }
+                }
+                break;
+           
+            case "PROCESOQUELOGENERA": //casos 5 y 6
+
+                sub = "TRATAMIENTO";
+                index = text.indexOf(sub, index) + sub.length();
+                skipBlank();
+                aux = readField();
+
+                if(aux.length() > 32){ //caso 6
+                    while(!aux.replace(" ","").equals("Agregarfila")){
+                        ArrayList<String> fila = new ArrayList<>();
+                        strArray = aux.split("\\s");
+                        proceso = strArray[0];
+                        componentes = strArray[1];
+                        tratamiento = strArray[2];
+                        skipBlank();
+                        proceso += readField();
+                        skipBlank();
+                        componentes += readField();
+                        skipBlank();
+                        tratamiento += readField();
+                        skipBlank();
+                        aux = readField();
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                            skipFooter();
+                            skipBlank();
+                            aux = readField();
+                        }
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                    }
+                }
+                else{
+                    while(!aux.replace(" ","").equals("Agregarfila")){ //caso 5
+                        ArrayList<String> fila = new ArrayList<>();
+                        proceso = aux;
+                        skipBlank();
+                        componentes = readField();
+                        skipBlank();
+                        tratamiento = readField();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(tratamiento);
+                        emisionGas.add(fila);
+                    }
+                }
+                break;
+        }
+      return emisionGas;
+    }
+}
+
+
+
+
+
+
+
+
 

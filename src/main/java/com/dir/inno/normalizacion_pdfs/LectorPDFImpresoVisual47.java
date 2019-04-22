@@ -1053,6 +1053,137 @@ public class LectorPDFImpresoVisual47 {
         }
       return emisionGas;
     }
+    
+    public ArrayList<ArrayList<String>> obtenerEfluenteNoPeligroso(){
+      
+        ArrayList<ArrayList<String>> efluentes = new ArrayList<>();
+        String sub, aux, proceso, componentes, valor, volumen, unidadTiempo, gestion, cuerpoReceptor;
+
+        sub = "https://www.santafe.gob.ar/index.php/content/view/full/10817/)";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+
+        switch(aux.replace(" ","")){
+
+            case "¿Loslíquidoscontienenresiduospeligrosopuedengenerarresiduospeligrosos?(*)":
+                  //caso 1 y 6
+                  break;
+
+            case "FirmayAclaración":
+                skipFooter();
+                skipBlank();
+                aux = readField();
+
+                if(aux.replace(" ","").equals("¿Loslíquidoscontienenresiduospeligrosopuedengenerarresiduospeligrosos?(*)")){
+                    break;
+                }
+
+                if(aux.equals("1X")){
+                    while(!aux.replace(" ","").equals("Agregarlíquido")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        skipBlank();
+                        volumen = readField();
+                        skipBlank();
+                        unidadTiempo = readField();
+                        sub = "Otro";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        gestion = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(gestion);
+                        fila.add(cuerpoReceptor);
+                        efluentes.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                                skipFooter();
+                                skipBlank();
+                                aux = readField();
+                        }  
+                    }
+                }
+
+                  break;
+
+            case "1X":
+
+                  while(!aux.replace(" ","").equals("Agregarlíquido")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        skipBlank();
+                        volumen = readField();
+                        skipBlank();
+                        unidadTiempo = readField();
+                        sub = "Otro";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        gestion = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(gestion);
+                        fila.add(cuerpoReceptor);
+                        efluentes.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                              skipFooter();
+                              skipBlank();
+                              aux = readField();
+                        }
+
+                  }
+
+                  break;
+       }
+    return efluentes;
+    }
 }
 
 

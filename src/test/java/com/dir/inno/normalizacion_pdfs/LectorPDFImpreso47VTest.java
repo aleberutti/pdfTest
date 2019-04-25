@@ -909,4 +909,871 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerMateriasPrimas();
         assertEquals(expResult, result);
     }
+    
+     /**
+    * Test of obtenerInsumos method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testObtenerInsumos(){
+        System.out.println("obtenerInsumos");
+        
+        //pdf1
+        ArrayList<ArrayList<String>> expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreInsumos");
+        expResult.get(0).add("Sólido");
+        expResult.get(0).add("123456");
+        expResult.get(0).add("unidades");
+        expResult.get(0).add("NombreAlmacenamientoInsumos");
+        ArrayList<ArrayList<String>> result = instance1.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("insumo desconocido");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("7551");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenaje");
+        result = instance2.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("213132");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("213");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("das213");
+        result = instance3.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("insumo desconocido");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("7551");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almacenaje");
+        result = instance4.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("InsumoUno");
+        expResult.get(0).add("Líquido");
+        expResult.get(0).add("6");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("Amlacen");
+        expResult.get(1).add("UnsimoDos");
+        expResult.get(1).add("Gaseoso");
+        expResult.get(1).add("999");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("Container");
+        result = instance5.obtenerInsumos();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreInsumos1");
+        expResult.get(0).add("Gaseoso");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("NombreAlmacenamientoInsumos1");
+        expResult.get(1).add("NombreInsumos2");
+        expResult.get(1).add("Líquido");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("NombreAlmacenamientoInsumos2");
+        expResult.get(2).add("NombreInsumos3");
+        expResult.get(2).add("Semisólido");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("kg");
+        expResult.get(2).add("NombreAlmacenamientoInsumos3");
+        expResult.get(3).add("NombreInsumos4");
+        expResult.get(3).add("Sólido");
+        expResult.get(3).add("1234567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoInsumos4");
+        
+        result = instance6.obtenerInsumos();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+    * Test of obtenerSustAuxiliares method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerSustAuxiliares(){
+        System.out.println("obtenerSustAuxiliares");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreSustAuxiliaresYFluidos");
+        expResult.get(0).add("1234567");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("NombreAlmacenamientoSustAuxiliaresYFluidos");
+        result = instance1.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sustancia");
+        expResult.get(0).add("282");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almac233");
+        expResult.get(1).add("fluido");
+        expResult.get(1).add("854");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almac6565");
+        result = instance2.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sustancia");
+        expResult.get(0).add("282");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("almac233");
+        expResult.get(1).add("fluido");
+        expResult.get(1).add("854");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("almac6565");
+        result = instance4.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        result = instance5.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreSustAuxiliaresYFluidos1");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("NombreAlmacenamientoSustAuxiliaresYFluidos1");
+        expResult.get(1).add("NombreSustAuxiliaresYFluidos2");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("NombreAlmacenamientoSustAuxiliaresYFluidos2");
+        expResult.get(2).add("NombreSustAuxiliaresYFluidos3");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("NombreAlmacenamientoSustAuxiliaresYFluidos3");
+        expResult.get(3).add("NombreSustAuxiliaresYFluidos4");
+        expResult.get(3).add("1234567890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("NombreAlmacenamientoSustAuxiliaresYFluidos4");
+        result = instance6.obtenerSustAuxiliares();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+    * Test of obtenerArchivosLayOut method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerArchivosLayOut(){
+        System.out.println("obtenerArchivosLayOut");
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("Nombre del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre del archivo correspondiente al Layout de la planta y/o Layout de máquinas y equipos 2.1");
+        expResult.add("2.3 Nombre del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instance1.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instance2.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("12342t");
+        expResult.add("123321");
+        expResult.add("132123231123");
+        result = instance3.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instance4.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("DiagramaFlujo_2.1");
+        expResult.add("DiagramaPlanta_v1");
+        expResult.add("RelevamientoFot_4");
+        result = instance5.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("Nombre del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre del archivo correspondiente al Layout de la planta y/o Layout de máquinas y equipos 2.1");
+        expResult.add("2.3 Nombre del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instance6.obtenerArchivosLayOut();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+    * Test of obtenerDomRealPlanta method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerDomRealPlanta(){
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("CalleDomRealPlanta");
+        expResult.add("numDomRealPlant");
+        expResult.add(null);
+        expResult.add(null);
+        expResult.add("Santa Fe");
+        expResult.add("ROSARIO");
+        expResult.add("ROSARIO");
+        expResult.add("2000");
+        expResult.add("Parque Industrial");
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        result = instance1.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("Calle ubicacion de planta");
+        expResult.add("09877");
+        expResult.add("11");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASTELLANOS");
+        expResult.add("AURELIA");
+        expResult.add("2301");
+        expResult.add("Industrial/Rural");
+        expResult.add("archivo1");
+        result = instance2.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("dssadsaads");
+        expResult.add("131212");
+        expResult.add("21");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASEROS");
+        expResult.add("AREQUITO");
+        expResult.add("2183");
+        expResult.add("Parque Industrial");
+        expResult.add("dsaadssda");
+        result = instance3.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("Calle ubicacion de planta");
+        expResult.add("09877");
+        expResult.add("11");
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("CASTELLANOS");
+        expResult.add("AURELIA");
+        expResult.add("2301");
+        expResult.add("Industrial/Rural");
+        expResult.add("archivo1");
+        result = instance4.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("Callecinha");
+        expResult.add("89498");
+        expResult.add("3");
+        expResult.add(null);
+        expResult.add("Santa Fe");
+        expResult.add("GARAY");
+        expResult.add("SANTA ROSA DE CALCHINES");
+        expResult.add("3022");
+        expResult.add("Otras Zonas");
+        expResult.add("adwddw");
+        result = instance5.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("CalleDomRealPlanta");
+        expResult.add("numDomRealPlant");
+        expResult.add(null);
+        expResult.add("2");
+        expResult.add("Santa Fe");
+        expResult.add("ROSARIO");
+        expResult.add("ROSARIO");
+        expResult.add("2000");
+        expResult.add("Parque Industrial");
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        result = instance6.obtenerDomRealPlanta();
+        assertEquals(expResult,result);
+    }
+    
+    /**
+    * Test of obtenerInmueblesAnexos method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerInmueblesAnexos(){
+        System.out.println("obtenerInmueblesAnexos");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("DomicilioInmuebleAnexo");
+        expResult.get(0).add("ActividadInmuebleAnexo");
+        result = instance1.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("domicilio inmueble anexo");
+        expResult.get(0).add("trabajo muy duro como un esclavo");
+        result = instance2.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        //expResult.add(new ArrayList<>());
+        //expResult.get(0).add("");
+        //expResult.get(0).add("");
+        result = instance3.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("domicilio inmueble anexo");
+        expResult.get(0).add("trabajo muy duro como un esclavo");
+        result = instance4.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Anexalo1");
+        expResult.get(0).add("Anexamiento");
+        expResult.get(1).add("Anexalo2");
+        expResult.get(1).add("Inanexamiento");
+        result = instance5.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("DomicilioInmuebleAnexo1");
+        expResult.get(0).add("ActividadInmuebleAnexo1");
+        expResult.get(1).add("DomicilioInmuebleAnexo2");
+        expResult.get(1).add("ActividadInmuebleAnexo2");
+        expResult.get(2).add("DomicilioInmuebleAnexo3");
+        expResult.get(2).add("ActividadInmuebleAnexo3");
+        expResult.get(3).add("DomicilioInmuebleAnexo4");
+        expResult.get(3).add("ActividadInmuebleAnexo4");
+        result = instance6.obtenerInmueblesAnexos();
+        assertEquals(expResult,result);
+    }
+    
+     /**
+    * Test of obtenerDimensionamiento method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerDimensionamiento(){
+        System.out.println("obtenerDimensionamiento");
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("superf");
+        expResult.add("supcub");
+        expResult.add("potins");
+        expResult.add("1234");
+        result = instance1.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("26215");
+        expResult.add("907821");
+        expResult.add("86219");
+        expResult.add("8868");
+        result = instance2.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("313213");
+        expResult.add("123123");
+        expResult.add("13123");
+        expResult.add("123");
+        result = instance3.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("26215");
+        expResult.add("907821");
+        expResult.add("86219");
+        expResult.add("8868");
+        result = instance4.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("56566");
+        expResult.add("56400");
+        expResult.add("7894");
+        expResult.add("65");
+        result = instance5.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("superf");
+        expResult.add("supcub");
+        expResult.add("potins");
+        expResult.add("1234");
+        result = instance6.obtenerDimensionamiento();
+        assertEquals(expResult,result);
+    }
+    
+    /**
+    * Test of obtenerFormacionDePersonal method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerFormacionDePersonal(){
+        System.out.println("obtenerFormacionDePersonal");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("1234");
+        expResult.get(0).add("cantidad de obreros - capacitacion/especialidades");
+        expResult.get(1).add("1234");
+        expResult.get(1).add("cantidad de técnicos - capacitacion/especialidades");
+        expResult.get(2).add("1234");
+        expResult.get(2).add("cantidad de profesionales - capacitacion/especialidades");
+        result = instance1.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("21");
+        expResult.get(0).add("Ño");
+        expResult.get(1).add("56");
+        expResult.get(1).add("SI");
+        expResult.get(2).add("654");
+        expResult.get(2).add("Ñi");
+        result = instance2.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("32123");
+        expResult.get(0).add("dasdsasd");
+        expResult.get(1).add("12321");
+        expResult.get(1).add("dasdas");
+        expResult.get(2).add("1221");
+        expResult.get(2).add("dsadsdasdsa");
+        result = instance3.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("21");
+        expResult.get(0).add("Ño");
+        expResult.get(1).add("56");
+        expResult.get(1).add("SI");
+        expResult.get(2).add("654");
+        expResult.get(2).add("Ñi");
+        result = instance4.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("12");
+        expResult.get(0).add("Obreros");
+        expResult.get(1).add("65");
+        expResult.get(1).add("Tecnicos");
+        expResult.get(2).add("8");
+        expResult.get(2).add("Profesinales");
+        result = instance5.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("1234");
+        expResult.get(0).add("cantidad de obreros - capacitacion/especialidades");
+        expResult.get(1).add("1234");
+        expResult.get(1).add("cantidad de técnicos - capacitacion/especialidades");
+        expResult.get(2).add("1234");
+        expResult.get(2).add("cantidad de profesionales - capacitacion/especialidades");
+        result = instance6.obtenerFormacionDePersonal();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+    * Test of obtenerFormacionDePersonal method, of class LectorPDFImpresoVisual47.
+    */
+    @Test
+    public void testobtenerEmisionGaseosaNatural(){
+        System.out.println("obtenerEmisionGaseosaNatural");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("nombreEmisionGaseosa");
+        expResult.get(0).add("NombreProcesoGeneradorDeEmisionesGaseosas");
+        expResult.get(0).add("NombreTratamientoDeEmisionesGaseosas");
+        result = instance1.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("proceso1");
+        expResult.get(0).add("tratamiento1");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("proceso2");
+        expResult.get(1).add("tratamiento2");
+        result = instance2.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("proceso1");
+        expResult.get(0).add("tratamiento1");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("proceso2");
+        expResult.get(1).add("tratamiento2");
+        result = instance4.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        result = instance5.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("nombreEmisionGaseosa1");
+        expResult.get(0).add("NombreProcesoGeneradorDeEmisionesGaseosas1");
+        expResult.get(0).add("NombreTratamientoDeEmisionesGaseosas1");
+        expResult.get(1).add("nombreEmisionGaseosa2");
+        expResult.get(1).add("NombreProcesoGeneradorDeEmisionesGaseosas2");
+        expResult.get(1).add("NombreTratamientoDeEmisionesGaseosas2");
+        expResult.get(2).add("nombreEmisionGaseosa3");
+        expResult.get(2).add("NombreProcesoGeneradorDeEmisionesGaseosas3");
+        expResult.get(2).add("NombreTratamientoDeEmisionesGaseosas3");
+        expResult.get(3).add("nombreEmisionGaseosa4");
+        expResult.get(3).add("NombreProcesoGeneradorDeEmisionesGaseosas4");
+        expResult.get(3).add("NombreTratamientoDeEmisionesGaseosas4");
+        result = instance6.obtenerEmisionGaseosaNatural();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of obtenerEmisionGasCombustion(), of class lectorPDFImpresoVisual47
+     */
+    @Test
+    public void testobtenerEmisionGasCombustion(){
+        System.out.println("obtenerEmisionGasCombustion");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreEmisionGasDeCombustionDeCombLiquidos");
+        expResult.get(0).add("ProcesoGeneradorEmisionGasDeCombLiquido");
+        expResult.get(0).add("TratamientoGasDeCombustionDeCombLiquidos");
+        result = instance1.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision3");
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("tratam3");
+        result = instance2.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision3");
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("tratam3");
+        result = instance4.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Emision1");
+        expResult.get(0).add("Proceso1");
+        expResult.get(0).add("No Se trata");
+        expResult.get(1).add("Emision2");
+        expResult.get(1).add("Proceso2");
+        expResult.get(1).add("Si Se Trata");
+        result = instance5.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+        
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreEmisionGasDeCombustionDeCombLiquidos1");
+        expResult.get(0).add("ProcesoGeneradorEmisionGasDeCombLiquido1");
+        expResult.get(0).add("TratamientoGasDeCombustionDeCombLiquidos1");
+        expResult.get(1).add("NombreEmisionGasDeCombustionDeCombLiquidos2");
+        expResult.get(1).add("ProcesoGeneradorEmisionGasDeCombLiquido2");
+        expResult.get(1).add("TratamientoGasDeCombustionDeCombLiquidos2");
+        expResult.get(2).add("NombreEmisionGasDeCombustionDeCombLiquidos3");
+        expResult.get(2).add("ProcesoGeneradorEmisionGasDeCombLiquido3");
+        expResult.get(2).add("TratamientoGasDeCombustionDeCombLiquidos3");
+        expResult.get(3).add("NombreEmisionGasDeCombustionDeCombLiquidos4");
+        expResult.get(3).add("ProcesoGeneradorEmisionGasDeCombLiquido4");
+        expResult.get(3).add("TratamientoGasDeCombustionDeCombLiquidos4");
+        result = instance6.obtenerEmisionGasCombustion();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+    * Test of obtenerEmisionGasNoContemplado(), of class lectorPDFImpresoVisual47
+    */
+    @Test
+    public void testobtenerEmisionGasNoContemplado(){
+        System.out.println("obtenerEmisionGasNoContemplado");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores");
+        expResult.get(0).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores");
+        expResult.get(0).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores");
+        result = instance1.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proce4");
+        expResult.get(0).add("Comp4");
+        expResult.get(0).add("Trat4");
+        result = instance2.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proce4");
+        expResult.get(0).add("Comp4");
+        expResult.get(0).add("Trat4");
+        result = instance4.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proceso3");
+        expResult.get(0).add("Componente3");
+        expResult.get(0).add("Tratamiento3");
+        expResult.get(1).add("Proceso4");
+        expResult.get(1).add("Componente4");
+        expResult.get(1).add("Trat4");
+        result = instance5.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores1");
+        expResult.get(0).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores1");
+        expResult.get(0).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores1");
+        expResult.get(1).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores2");
+        expResult.get(1).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores2");
+        expResult.get(1).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores2");
+        expResult.get(2).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores3");
+        expResult.get(2).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores3");
+        expResult.get(2).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores3");
+        expResult.get(3).add("ProcesoGeneradorDeGasNoContempladoEnPregAnteriores4");
+        expResult.get(3).add("ComponentesRelevantesDeGasNoContempladosEnPregAnteriores4");
+        expResult.get(3).add("TratamientoDeGasesNoContempladosEnPreguntasAnteriores4");
+        result = instance6.obtenerEmisionGasNoContemplado();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of obtenerEfluenteNoPeligroso() method, of class LectorPDFImpreso47V
+     */
+    @Test
+    public void testObtenerEfluenteNoPeligroso(){
+        System.out.println("testObtenerEfluenteNoPeligroso");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //pdf1
+        expResult = new ArrayList<>();
+        result = instance1.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+
+        //pdf2 //proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGenerador1");
+        expResult.get(0).add("Componentes1");
+        expResult.get(0).add("1");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("Conducto pluvial abierto");
+        result = instance2.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("ProcesoGenerador1");
+        expResult.get(0).add("Componentes1");
+        expResult.get(0).add("1");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("Conducto pluvial abierto");
+        result = instance4.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proceso5");
+        expResult.get(0).add("Componente5");
+        expResult.get(0).add("65");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Conducto pluvial abierto");
+        expResult.get(1).add("Proceso6");
+        expResult.get(1).add("Componente6");
+        expResult.get(1).add("99");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("semanal");
+        expResult.get(1).add("Cuenca elemental cerrada");
+        result = instance5.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        result = instance6.obtenerEfluenteNoPeligroso();
+        assertEquals(expResult, result);
+    }
+    
 }

@@ -10,6 +10,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.*;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
@@ -30,13 +34,39 @@ public class LectorPDFImpreso47 {
     /*Obtener versión del documento
      */
     public String obtenerVersion() {
-        String sub = "VERSIÓN";
-        index = text.indexOf(sub) + sub.length();
-        while (text.charAt(index) == ' ') {
-            index++;
+        String sub = "VERSIÓN", version = "", aux;
+        //String[] texto = text.split("\n");
+        
+        Pattern patron = Pattern.compile("[[v|V]{1}[1-4]{1}\\.{1}[0-9]\\*]{1}");
+        Matcher matcher = patron.matcher(text);
+        while(matcher.find()){
+            version += matcher.group(0);
         }
-        String version = text.substring(index, index + 3);
-        return version;
+//        String sub = "VERSIÓN";
+//        index = text.indexOf(sub) + sub.length();
+//        while (text.charAt(index) == ' ') {
+//            index++;
+//        }
+//        String version = text.substring(index, index + 3);
+//        return version;
+        
+        /*index = text.indexOf(sub);
+        if(!(index == -1)){
+            index += sub.length();
+            skipBlank();
+            aux = readField();
+            Matcher matcher = patron.matcher(aux);
+            while(matcher.find()){
+                version += matcher.group(0);
+            }
+        }
+        else{
+            Matcher matcher = patron.matcher(text);
+            while(matcher.find()){
+                version += matcher.group(0);
+            }
+        }*/
+        return version; 
     }
 
     /*Obtener nombre/Razon social
@@ -222,13 +252,16 @@ public class LectorPDFImpreso47 {
     }
     
     public Integer skipFooter(){
-        skipBlank();
-        
-        for(int i = 0; i < 7; i++){
-            skipLine();
-        }
-        
+        String sub = "(03482) 449189 | (342) 5112121";
+        index = text.indexOf(sub,index) + sub.length();
+    
         return index;
     }
+    
+    public void promptEnterKey(){
+        System.out.println("Press \"ENTER\" to continue...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }//usado para debuguear
 
 }

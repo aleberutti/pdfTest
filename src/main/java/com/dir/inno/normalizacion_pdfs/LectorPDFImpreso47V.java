@@ -736,7 +736,7 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
 }
    
     /**
-     * 
+     * Método para obtener la lista de sustancias auxiliares utilizadas en el proceso
      * @return 
      */
     public ArrayList<ArrayList<String>> obtenerSustAuxiliares(){
@@ -1723,5 +1723,146 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
                   break;
        }
     return efluentes;
+    }
+    
+    /**
+     * Método que retorna la lista de resiudos líquidos peligrosos.
+     * @return 
+     */
+    public ArrayList<ArrayList<String>> obtenerResiduosLiquidosPeligrosos(){
+        ArrayList<ArrayList<String>> residuos = new ArrayList<>();
+        String sub, aux, proceso, componentes, valor, volumen, unidadTiempo, gestion, cuerpoReceptor;
+        
+        sub = "residuos peligrosos? (*)";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+        
+        switch(aux.replace(" ","")){
+            case "1X":
+                //caso 2, 4, 5, 6
+                while(!aux.replace(" ","").equals("Agregarlíquido")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        //System.out.println("Proceso: " + proceso);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        //System.out.println("Componentes: " + componentes);
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        //System.out.println("Valor: " + valor);
+                        skipBlank();
+                        volumen = readField();
+                        //System.out.println("Volumen: " + volumen);
+                        skipBlank();
+                        unidadTiempo = readField();
+                        //System.out.println("unidadTiempo: " + unidadTiempo);
+                        sub = "CUERPO";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        //System.out.println("cuerpoReceptor: " + cuerpoReceptor);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(cuerpoReceptor);
+                        residuos.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                              skipFooter();
+                              skipBlank();
+                              aux = readField();
+                        }
+                }
+                break;
+                    
+            case "¿Losefluenteslíquidosrequierenmásdeuntratamientoparapoderservertidos?(*)":
+                //caso 3
+                break;
+                
+            case "FirmayAclaración":
+                // caso 1
+                skipFooter();
+                skipBlank();
+                aux = readField();
+                //System.out.println("aux de case firma: " + aux);
+
+                if(aux.replace(" ","").equals("¿Loslíquidoscontienenresiduospeligrosopuedengenerarresiduospeligrosos?(*)")){
+                    break;
+                }
+
+                if(aux.equals("1X")){
+                    //System.out.println("entro al if de 1X dentro de case firma");
+                    while(!aux.replace(" ","").equals("Agregarlíquido")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        //System.out.println("proceso " + proceso);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        //System.out.println("componentes " + componentes);
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        //System.out.println("valor " + valor);
+                        skipBlank();
+                        volumen = readField();
+                        //System.out.println("volumen " + volumen);
+                        skipBlank();
+                        unidadTiempo = readField();
+                        //System.out.println("unidadTiempo " + unidadTiempo);
+                        sub = "CUERPO";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        //System.out.println("cuerpoReceptor " + cuerpoReceptor);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        aux = readField();
+                        //System.out.println("aux antes de volver a loopear " + aux);
+                        
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(cuerpoReceptor);
+                        residuos.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                            
+                                skipFooter();
+                                skipBlank();
+                                aux = readField();
+                        }  
+                    }
+                }
+                break;
+        }
+        
+        return residuos;
     }
 }

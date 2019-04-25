@@ -49,7 +49,7 @@ public class Main {
         //v4.7(2)_impreso
 
         String filePath = new File("").getAbsolutePath();
-        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(2)_impreso.pdf";
+        filePath += "\\Almacenamiento PDFs editables\\PDFs editables\\Formulario de presentacion v4.7(6)_impreso.pdf";
 
         StringBuilder text;
 
@@ -318,7 +318,7 @@ public class Main {
 //            }
 //         }
         
-        ArrayList<ArrayList<String>> efluentesNoPeligrosos = lectorV.obtenerEfluenteNoPeligroso();
+        /*ArrayList<ArrayList<String>> efluentesNoPeligrosos = lectorV.obtenerEfluenteNoPeligroso();
         System.out.println("obtenerEfluenteNoPeligroso \n");
         for(int i = 0; i < efluentesNoPeligrosos.size(); i++){
             System.out.println("Efluente " + (i + 1) + '/' + efluentesNoPeligrosos.size() + ':'
@@ -328,7 +328,22 @@ public class Main {
                 + efluentesNoPeligrosos.get(i).get(3) + ", "
                 + efluentesNoPeligrosos.get(i).get(4) + ", "
                 + efluentesNoPeligrosos.get(i).get(5));
+        }*/
+        
+        ArrayList<ArrayList<String>> residuosLiquidosPeligrosos = lectorV.obtenerResiduosLiquidosPeligrosos();
+        System.out.println("obtenerResiduosLiquidosPeligrosos \n");
+        for(int i = 0; i < residuosLiquidosPeligrosos.size(); i++){
+            System.out.println("Efluente " + (i + 1) + '/' + residuosLiquidosPeligrosos.size() + ':'
+                + residuosLiquidosPeligrosos.get(i).get(0) + ", "
+                + residuosLiquidosPeligrosos.get(i).get(1) + ", "
+                + residuosLiquidosPeligrosos.get(i).get(2) + ", "
+                + residuosLiquidosPeligrosos.get(i).get(3) + ", "
+                + residuosLiquidosPeligrosos.get(i).get(4) + ", "
+                + residuosLiquidosPeligrosos.get(i).get(5));
         }
+
+        
+        
         
     }
          

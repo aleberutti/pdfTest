@@ -1775,5 +1775,101 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerEfluenteNoPeligroso();
         assertEquals(expResult, result);
     }
-    
+    /**
+    * Test of obtenerResiduosLiquidosPeligrosos() method, of class LectorPDFImpreso47V
+    */
+    @Test
+    public void testObtenerResiduosLiquidosPeligrosos(){
+        System.out.println("testObtenerResiduosLiquidosPeligrosos");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor
+
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreProcesoGeneradorDeEfluentes");
+        expResult.get(0).add("NombresComponentesRelevantesDeEfluentes");
+        expResult.get(0).add("1324");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Colectora cloacal");
+        result = instance1.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+
+        //pdf2 
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sdasdadsa");
+        expResult.get(0).add("sddsasd");
+        expResult.get(0).add("12312");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Curso de agua superficial");
+        result = instance2.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("sdasdadsa");
+        expResult.get(0).add("sddsasd");
+        expResult.get(0).add("12312");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Curso de agua superficial");
+        result = instance4.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proceso7");
+        expResult.get(0).add("Componente7");
+        expResult.get(0).add("98");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Cursos de agua no permanente");
+        expResult.get(1).add("Proceso8");
+        expResult.get(1).add("Componente8");
+        expResult.get(1).add("78");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("mensual");
+        expResult.get(1).add("Conducto pluvial cerrado");
+        result = instance5.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreProcesoGeneradorDeEfluentes1");
+        expResult.get(0).add("NombresComponentesRelevantesDeEfluentes1");
+        expResult.get(0).add("1324");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Colectora cloacal");
+        expResult.get(1).add("NombreProcesoGeneradorDeEfluentes2");
+        expResult.get(1).add("NombresComponentesRelevantesDeEfluentes2");
+        expResult.get(1).add("12345679890");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("semanal");
+        expResult.get(1).add("Pozos o campos  de drenaje");
+        expResult.get(2).add("NombreProcesoGeneradorDeEfluentes3");
+        expResult.get(2).add("NombresComponentesRelevantesDeEfluentes");
+        expResult.get(2).add("1234657890");
+        expResult.get(2).add("lt");
+        expResult.get(2).add("mensual");
+        expResult.get(2).add("Cursos de agua no permanente");
+        result = instance6.obtenerResiduosLiquidosPeligrosos();
+        assertEquals(expResult, result);
+    }
 }

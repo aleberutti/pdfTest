@@ -1880,7 +1880,10 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         
         return residuos;
     }
-    
+   /**
+    * Método para obtener los tratamientos adicionales de los efluentes generados por la planta
+    * @return 
+    */ 
     public ArrayList<ArrayList<String>> obtenerTratamientoEfluentes(){
         ArrayList<ArrayList<String>> efluentes = new ArrayList<>();
         String sub, aux, proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor;
@@ -1902,8 +1905,10 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
                         skipBlank();
                         proceso = readField();
                         //System.out.println("Proceso: " + proceso);
-                        skipBlank();
+                       /*skipBlank();
                         skipWord();
+                        skipBlank();*/
+                        index = text.indexOf("COMPONENTE/S",index) + "COMPONENTE/S".length();
                         skipBlank();
                         componentes = readField();
                         //System.out.println("Componentes: " + componentes);
@@ -2015,5 +2020,117 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
                 break;
         }
         return efluentes;
+    }
+    
+    /**
+     * Método para obtener los residuos sólidos no peligrosos emitidos por la planta
+     * @return
+     */
+    public ArrayList<ArrayList<String>> obtenerResiduosSolidosNP(){
+        ArrayList<ArrayList<String>> residuos = new ArrayList<>();
+        String sub, aux, residuo, valor, unidad, periodo, proceso, gestion;
+        
+        sub = "Decreto 2151/14";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+        
+        switch(aux.replace(" ", "")){
+            case "1"://caso pdf 6
+                while(!aux.replace(" ","").equals("Agregarresiduo")){
+                    ArrayList<String> fila = new ArrayList<>();
+                    index = text.indexOf("RESIDUO",index) + "RESIDUO".length();
+                    skipBlank();
+                    residuo = readField();
+                    index = text.indexOf("CANTIDAD", index) + "CANTIDAD".length();
+                    skipBlank();
+                    valor = readField();
+                    skipBlank();
+                    unidad = readField();
+                    skipBlank();
+                    periodo = readField();
+                    index = text.indexOf("QUE",index) + "QUE".length();
+                    skipBlank();
+                    proceso = readField();
+                    index = text.indexOf("GESTIÓN",index) + "GESTIÓN".length();
+                    skipBlank();
+                    gestion = readField();
+                    skipBlank();
+                    aux = readField();
+                    
+                    fila.add(residuo);
+                    fila.add(valor);
+                    fila.add(unidad);
+                    fila.add(periodo);
+                    fila.add(proceso);
+                    fila.add(gestion);
+                    residuos.add(fila);
+                    
+                    if(aux.replace(" ","").equals("FirmayAclaración")){
+                        skipFooter();
+                        skipBlank();
+                        aux = readField();
+                    }
+                }
+                break;/**/
+            
+            case "FirmayAclaración":
+                skipFooter();
+                skipBlank();
+                aux = readField();
+                
+                if(aux.replace(" ", "").equals("1")){
+                    while(!aux.replace(" ","").equals("Agregarresiduo")){
+                        ArrayList<String> fila = new ArrayList<>();
+                        index = text.indexOf("RESIDUO",index) + "RESIDUO".length();
+                        skipBlank();
+                        residuo = readField();
+                        index = text.indexOf("CANTIDAD", index) + "CANTIDAD".length();
+                        skipBlank();
+                        valor = readField();
+                        skipBlank();
+                        unidad = readField();
+                        skipBlank();
+                        periodo = readField();
+                        index = text.indexOf("QUE",index) + "QUE".length();
+                        skipBlank();
+                        proceso = readField();
+                        index = text.indexOf("GESTIÓN",index) + "GESTIÓN".length();
+                        skipBlank();
+                        gestion = readField();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(residuo);
+                        fila.add(valor);
+                        fila.add(unidad);
+                        fila.add(periodo);
+                        fila.add(proceso);
+                        fila.add(gestion);
+                        residuos.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                            skipFooter();
+                            skipBlank();
+                            aux = readField();
+                        }
+                    }
+                    break;/**/
+                }
+                else{
+                    if(aux.replace(" ", "").equals("¿Existenresiduossólidososemisólidospeligrosos,opodríanéstoscontenerogenerarresiduos"))
+                    {
+                        break;/**/
+                    }
+                }
+                break;/**/
+                
+            case "¿Existenresiduossólidososemisólidospeligrosos,opodríanéstoscontenerogenerarresiduos":
+                break;     
+        }
+        
+        return residuos;
     }
 }

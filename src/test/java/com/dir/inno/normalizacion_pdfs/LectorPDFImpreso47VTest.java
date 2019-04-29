@@ -1934,7 +1934,7 @@ public class LectorPDFImpreso47VTest {
         expResult.get(0).add("1111");
         expResult.get(0).add("m3");
         expResult.get(0).add("mensual");
-        expResult.get(0).add("Colectora");
+        expResult.get(0).add("Colectora cloacal");
         expResult.get(1).add("Proceso10");
         expResult.get(1).add("Comodi10");
         expResult.get(1).add("787");
@@ -1970,4 +1970,96 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerTratamientoEfluentes();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * test of obtenerResiduosSolidosNP() method, of class LectorPDFImpreso47V
+     */
+    @Test
+    public void testObtenerResiduosSolidosNP(){
+        System.out.println("testObtenerResiduosSolidosNP");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor
+
+        //pdf1
+        expResult = new ArrayList<>();
+        result = instance1.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+
+        //pdf2 
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("5.Desechos de caucho.");
+        expResult.get(0).add("213312");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("anual");
+        expResult.get(0).add("po123iuytfgvbnm,");
+        expResult.get(0).add("lkjhgvb asnm,g");
+        expResult.get(1).add("4.Sustancias orgánicas no halogenadas no empleadas como disolventes.");
+        expResult.get(1).add("123351");
+        expResult.get(1).add("tn");
+        expResult.get(1).add("diario");
+        expResult.get(1).add("fdsafadsadsdsa");
+        expResult.get(1).add("sadddasdsadasads");
+        result = instance2.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("5.Desechos de caucho.");
+        expResult.get(0).add("213312");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("anual");
+        expResult.get(0).add("po123iuytfgvbnm,");
+        expResult.get(0).add("lkjhgvb asnm,g");
+        expResult.get(1).add("4.Sustancias orgánicas no halogenadas no empleadas como disolventes.");
+        expResult.get(1).add("123351");
+        expResult.get(1).add("tn");
+        expResult.get(1).add("diario");
+        expResult.get(1).add("fdsafadsadsdsa");
+        expResult.get(1).add("sadddasdsadasads");
+        result = instance4.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        result = instance5.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("1.Jabones, materias grasas, ceras de origen animal o vegetal.");
+        expResult.get(0).add("1234567980");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("semanal");
+        expResult.get(0).add("ProcesoGenResiduo1");
+        expResult.get(0).add("GestionResiduo1");
+        expResult.get(1).add("2.Aceites vegetales.");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("mensual");
+        expResult.get(1).add("ProcesoGenResiduo2");
+        expResult.get(1).add("GestionResiduo2");
+        expResult.get(2).add("3.Cereales y oleaginosas.");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("diario");
+        expResult.get(2).add("ProcesoGenResiduo3");
+        expResult.get(2).add("GestionResiduo3");
+        result = instance6.obtenerResiduosSolidosNP();
+        assertEquals(expResult, result);
+    }
+    
 }

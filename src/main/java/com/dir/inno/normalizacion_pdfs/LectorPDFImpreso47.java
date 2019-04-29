@@ -5,6 +5,10 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
+import com.snowtide.PDF;
+import com.snowtide.pdf.Document;
+import com.snowtide.pdf.OutputTarget;
+import java.io.IOException;
 import static java.lang.Character.isLetter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,12 +29,13 @@ import org.apache.commons.lang3.text.WordUtils;
 public class LectorPDFImpreso47 {
     
     protected Integer index;
-    protected final StringBuilder text;
+    protected StringBuilder text;
     
-    public LectorPDFImpreso47(StringBuilder text) {
+    public LectorPDFImpreso47(StringBuilder text){
         this.text = text;
     }
-
+    
+    
     /*Obtener versión del documento
      */
     public String obtenerVersion() {

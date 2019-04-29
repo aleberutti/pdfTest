@@ -5,6 +5,11 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
+import com.snowtide.PDF;
+import com.snowtide.pdf.Document;
+import com.snowtide.pdf.OutputTarget;
+import com.snowtide.pdf.VisualOutputTarget;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,13 +18,19 @@ import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+
 /**
  *
  * @author MODERNIZACION05
  */
 public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
-
-    public LectorPDFImpreso47V(StringBuilder text) {
+    
+    //protected Integer index;
+    //protected final StringBuilder text;
+    
+    
+    
+    public LectorPDFImpreso47V(StringBuilder text){
         super(text);
     }
 
@@ -87,9 +98,11 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return nomina;
     }
 
-    /**Devuelve el domicilioConstituido como String.
+    /**
+     * Devuelve el domicilioConstituido como String.
     Se pueden extraer parametros calle, 
     num, piso, dpto, localidad, depto, provincia, CP, tel y mail
+     * @return 
      */
     public String obtenerDomicilioConst() {
         String domicilio = new String();
@@ -164,9 +177,11 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return domicilio;
     }
 
-    /**Devuelve el domicilioLegal como String.
+    /**
+     * Devuelve el domicilioLegal como String.
     Se pueden extraer parametros calle, 
     num, piso, dpto, localidad, depto, provincia, CP, tel y mail
+     * @return 
      */
     public String obtenerDomicilioLegal() {
         String domicilio = new String();
@@ -1864,5 +1879,141 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         }
         
         return residuos;
+    }
+    
+    public ArrayList<ArrayList<String>> obtenerTratamientoEfluentes(){
+        ArrayList<ArrayList<String>> efluentes = new ArrayList<>();
+        String sub, aux, proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor;
+        
+        sub = "vertidos? (*)";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+        
+        switch(aux.replace(" ","")){
+            case "1X":
+                //caso 2, 4, 5, 6
+                while(!aux.replace(" ","").equals("Agregarefluente")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        //System.out.println("Proceso: " + proceso);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        //System.out.println("Componentes: " + componentes);
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        //System.out.println("Valor: " + valor);
+                        skipBlank();
+                        volumen = readField();
+                        //System.out.println("Volumen: " + volumen);
+                        skipBlank();
+                        unidadTiempo = readField();
+                        //System.out.println("unidadTiempo: " + unidadTiempo);
+                        sub = "CUERPO";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        //System.out.println("cuerpoReceptor: " + cuerpoReceptor);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        aux = readField();
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(cuerpoReceptor);
+                        efluentes.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                              skipFooter();
+                              skipBlank();
+                              aux = readField();
+                        }
+                }
+                break;
+                    
+            case "RESIDUOSSÓLIDOSY/OSEMISÓLIDOS":
+                //caso 3
+                break;
+                
+            case "FirmayAclaración":
+                // caso 1
+                skipFooter();
+                skipBlank();
+                aux = readField();
+                //System.out.println("aux de case firma: " + aux);
+
+                if(aux.replace(" ","").equals("RESIDUOSSÓLIDOSY/OSEMISÓLIDOS")){
+                    break;
+                }
+
+                if(aux.equals("1X")){
+                    //System.out.println("entro al if de 1X dentro de case firma");
+                    while(!aux.replace(" ","").equals("Agregarefluente")){
+                        ArrayList fila = new ArrayList<>();
+                        sub = "GENERA";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        proceso = readField();
+                        //System.out.println("proceso " + proceso);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        componentes = readField();
+                        //System.out.println("componentes " + componentes);
+                        sub = "CANTIDAD";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        valor = readField();
+                        //System.out.println("valor " + valor);
+                        skipBlank();
+                        volumen = readField();
+                        //System.out.println("volumen " + volumen);
+                        skipBlank();
+                        unidadTiempo = readField();
+                        //System.out.println("unidadTiempo " + unidadTiempo);
+                        sub = "CUERPO";
+                        index = text.indexOf(sub, index) + sub.length();
+                        skipBlank();
+                        cuerpoReceptor = readField();
+                        //System.out.println("cuerpoReceptor " + cuerpoReceptor);
+                        skipBlank();
+                        skipWord();
+                        skipBlank();
+                        aux = readField();
+                        //System.out.println("aux antes de volver a loopear " + aux);
+                        
+
+                        fila.add(proceso);
+                        fila.add(componentes);
+                        fila.add(valor);
+                        fila.add(volumen);
+                        fila.add(unidadTiempo);
+                        fila.add(cuerpoReceptor);
+                        efluentes.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                            
+                                skipFooter();
+                                skipBlank();
+                                aux = readField();
+                        }  
+                    }
+                }
+                break;
+        }
+        return efluentes;
     }
 }

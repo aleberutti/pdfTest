@@ -1872,4 +1872,102 @@ public class LectorPDFImpreso47VTest {
         result = instance6.obtenerResiduosLiquidosPeligrosos();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * test of obtenerTratamientoEfluentes() method, of class LectorPDFImpreso47V
+     */
+    @Test
+    public void testObtenerTratamientoEfluentes(){
+        System.out.println("testObtenerTratamientoEfluentes");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor
+
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreDeSegundoTratamientoDeEfluentes");
+        expResult.get(0).add("NombreDeComponentesDeEfluentes");
+        expResult.get(0).add("12345");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Colectora cloacal");
+        result = instance1.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+
+        //pdf2 
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("adssdasda");
+        expResult.get(0).add("123321123");
+        expResult.get(0).add("321123");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Conducto pluvial cerrado");
+        result = instance2.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("adssdasda");
+        expResult.get(0).add("123321123");
+        expResult.get(0).add("321123");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Conducto pluvial cerrado");
+        result = instance4.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Proceso9");
+        expResult.get(0).add("Cpomponetnt9");
+        expResult.get(0).add("1111");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("Colectora");
+        expResult.get(1).add("Proceso10");
+        expResult.get(1).add("Comodi10");
+        expResult.get(1).add("787");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("semanal");
+        expResult.get(1).add("Curso de agua superficial");
+        result = instance5.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("NombreDeSegundoTratamientoDeEfluentes1");
+        expResult.get(0).add("NombreDeComponentesDeEfluentes2");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("Conducto pluvial abierto");
+        expResult.get(1).add("NombreDeSegundoTratamientoDeEfluentes2");
+        expResult.get(1).add("NombreDeComponentesDeEfluentes2");
+        expResult.get(1).add("123467980");
+        expResult.get(1).add("m3");
+        expResult.get(1).add("mensual");
+        expResult.get(1).add("Conducto pluvial abierto");
+        expResult.get(2).add("NombreDeSegundoTratamientoDeEfluentes3");
+        expResult.get(2).add("NombreDeComponentesDeEfluentes3");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("semanal");
+        expResult.get(2).add("Colectora cloacal");
+        result = instance6.obtenerTratamientoEfluentes();
+        assertEquals(expResult, result);
+    }
 }

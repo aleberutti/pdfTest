@@ -54,16 +54,12 @@ public class Main {
         StringBuilder text;
 
         try (Document pdf = PDF.open(filePath)) {
-            XMLOutputTarget xml = new XMLOutputTarget();
-            pdf.pipe(xml);
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }
         LectorPDFImpreso47 lector = new LectorPDFImpreso47(text);
         
         try (Document pdf = PDF.open(filePath)) {
-            XMLOutputTarget xml = new XMLOutputTarget();
-            pdf.pipe(xml);
             text = new StringBuilder();
             pdf.pipe(new VisualOutputTarget(text));
         }

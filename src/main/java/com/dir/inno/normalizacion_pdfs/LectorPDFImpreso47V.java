@@ -5,11 +5,6 @@
  */
 package com.dir.inno.normalizacion_pdfs;
 
-import com.snowtide.PDF;
-import com.snowtide.pdf.Document;
-import com.snowtide.pdf.OutputTarget;
-import com.snowtide.pdf.VisualOutputTarget;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -251,11 +246,12 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         return domicilio;
     }
 
-    /**Devuelve el domicilioConstituido como String.
-    Se pueden extraer parametros calle, 
-    num, piso, dpto, localidad, depto, provincia, CP, tel,
-    tipo de zonificacion y mail
-     */
+   /**Devuelve el domicilioConstituido como String.
+    * Se pueden extraer parametros calle, 
+    * num, piso, dpto, localidad, depto, provincia, CP, tel,
+    * tipo de zonificacion y mail
+    * @return 
+    */
     public String obtenerDomicilioReal() {
         String domicilio = new String();
 
@@ -2132,5 +2128,164 @@ public class LectorPDFImpreso47V extends LectorPDFImpreso47 {
         }
         
         return residuos;
+    }
+    
+    /**
+     * Método para obtener los residuos sólidos o semisólidos peligrosos generados por la planta
+     * @return residuos
+     */
+    public ArrayList<ArrayList<String>> obtenerResiduosSolidosP(){
+        ArrayList<ArrayList<String>> residuos = new ArrayList<>();
+        String sub, aux, residuo, valor, unidad, periodo, proceso, gestion;
+        
+        sub = "Click Aquí para acceder al Decreto:";
+        index = text.indexOf(sub) + sub.length();
+        sub = "No";
+        index = text.indexOf(sub, index) + sub.length();
+        skipBlank();
+        aux = readField();
+        
+        switch(aux.replace(" ", "")){
+            case "1"://caso pdf 6
+                while(!aux.replace(" ","").equals("Agregarresiduo")){
+                    ArrayList<String> fila = new ArrayList<>();
+                    index = text.indexOf("RESIDUO",index) + "RESIDUO".length();
+                    skipBlank();
+                    residuo = readField();
+                    index = text.indexOf("CANTIDAD", index) + "CANTIDAD".length();
+                    skipBlank();
+                    valor = readField();
+                    skipBlank();
+                    unidad = readField();
+                    skipBlank();
+                    periodo = readField();
+                    index = text.indexOf("QUE",index) + "QUE".length();
+                    skipBlank();
+                    proceso = readField();
+                    index = text.indexOf("GESTIÓN",index) + "GESTIÓN".length();
+                    skipBlank();
+                    gestion = readField();
+                    skipBlank();
+                    aux = readField();
+                    
+                    fila.add(residuo);
+                    fila.add(valor);
+                    fila.add(unidad);
+                    fila.add(periodo);
+                    fila.add(proceso);
+                    fila.add(gestion);
+                    residuos.add(fila);
+                    
+                    if(aux.replace(" ","").equals("FirmayAclaración")){
+                        skipFooter();
+                        skipBlank();
+                        aux = readField();
+                    }
+                }
+                break;/**/
+            
+            case "FirmayAclaración":
+                skipFooter();
+                skipBlank();
+                aux = readField();
+                
+                if(aux.replace(" ", "").equals("1")){
+                    while(!aux.replace(" ","").equals("Agregarresiduo")){
+                        ArrayList<String> fila = new ArrayList<>();
+                        index = text.indexOf("RESIDUO",index) + "RESIDUO".length();
+                        skipBlank();
+                        residuo = readField();
+                        index = text.indexOf("CANTIDAD", index) + "CANTIDAD".length();
+                        skipBlank();
+                        valor = readField();
+                        skipBlank();
+                        unidad = readField();
+                        skipBlank();
+                        periodo = readField();
+                        index = text.indexOf("QUE",index) + "QUE".length();
+                        skipBlank();
+                        proceso = readField();
+                        index = text.indexOf("GESTIÓN",index) + "GESTIÓN".length();
+                        skipBlank();
+                        gestion = readField();
+                        skipBlank();
+                        aux = readField();
+                        //System.out.println("Last aux within while: " + aux);
+
+                        fila.add(residuo);
+                        fila.add(valor);
+                        fila.add(unidad);
+                        fila.add(periodo);
+                        fila.add(proceso);
+                        fila.add(gestion);
+                        residuos.add(fila);
+
+                        if(aux.replace(" ","").equals("FirmayAclaración")){
+                            skipFooter();
+                            skipBlank();
+                            aux = readField();
+                        }
+                    }
+                    break;/**/
+                }
+                else{
+                    if(aux.replace(" ", "").equals("6.RIESGOPRESUNTO"))
+                    {
+                        break;/**/
+                    }
+                }
+                break;/**/
+                
+            case "6.RIESGOPRESUNTO":
+                break;     
+        }
+        
+        return residuos;
+    }
+    
+    /**
+     * Método que obtiene el nombre de los archivos anexos del formulario.
+     * @return 
+     */
+    public ArrayList<String> archivosAnexos(){
+        ArrayList<String> anexos = new ArrayList<>();
+        String fotoSatelital, diagramaFlujo, relevFotografico, layOutPlanta, aux;
+        
+        index = text.indexOf(".jpg") + ".jpg".length();
+        index = text.indexOf("ubicación", index) + "ubicación".length();
+        skipBlank();
+        fotoSatelital = readField();
+        index = text.indexOf("A-8.1",index) + "A-8.1".length();
+        index = text.indexOf("Productivo",index) + "Productivo".length();
+        skipBlank();
+        diagramaFlujo = readField();
+        index = text.indexOf("B-2.1",index) + "B-2.1".length();
+        index = text.indexOf("ubicación",index) + "ubicación".length();
+        skipBlank();
+        layOutPlanta = readField();
+        index = text.indexOf("B-2.2",index) + "B-2.2".length();
+        index = text.indexOf("equipos",index) + "equipos".length();
+        skipBlank();
+        relevFotografico = readField();
+        skipBlank();
+        aux = readField();
+        //System.out.println(aux);
+        if(aux.replace(" ","").equals("FirmayAclaración")){
+            //System.out.println("Entro al if");
+            skipFooter();
+            skipBlank();
+            relevFotografico += readField();
+        }else{
+            if(!aux.replace(" ","").equals("Ingrese-rangodepáginascorrespondientealincisoB-2.3")){
+                relevFotografico += aux;
+            }
+        }
+        
+        anexos.add(fotoSatelital);
+        anexos.add(diagramaFlujo);
+        anexos.add(layOutPlanta);
+        anexos.add(relevFotografico);
+        
+        return anexos;
     }
 }

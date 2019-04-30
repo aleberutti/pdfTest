@@ -2062,4 +2062,178 @@ public class LectorPDFImpreso47VTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * test of obtenerResiduosSolidosP() method, of class LectorPDFImpreso47V
+     */
+    @Test
+    public void testObtenerResiduosSolidosP(){
+        System.out.println("testObtenerResiduosSolidosP");
+        ArrayList<ArrayList<String>> expResult;
+        ArrayList<ArrayList<String>> result;
+
+        //proceso, componentes, valor, volumen, unidadTiempo, cuerpoReceptor
+
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Y2 Desechos resultantes de la producción y preparación de productos farmacéuticos.");
+        expResult.get(0).add("1235456455");
+        expResult.get(0).add("lt");
+        expResult.get(0).add("diario");
+        expResult.get(0).add("ProcesoGeneradorDeResiduosSolidos");
+        expResult.get(0).add("GestionDeResiduosSolidos");
+        result = instance1.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+
+        //pdf2 
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Y6 Desechos resultantes de la producción, la preparación y la utilización de disolventes orgánicos.");
+        expResult.get(0).add("2133312");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("dalmdsbadsm");
+        expResult.get(0).add("ñljkfalkslksad");
+        result = instance2.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        result = instance3.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Y6 Desechos resultantes de la producción, la preparación y la utilización de disolventes orgánicos.");
+        expResult.get(0).add("2133312");
+        expResult.get(0).add("m3");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("dalmdsbadsm");
+        expResult.get(0).add("ñljkfalkslksad");
+        result = instance4.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Y8 Desechos de aceites minerales no aptos para el uso a que estaban destinados.");
+        expResult.get(0).add("87");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("mensual");
+        expResult.get(0).add("Proceso12");
+        expResult.get(0).add("Gestion Halle");
+        expResult.get(1).add("Y31 Plomo, compuestos de plomo.");/**/
+        expResult.get(1).add("10");
+        expResult.get(1).add("tn");
+        expResult.get(1).add("anual");
+        expResult.get(1).add("Proceso12");
+        expResult.get(1).add("Gestion Lifchitz");
+        result = instance5.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.add(new ArrayList<>());
+        expResult.get(0).add("Y2 Desechos resultantes de la producción y preparación de productos farmacéuticos.");
+        expResult.get(0).add("1234567890");
+        expResult.get(0).add("kg");
+        expResult.get(0).add("semanal");
+        expResult.get(0).add("ProcesoGeneradorDeResiduosSolidos1");
+        expResult.get(0).add("GestionDeResiduosSolidos1");
+        expResult.get(1).add("Y3 Desechos de medicamentos y productos farmacéuticos para la salud humana y animal.");
+        expResult.get(1).add("1234567890");
+        expResult.get(1).add("lt");
+        expResult.get(1).add("mensual");
+        expResult.get(1).add("ProcesoGeneradorDeResiduosSolidos2");
+        expResult.get(1).add("GestionDeResiduosSolidos2");
+        expResult.get(2).add("Y4 Desechos resultantes de la producción, la preparación y utilización de biocidas y productos fitosanitarios");
+        expResult.get(2).add("1234567890");
+        expResult.get(2).add("m3");
+        expResult.get(2).add("diario");
+        expResult.get(2).add("ProcesoGeneradorDeResiduosSolidos3");
+        expResult.get(2).add("GestionDeResiduosSolidos3");
+        expResult.get(3).add("Y5 Desechos resultantes de la fabricación, preparación y utilización de productos químicos para la preservación de la m");
+        expResult.get(3).add("1234657890");
+        expResult.get(3).add("tn");
+        expResult.get(3).add("anual");
+        expResult.get(3).add("ProcesoGeneradorDeResiduosSolidos4");
+        expResult.get(3).add("GestionDeResiduosSolidos4");
+        result = instance6.obtenerResiduosSolidosP();
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * Test of archivosAnexos() method, of class LectorPDFImpreso47V
+     */
+    @Test
+    public void testArchivosAnexos(){
+        System.out.println("archivosAnexos()");
+        ArrayList<String> expResult;
+        ArrayList<String> result;
+        
+        //pdf1
+        expResult = new ArrayList<>();
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        expResult.add("Nombre del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre del archivo correspondiente al Layout de la planta y/o Layout de máquinas y equipos 2.1");
+        expResult.add("2.3 Nombre  del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instance1.archivosAnexos();
+        assertEquals(expResult, result);
+
+        //pdf2
+        expResult = new ArrayList<>();
+        expResult.add("archivo1");
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instance2.archivosAnexos();
+        assertEquals(expResult, result);
+
+        //pdf3
+        expResult = new ArrayList<>();
+        expResult.add("dsaadssda");
+        expResult.add("12342t");
+        expResult.add("123321");
+        expResult.add("132123231123");
+        result = instance3.archivosAnexos();
+        assertEquals(expResult, result);
+
+        //pdf4
+        expResult = new ArrayList<>();
+        expResult.add("archivo1");
+        expResult.add("nombrearchivo2");
+        expResult.add("nombrearchivo3");
+        expResult.add("nombrearchivo4");
+        result = instance4.archivosAnexos();
+        assertEquals(expResult, result);
+
+        //pdf5
+        expResult = new ArrayList<>();
+        expResult.add("adwddw");
+        expResult.add("DiagramaFlujo_2.1");
+        expResult.add("DiagramaPlanta_v1");
+        expResult.add("RelevamientoFot_4");
+        result = instance5.archivosAnexos();
+        assertEquals(expResult, result);
+
+        //pdf6
+        expResult = new ArrayList<>();
+        expResult.add("NombreArchivoFotoSatelitaldeUbicacion");
+        expResult.add("Nombre  del archivo correspondiente al Diagrama de flujo del Proceso Productivo 2.1");
+        expResult.add("Nombre  del archivo correspondiente al Layout de la planta y/o Layout de máquinas  y equipos 2.1");
+        expResult.add("2.3 Nombre  del archivo correspondiente al Relevamiento fotográfico (Entorno inmediato,estado del predio)");
+        result = instance6.archivosAnexos();
+        assertEquals(expResult, result);
+        
+    }
+    
+
+
+
+    
 }

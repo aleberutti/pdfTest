@@ -326,7 +326,7 @@ public class Main {
                 + efluentesNoPeligrosos.get(i).get(5));
         }*/
         
-        ArrayList<ArrayList<String>> residuosLiquidosPeligrosos = lectorV.obtenerResiduosLiquidosPeligrosos();
+        /*ArrayList<ArrayList<String>> residuosLiquidosPeligrosos = lectorV.obtenerResiduosLiquidosPeligrosos();
         System.out.println("obtenerResiduosLiquidosPeligrosos \n");
         for(int i = 0; i < residuosLiquidosPeligrosos.size(); i++){
             System.out.println("Efluente " + (i + 1) + '/' + residuosLiquidosPeligrosos.size() + ':'
@@ -336,13 +336,26 @@ public class Main {
                 + residuosLiquidosPeligrosos.get(i).get(3) + ", "
                 + residuosLiquidosPeligrosos.get(i).get(4) + ", "
                 + residuosLiquidosPeligrosos.get(i).get(5));
+        }*/
+        
+        ArrayList<ArrayList<String>> residuosSolidosP = lectorV.obtenerResiduosSolidosP();
+        System.out.println("obtenerResiduosSolidosPeligrosos");
+        for(int i = 0; i < residuosSolidosP.size(); i++){
+            System.out.println("Residuo " + (i + 1) + '/' + residuosSolidosP.size() + ':'
+                + residuosSolidosP.get(i).get(0) + ", "
+                + residuosSolidosP.get(i).get(1) + ", "
+                + residuosSolidosP.get(i).get(2) + ", "
+                + residuosSolidosP.get(i).get(3) + ", "
+                + residuosSolidosP.get(i).get(4) + ", "
+                + residuosSolidosP.get(i).get(5));
         }
-
         
-        
-        
+        /*ArrayList<String> archivosAnexos = lectorV.archivosAnexos();
+        System.out.println("archivosAnexos()");
+        for(int i = 0; i < archivosAnexos.size(); i++){
+            System.out.println("Nombre del archivo " + (i + 1) + '/' + archivosAnexos.size() + ':'
+                + archivosAnexos.get(i));
+        }*/
     }
-         
-    
 }
 
